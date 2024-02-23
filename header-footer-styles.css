@@ -1,57 +1,59 @@
-/* Header */
+/* Header adjustments for height and horizontal distribution */
 .header {
-    background-color: #f8f8f8; /* Pale white background */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Shadowy edges */
+    max-height: 11%;
+    background-color: #f2f2f2; /* Pale creamy white */
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 20px;
   }
   
-  .logo-container {
+  /* Ensuring logo and navigation fit within the header's height */
+  .logo-container img, .navigation, .nav-links li {
+    height: 100%;
     display: flex;
     align-items: center;
   }
   
-  .logo-container img {
-    margin-right: 10px; /* Adjust as needed */
-  }
-  
-  .navigation {
-    display: flex;
-    align-items: center;
-  }
-  
-  .nav-links {
-    list-style: none;
-    display: flex;
-    margin-right: 20px; /* Space before login button */
-  }
-  
-  .nav-links li {
-    padding: 0 15px;
-  }
-  
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9; /* Slightly different to distinguish */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  }
-  
-  .products-dropdown:hover .dropdown-content {
-    display: block;
-  }
-  
-  /* Footer */
+  /* Footer adjustments for non-sticky placement */
   .site-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: #f8f8f8; /* Pale white */
-    color: #800080; /* Purple text */
+    background-color: #f2f2f2; /* Pale creamy white */
+    color: #800080; /* Keeping the purple text color */
     text-align: center;
     padding: 10px 0;
+    width: 100%;
   }
   
+  /* Ensure the dropdown functionality works as expected */
+  .nav-links li:hover .dropdown-content {
+    display: block; /* Shows dropdown content on hover */
+  }
+  
+  /* Additional styles to ensure dropdown is positioned correctly */
+  .dropdown-content {
+    position: absolute;
+    background-color: #f9f9f9;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  /* Mobile view */
+@media (max-width: 768px) {
+    .navigation {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 250px;
+        height: 100%;
+        background-color: #f2f2f2;
+        box-shadow: 0 0 25px rgba(0,0,0,0.1);
+        transition: right 0.3s;
+    }
+    .menu-icon {
+        display: block;
+    }
+    .nav-links, .login-button {
+        display: flex;
+        flex-direction: column;
+    }
+}

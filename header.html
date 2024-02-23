@@ -1,18 +1,25 @@
 <!-- Logo and navigation -->
-<div class="logo-container">
-    <img src="resources/bgs/logo.png" alt="Brand Logo">
+<div class="header">
+    <div class="logo-container">
+        <img src="resources/bgs/logo.png" alt="Brand Logo">
+    </div>
+    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+    <nav class="navigation" id="mobileMenu">
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li class="products-dropdown">Products
+                <ul class="dropdown-content">
+                    <li><a href="product1.html">Product 1</a></li>
+                    <!-- Add more products as needed -->
+                </ul>
+            </li>
+            <li><div class="login-button"><button id="loginBtn">Login</button></div></li>
+        </ul>
+    </nav>
 </div>
-<nav class="navigation">
-    <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li class="products-dropdown">Products
-            <ul class="dropdown-content">
-                <li><a href="product1.html">Product 1</a></li>
-                <!-- Add more products as needed -->
-            </ul>
-        </li>
-    </ul>
-</nav>
-<div class="login-button">
-    <button id="loginBtn">Login</button>
-</div>
+<script>
+    function toggleMenu() {
+        var menu = document.getElementById("mobileMenu");
+        menu.style.right = menu.style.right === "0px" ? "-100%" : "0px";
+    }
+</script>
