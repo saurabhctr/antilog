@@ -1,12 +1,57 @@
 /* Header */
-.logo-container { float: left; }
-.navigation { float: right; }
-.nav-links { list-style: none; }
-.nav-links li { display: inline-block; padding: 0 15px; }
-.dropdown-content { display: none; position: absolute; }
-.products-dropdown:hover .dropdown-content { display: block; }
-
-/* Footer */
-.site-footer { position: fixed; bottom: 0; width: 100%; text-align: center; }
-
-/* Add more styling rules as needed */
+.header {
+    background-color: #f8f8f8; /* Pale white background */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Shadowy edges */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+  }
+  
+  .logo-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo-container img {
+    margin-right: 10px; /* Adjust as needed */
+  }
+  
+  .navigation {
+    display: flex;
+    align-items: center;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    margin-right: 20px; /* Space before login button */
+  }
+  
+  .nav-links li {
+    padding: 0 15px;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9; /* Slightly different to distinguish */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  }
+  
+  .products-dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  /* Footer */
+  .site-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f8f8f8; /* Pale white */
+    color: #800080; /* Purple text */
+    text-align: center;
+    padding: 10px 0;
+  }
+  
