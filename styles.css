@@ -48,3 +48,21 @@ header, footer {
         padding: 50px 20px;
     }
 }
+/* Media query for even smaller screens (e.g., mobile devices) */
+@media (max-width: 480px) {
+    body.parallax.index-body {
+        background-image: url('resources/bgs/bgmob.jpg');
+    }
+
+    .greeting {
+        padding: 30px 20px;
+    }
+
+    .button-container {
+        flex-direction: column;
+    }
+
+    .sticky-btn {
+        margin-top: 10px;
+    }
+}
