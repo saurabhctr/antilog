@@ -100,6 +100,23 @@
     display: block;
 }
 
+/* New styles for the login button */
+.login-button button {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #28a745; /* Different color for the login button */
+    color: white;
+}
+
+/* Add a hover effect for the login button */
+.login-button button:hover {
+    background-color: #218838; /* Darken color on hover */
+}
+
 /* Mobile view adjustments */
 @media (max-width: 768px) {
     /* Show the hamburger menu on mobile view */
