@@ -1,79 +1,50 @@
-/* Base and shared styles */
-body, html {
-    margin: 0;
-    padding: 0;
+/* index-page-styles.css for Index Page */
+body.parallax.index-body {
     font-family: Arial, sans-serif;
-    overflow-x: hidden; /* Prevents horizontal scroll */
-}
-
-.logo, footer {
-    text-align: center;
-    padding: 20px;
-}
-
-/* Parallax effect for local images */
-.parallax {
+    background-image: url('resources/bgs/bg1.jpg');
+    background-size: cover;
     background-attachment: fixed;
     background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    overflow-x: hidden;
 }
 
-/* Specific backgrounds for each page */
-.index-body {
-    background-image: url('resources/bgs/bg1.jpg'); /* Parallax for index page */
+header, footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
 }
 
-.product-body {
-    background-image: url('resources/bgs/bg2.jpg'); /* Parallax for product page */
+.greeting {
+    text-align: center;
+    padding: 100px 20px;
 }
 
-/* Product details enhancements */
-.product-details {
+.greeting h1, .greeting p {
+    color: white;
+}
+
+.button-container {
     display: flex;
     justify-content: center;
-    padding: 20px;
-}
-
-.product-container {
-    background-color: #fff; /* Light background for the component */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow */
-    padding: 20px;
-    border-radius: 8px;
-    max-width: 600px; /* Ensures component doesn't stretch too wide */
-    margin: auto;
-    text-align: center;
-}
-
-.product-image {
-    max-width: 100%;
-    height: auto;
     margin-top: 20px;
 }
 
-.buy-now {
+.sticky-btn {
     background-color: #007bff;
     color: white;
     padding: 10px 20px;
     border-radius: 5px;
     text-decoration: none;
     display: inline-block;
-    margin-top: 20px;
 }
 
-.buy-now:hover {
+.sticky-btn:hover {
     background-color: #0056b3;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
-    .product-container, .product-details h2, .product-details p, .buy-now {
-        font-size: smaller;
+    .greeting {
+        padding: 50px 20px;
     }
-}
-
-footer {
-    background-color: #f8f9fa;
-    color: #333;
-    width: 100%;
 }
