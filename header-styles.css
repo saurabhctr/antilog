@@ -90,6 +90,40 @@
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
 
+/* Hide the hamburger menu on desktop view */
+.menu-icon {
+    display: none;
+}
+
+/* Show the dropdown on hover for desktop view */
+.products-dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Mobile view adjustments */
+@media (max-width: 768px) {
+    /* Show the hamburger menu on mobile view */
+    .menu-icon {
+        display: block;
+    }
+
+    /* Hide the dropdown content by default on mobile, it will be toggled by JavaScript */
+    .dropdown-content {
+        display: none;
+    }
+
+    /* Stack the nav items vertically on mobile */
+    .nav-links {
+        flex-direction: column;
+    }
+
+    /* Ensure the login button is visible and full width on mobile */
+    .login-button button {
+        width: 100%;
+        margin-top: 10px; /* Add some space between the nav items and the button */
+    }
+}
+
 /* Mobile view */
 @media (max-width: 768px) {
     .navigation {

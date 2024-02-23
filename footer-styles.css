@@ -1,0 +1,89 @@
+/* Footer styles */
+.site-footer {
+    background-color: #f2f2f2; /* Pale white background */
+    color: #333; /* Dark text color for contrast */
+    font-size: 0.8em; /* Smaller font size for footer text */
+    line-height: 1.6; /* Spacing for readability */
+    padding: 20px 0; /* Padding around the content */
+    width: 100%;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    max-width: 1200px; /* Max width of the footer content */
+    margin: 0 auto; /* Center the footer content */
+    padding: 0 20px; /* Padding on the sides */
+}
+
+.footer-section {
+    margin-bottom: 20px; /* Spacing between sections */
+}
+
+.footer-section h4 {
+    margin-bottom: 10px; /* Spacing under section headers */
+}
+
+.footer-section ul {
+    list-style: none; /* Remove default list styling */
+    padding: 0; /* Remove default padding */
+}
+
+.footer-section ul li a {
+    color: #333; /* Link color */
+    text-decoration: none; /* Remove underline from links */
+    transition: color 0.3s ease; /* Transition for hover effect */
+}
+
+.footer-section ul li a:hover {
+    color: #007bff; /* Color change on hover */
+}
+
+.footer-bottom {
+    text-align: center; /* Center the copyright text */
+    margin-top: 20px; /* Spacing from the content above */
+}
+
+address {
+    font-style: normal; /* Addresses are italic by default, making it normal */
+}
+
+/* Ensure the footer is at the bottom */
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1 0 auto; /* The .content will grow to fill the space */
+}
+
+.site-footer {
+    flex-shrink: 0; /* The footer will not shrink */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-section {
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-section h4 {
+        margin-top: 20px;
+    }
+}
+
+/* Add your existing styles below */
