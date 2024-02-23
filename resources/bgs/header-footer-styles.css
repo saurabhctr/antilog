@@ -1,0 +1,12 @@
+/* Header */
+.logo-container { float: left; }
+.navigation { float: right; }
+.nav-links { list-style: none; }
+.nav-links li { display: inline-block; padding: 0 15px; }
+.dropdown-content { display: none; position: absolute; }
+.products-dropdown:hover .dropdown-content { display: block; }
+
+/* Footer */
+.site-footer { position: fixed; bottom: 0; width: 100%; text-align: center; }
+
+/* Add more styling rules as needed */
