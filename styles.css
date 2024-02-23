@@ -1,96 +1,65 @@
-
-/* Base styles */
+/* Base and shared styles */
 body, html {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
 }
 
-/* Header logo */
-.logo {
-    font-size: 24px;
+.logo, footer {
     text-align: center;
     padding: 20px;
 }
 
-/* Greeting section */
-.greeting h1 {
-    font-size: 2em;
-    text-align: center;
-}
-
-/* Sticky button */
-.sticky-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.sticky-btn:hover {
-    background-color: #0056b3;
-}
-
-/* Product details */
+/* Product details enhancements */
 .product-details {
+    display: flex;
+    justify-content: center;
     padding: 20px;
+}
+
+.product-container {
+    background-color: #fff; /* Light background for the component */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow */
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 600px; /* Ensures component doesn't stretch too wide */
+    margin: auto;
     text-align: center;
 }
 
 .product-image {
     max-width: 100%;
     height: auto;
+    margin-top: 20px;
 }
 
-/* Checkout form */
-.checkout {
-    padding: 20px;
-}
-
-.checkout h2 {
-    text-align: center;
-}
-
-.checkout form {
-    max-width: 300px;
-    margin: auto;
-}
-
-.checkout label {
-    display: block;
-    margin: 10px 0 5px;
-}
-
-.checkout input, .checkout textarea, .checkout button {
-    width: 100%;
-    padding: 10px;
-    margin: 5px 0;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-}
-
-.checkout button {
-    background-color: #28a745;
+.buy-now {
+    background-color: #007bff;
     color: white;
-    border: none;
-    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 20px;
 }
 
-.checkout button:hover {
-    background-color: #218838;
+.buy-now:hover {
+    background-color: #0056b3;
 }
 
-/* Footer */
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .product-container {
+        padding: 10px;
+    }
+
+    .product-details h2, .product-details p, .buy-now {
+        font-size: smaller;
+    }
+}
+
 footer {
-    text-align: center;
-    padding: 20px;
     background-color: #f8f9fa;
-    position: relative;
-    bottom: 0;
+    color: #333;
     width: 100%;
 }
