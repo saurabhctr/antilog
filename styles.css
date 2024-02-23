@@ -1,188 +1,96 @@
-/* Reset default browser styles */
-* {
+
+/* Base styles */
+body, html {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
-
-/* Global styles */
-body {
     font-family: Arial, sans-serif;
 }
 
-/* Header styles */
-header {
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
-    color: white;
-    padding: 20px;
-    position: fixed;
-    width: 100%;
-    z-index: 1000; /* Ensure header is above other content */
-}
-
+/* Header logo */
 .logo {
     font-size: 24px;
-}
-
-nav ul {
-    list-style-type: none;
-}
-
-nav ul li {
-    display: inline-block;
-    margin-right: 20px;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-}
-
-/* Banner styles */
-.banner {
-    height: 100vh; /* Full viewport height */
-    background-image: url('../resources/bgs/bg.jpg'), url('../resources/bgs/bg2.jpg'); /* Two background images */
-    background-size: cover, cover; /* Cover the entire section */
-    background-position: center, center; /* Center the background images */
-    position: relative; /* Enable positioning for parallax effect */
-    overflow: hidden; /* Hide overflow content */
-}
-
-.banner::before {
-    content: '';
-    background-image: url('../resources/bgs/bg2.jpg'); /* Secondary background image */
-    background-size: cover;
-    background-position: center;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 200%; /* Adjust as needed */
-    z-index: -1;
-    animation: parallax 10s infinite linear; /* Parallax animation */
-}
-
-@keyframes parallax {
-    0% {
-        transform: translateY(0);
-    }
-    100% {
-        transform: translateY(-100%);
-    }
-}
-
-/* Banner content */
-.banner-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     text-align: center;
-    width: 80%; /* Adjust as needed */
-    background-color: rgba(128, 128, 128, 0.5); /* Translucent grey background */
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Shadow effect */
-    transition: all 0.5s ease; /* Smooth transition effect */
 }
 
-.banner-content h1 {
-    font-size: 36px;
-    margin-bottom: 20px;
+/* Greeting section */
+.greeting h1 {
+    font-size: 2em;
+    text-align: center;
 }
 
-.banner-content p {
-    font-size: 18px;
-}
-
-/* Parallax effect */
-@media (max-width: 768px) {
-    .banner::before {
-        display: none; /* Hide parallax effect on smaller screens */
-    }
-}
-
-/* Product Catalog styles */
-.product-catalog {
-    padding: 50px 20px;
-}
-
-.product-card {
-    width: 300px;
-    background-color: #f4f4f4;
-    border-radius: 5px;
-    padding: 20px;
-    margin-bottom: 20px;
-}
-
-.product-card h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-.product-card ul {
-    padding-left: 20px;
-}
-
-.product-card li {
-    margin-bottom: 5px;
-}
-
-.product-card button {
-    background-color: #333;
+/* Sticky button */
+.sticky-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
     color: white;
     border: none;
-    padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 20px;
 }
 
-.product-card button:hover {
-    background-color: #555;
+.sticky-btn:hover {
+    background-color: #0056b3;
 }
 
-/* Contact form styles */
-.contact {
-    padding: 50px 20px;
+/* Product details */
+.product-details {
+    padding: 20px;
+    text-align: center;
 }
 
-.contact form {
-    max-width: 500px;
-    margin: 0 auto;
+.product-image {
+    max-width: 100%;
+    height: auto;
 }
 
-.contact form label {
+/* Checkout form */
+.checkout {
+    padding: 20px;
+}
+
+.checkout h2 {
+    text-align: center;
+}
+
+.checkout form {
+    max-width: 300px;
+    margin: auto;
+}
+
+.checkout label {
     display: block;
-    margin-bottom: 10px;
+    margin: 10px 0 5px;
 }
 
-.contact form input,
-.contact form textarea {
+.checkout input, .checkout textarea, .checkout button {
     width: 100%;
     padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
+    margin: 5px 0;
     border-radius: 5px;
+    border: 1px solid #ddd;
 }
 
-.contact form button {
-    background-color: #333;
+.checkout button {
+    background-color: #28a745;
     color: white;
     border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
     cursor: pointer;
 }
 
-.contact form button:hover {
-    background-color: #555;
+.checkout button:hover {
+    background-color: #218838;
 }
 
-/* Footer styles */
+/* Footer */
 footer {
-    background-color: #333;
-    color: white;
-    padding: 20px;
     text-align: center;
+    padding: 20px;
+    background-color: #f8f9fa;
+    position: relative;
+    bottom: 0;
+    width: 100%;
 }
