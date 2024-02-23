@@ -1,10 +1,12 @@
+
+
 /* Footer styles */
 .site-footer {
+    flex-shrink: 0; /* The footer will not shrink */
     background-color: #f2f2f2; /* Pale white background */
     color: #333; /* Dark text color for contrast */
-    font-size: 0.8em; /* Smaller font size for footer text */
-    line-height: 1.6; /* Spacing for readability */
-    padding: 20px 0; /* Padding around the content */
+    text-align: center;
+    padding: 20px 0;
     width: 100%;
 }
 
