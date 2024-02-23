@@ -3,11 +3,29 @@ body, html {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
+    overflow-x: hidden; /* Prevents horizontal scroll */
 }
 
 .logo, footer {
     text-align: center;
     padding: 20px;
+}
+
+/* Parallax effect for local images */
+.parallax {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Specific backgrounds for each page */
+.index-body {
+    background-image: url('resources/bgs/bg1.jpg'); /* Parallax for index page */
+}
+
+.product-body {
+    background-image: url('resources/bgs/bg2.jpg'); /* Parallax for product page */
 }
 
 /* Product details enhancements */
@@ -49,11 +67,7 @@ body, html {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    .product-container {
-        padding: 10px;
-    }
-
-    .product-details h2, .product-details p, .buy-now {
+    .product-container, .product-details h2, .product-details p, .buy-now {
         font-size: smaller;
     }
 }
