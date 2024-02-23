@@ -1,43 +1,96 @@
 /* Header adjustments for height and horizontal distribution */
 .header {
-    max-height: 11%;
     background-color: #f2f2f2; /* Pale creamy white */
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 20px;
-  }
-  
-  /* Ensuring logo and navigation fit within the header's height */
-  .logo-container img, .navigation, .nav-links li {
-    height: 100%;
+}
+
+/* Ensuring logo and navigation fit within the header's height */
+.logo-container img {
+    max-height: 100%;
+}
+
+.navigation {
     display: flex;
     align-items: center;
-  }
-  
-  /* Footer adjustments for non-sticky placement */
-  .site-footer {
-    background-color: #f2f2f2; /* Pale creamy white */
-    color: #800080; /* Keeping the purple text color */
-    text-align: center;
-    padding: 10px 0;
-    width: 100%;
-  }
-  
-  /* Ensure the dropdown functionality works as expected */
-  .nav-links li:hover .dropdown-content {
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-links li {
+    display: inline-block;
+    margin-right: 20px; /* Adjust spacing between nav items */
+}
+
+.nav-links li:last-child {
+    margin-right: 0; /* No margin for the last item */
+}
+
+.login-button {
+    display: flex;
+    align-items: center;
+}
+
+/* Rest of your CSS for dropdown and footer... */
+
+/* Ensure the dropdown functionality works as expected */
+.nav-links li:hover .dropdown-content {
     display: block; /* Shows dropdown content on hover */
-  }
-  
-  /* Additional styles to ensure dropdown is positioned correctly */
-  .dropdown-content {
+}
+
+/* Additional styles to ensure dropdown is positioned correctly */
+/* ... */
+
+/* Dropdown Button */
+.dropbtn {
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
     position: absolute;
-    background-color: #f9f9f9;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-  }
-  
-  /* Mobile view */
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+/* Mobile view */
 @media (max-width: 768px) {
     .navigation {
         position: fixed;
