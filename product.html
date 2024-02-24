@@ -11,26 +11,15 @@
     <div id="categoryTabs"></div>
 
     <section id="product-details" class="product-details">
-        <div class="product-container">
-            <h2>Our Energy Solution</h2>
-            <img src="product-image.jpg" alt="Energy Solution" class="product-image">
-            <p>Discover the benefits of sustainable energy with our innovative products.</p>
-            <ul>
-                <li>Reduced energy bills</li>
-                <li>Environmentally friendly</li>
-                <li>24/7 customer support</li>
-            </ul>
-            <p>Pricing: $99/month</p>
-            <a href="checkout.html" class="buy-now">Buy Product</a>
-        </div>
+        <div id="products" class="products-container"> <a href="checkout.html" class="buy-now">Buy Product</a> </div>
+
+
     </section>
     <div id="footer-placeholder"></div>
     <script src="script.js"></script>
     <script src="loadComponents.js"></script>
     <script src="fetchCategory.js"></script>
-    <script src="displayCategories.js"></script>
     <script src="fetchProduct.js"></script>
-    <script src="displayProduct.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             fetchCategories();
