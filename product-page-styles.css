@@ -51,6 +51,47 @@ header, footer {
     background-color: #0056b3;
 }
 
+#categoryTabs {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 10px 0;
+    background-color: #f0f0f0; /* Adjusted to match pale creamy white theme */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Softer shadow for a subtle effect */
+    margin-bottom: 20px; /* Added space between categories and product details */
+}
+
+#categoryTabs button {
+    background-color: #007bff; /* Bright blue to stand out */
+    color: white; /* White text for contrast */
+    border: none;
+    padding: 10px 15px;
+    margin: 5px;
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Cursor changes to pointer to indicate clickable */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+#categoryTabs button:hover {
+    background-color: #0056b3; /* Darker shade of blue on hover */
+}
+
+
+.product-card {
+    flex-basis: calc(33.333% - 20px); /* 3 items per row */
+    margin: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 20px;
+    background-color: #fff;
+}
+
+@media (max-width: 768px) {
+    .product-card {
+        flex-basis: 100%; /* 1 item per row in mobile view */
+    }
+}
+
+
 @media (max-width: 768px) {
     .product-container, .product-details h2, .product-details p, .buy-now {
         font-size: smaller;
