@@ -4,7 +4,7 @@ function displayCategories(categories) {
     categoryTabsContainer.id = 'categoryTabs';
     categories.forEach(category => {
         const tab = document.createElement('button');
-        tab.innerText = category.name;
+        tab.innerText = category;
         tab.onclick = () => fetchProductsForCategory(category.name);
         categoryTabsContainer.appendChild(tab);
     });
