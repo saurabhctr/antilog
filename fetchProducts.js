@@ -1,18 +1,31 @@
 window.onload = function() {
-    fetchCategoriesAndProducts(); // Fetch categories and initial products on page load
-  };
+    fetchCategoriesAndProducts(); // Ensure this also selects the first category by default
+};
+
   
-  function fetchCategoriesAndProducts() {
-    // Fetch categories logic here (e.g., populate category buttons)
-    fetchFirstCategoryProducts(); // Fetch products for the first category
+async function fetchCategoriesAndProducts() {
+    await fetchCategories(); // This should populate the category buttons
+    const categories = JSON.parse(sessionStorage.getItem('categories'));
+    if (categories && categories.length > 0) {
+      // Programmatically click the first category button
+      document.querySelectorAll('button')[0].click();
+    }
   }
+  
   
   function fetchProductsByCategory(category) {
-    fetch(`http://13.211.236.206:5000/products?category=${category}`)
-      .then(response => response.json())
-      .then(products => displayProducts(products))
-      .catch(error => console.error('Error:', error));
-  }
+    if (sessionStorage.getItem(category)) {
+        displayProducts(JSON.parse(sessionStorage.getItem(category)));
+    } else {
+        fetch(`http://13.211.236.206:5000/products?category=${category}`)
+            .then(response => response.json())
+            .then(products => {
+                sessionStorage.setItem(category, JSON.stringify(products));
+                displayProducts(products);
+            })
+            .catch(error => console.error('Error:', error));
+    }
+}
   
   function fetchFirstCategoryProducts() {
     // Assuming the first category is fetched and stored

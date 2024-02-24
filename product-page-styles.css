@@ -82,8 +82,10 @@ header, footer {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    gap: 3%;
   }
   .product-card {
+    flex: 1 1 calc(33.333% - 3%);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.3s;
     width: 30%;
@@ -93,6 +95,7 @@ header, footer {
     flex-direction: column;
     background: #FBF0D9; /* Golden touch background */
   }
+
   .product-card img {
     width: 100%;
     height: 20%;
