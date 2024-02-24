@@ -20,10 +20,13 @@
     <script src="loadComponents.js"></script>
     
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            fetchCategories();
+        document.addEventListener("DOMContentLoaded", async function() {
+            await fetchCategories();
+            // After categories are fetched, click the first category button
+            document.querySelector('#categoryTabs button')?.click();
         });
     </script>
+    
 
 </body>
 </html>

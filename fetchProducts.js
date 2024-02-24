@@ -47,7 +47,7 @@ async function fetchCategoriesAndProducts() {
             <p>${product.subtitle}</p>
             <p>${product.description}</p>
             <ul>
-              ${product.benefits.map(benefit => `<li>${benefit}</li>`).join('')}
+                  ${product.benefits.map(benefit => `<li>${benefit}</li>`).join('')}
             </ul>
             <p>Services: ${product.services.join(', ')}</p>
             <p>Price: $${product.price}</p>
