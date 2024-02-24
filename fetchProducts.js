@@ -13,20 +13,23 @@ async function fetchCategoriesAndProducts() {
   }
   
   
-  function fetchProductsByCategory(category) {
-    if (sessionStorage.getItem(category)) {
-        displayProducts(JSON.parse(sessionStorage.getItem(category)));
+  async function fetchProductsByCategory(categoryName) {
+    if (sessionStorage.getItem(categoryName)) {
+        displayProducts(JSON.parse(sessionStorage.getItem(categoryName)));
     } else {
-        fetch(`http://13.211.236.206:5000/products?category=${category}`)
-            .then(response => response.json())
-            .then(products => {
-                sessionStorage.setItem(category, JSON.stringify(products));
-                displayProducts(products);
-            })
-            .catch(error => console.error('Error:', error));
+        const response = await fetch('http://13.211.236.206:5000/getProducts', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({categoryName: categoryName})
+        });
+        const products = await response.json();
+        sessionStorage.setItem(categoryName, JSON.stringify(products)); // Cache the response
+        displayProducts(products);
     }
 }
-  
+
   function fetchFirstCategoryProducts() {
     // Assuming the first category is fetched and stored
     // Call fetchProductsByCategory with the first category's ID or name
