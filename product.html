@@ -24,8 +24,16 @@
     </section>
     <div id="footer-placeholder"></div>
     <script src="script.js"></script>
-    <script src="dropdown.js"></script>
-    <script src="login-modal.js"></script>
     <script src="loadComponents.js"></script>
+    <script src="fetchCategories.js"></script>
+    <script src="displayCategories.js"></script>
+    <script src="fetchProducts.js"></script>
+    <script src="displayProducts.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetchCategories();
+        });
+    </script>
+
 </body>
 </html>
