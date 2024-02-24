@@ -6,8 +6,8 @@ async function fetchCategories() {
     categoryTabsContainer.innerHTML = ''; // Clear existing content to prevent duplication
     categories.forEach(category => {
         const tab = document.createElement('button');
-        tab.innerText = category.name; // Assuming the category object has a 'name' property
-        tab.onclick = () => fetchProductsByCategory(category.name);
+        tab.innerText = category; // Assuming the category object has a 'name' property
+        tab.onclick = () => fetchProductsByCategory(category);
         categoryTabsContainer.appendChild(tab);
     });
 }
@@ -20,7 +20,7 @@ function displayCategories(categories) {
     categories.forEach(category => {
         const tab = document.createElement('button');
         tab.innerText = category;
-        tab.onclick = () => fetchProductsForCategory(category.name);
+        tab.onclick = () => fetchProductsForCategory(category);
         categoryTabsContainer.appendChild(tab);
     });
     document.body.insertBefore(categoryTabsContainer, document.getElementById('product-details'));
