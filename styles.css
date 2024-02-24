@@ -1,4 +1,16 @@
 /* index-page-styles.css for Index Page */
+body, html {
+    margin: 0;
+    overflow: hidden;
+    height: 100%;
+}
+#starfield {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
 body.parallax.index-body {
     font-family: Arial, sans-serif;
     background-image: url('resources/bgs/bg1.jpg');

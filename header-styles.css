@@ -1,4 +1,16 @@
 /* Header adjustments for height and horizontal distribution */
+body, html {
+    margin: 0;
+    overflow: hidden;
+    height: 100%;
+}
+#starfield {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
 .header {
     background-color: #f2f2f2; /* Pale creamy white */
     display: flex;
