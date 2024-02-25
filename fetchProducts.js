@@ -17,7 +17,7 @@ async function fetchCategoriesAndProducts() {
     if (sessionStorage.getItem(categoryName)) {
         displayProducts(JSON.parse(sessionStorage.getItem(categoryName)));
     } else {
-        const response = await fetch('http://13.211.236.206:5000/getProducts', {
+        const response = await fetch('http://54.252.206.53:5000/getProducts', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
