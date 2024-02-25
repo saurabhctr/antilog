@@ -1,14 +1,4 @@
 /* product-page-styles.css for Product Page */
-body, html {
-    margin: 0;
-    overflow: hidden;
-    height: 100%;
-}
-#starfield {
-    position: fixed;
-    top: 0;
-    left: 0;
-}
 
 body.parallax.product-body {
     font-family: Arial, sans-serif;

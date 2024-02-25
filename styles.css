@@ -1,15 +1,4 @@
 /* index-page-styles.css for Index Page */
-body, html {
-    margin: 0;
-    overflow: hidden;
-    height: 100%;
-}
-#starfield {
-    position: fixed;
-    top: 0;
-    left: 0;
-    
-}
 
 body.parallax.index-body {
     font-family: Arial, sans-serif;
