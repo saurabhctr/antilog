@@ -1,5 +1,11 @@
 /* index-page-styles.css for Index Page */
 
+body, html {
+    margin: 0;
+    /* overflow: hidden; Remove or comment out this line to allow scrolling */
+    /* height: 100%; You might also want to remove or comment out this line */
+}
+
 body.parallax.index-body {
     font-family: Arial, sans-serif;
     background-image: url('resources/bgs/bg1.jpg');

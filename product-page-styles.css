@@ -1,4 +1,9 @@
 /* product-page-styles.css for Product Page */
+body, html {
+    margin: 0;
+    /* overflow: hidden; Remove or comment out this line to allow scrolling */
+    /* height: 100%; You might also want to remove or comment out this line */
+}
 
 body.parallax.product-body {
     font-family: Arial, sans-serif;
