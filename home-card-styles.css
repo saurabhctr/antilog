@@ -12,41 +12,21 @@
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     border-radius: 10px;
     overflow: hidden;
-    position: relative;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-  }
-  
-  .card:hover {
-    transform: scale(1.05);
   }
   
   .card-image {
     width: 100%;
     height: 200px;
     object-fit: cover;
-    transition: filter 0.5s ease;
-  }
-  
-  .card-image-secondary {
-    display: none; /* Hidden by default, will be shown on hover */
   }
   
   .card-content {
     padding: 15px;
-    position: relative;
-    z-index: 2; /* Make sure content is above the images */
   }
   
   .card-title {
     font-size: 20px;
     margin-bottom: 10px;
-    transition: color 0.5s ease;
-    color: transparent; /* Make title transparent by default */
-    position: absolute;
-    top: 20px;
-    left: 15px;
-    z-index: 3;
   }
   
   .card-description {
@@ -54,27 +34,7 @@
     color: #666;
   }
   
-  .card:hover .card-image {
-    filter: grayscale(100%);
-  }
-  
-  .card:hover .card-title {
-    color: white;
-  }
-  
-  .card:hover .card-image-secondary {
-    display: block;
-    position: absolute;
-    bottom: -60%; /* Start from below the card */
-    left: 0;
-    width: 100%;
-    height: auto;
-    transform: rotate(-30deg);
-    transition: bottom 0.5s ease, opacity 0.5s ease;
-    z-index: 1;
-    opacity: 1; /* Make secondary image visible on hover */
-  }
-  
+  /* This ensures that there are no more than 3 cards per row */
   @media (min-width: 900px) {
     .card-container {
       grid-template-columns: repeat(3, 1fr);
