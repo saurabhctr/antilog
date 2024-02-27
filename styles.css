@@ -10,7 +10,7 @@ body.parallax.index-body {
     font-family: Arial, sans-serif;
     background: none; /* Background image removed */
     background-color: #fff; /* If you want to set a specific background color */
-    overflow-x: hidden;
+    /*overflow-x: hidden;
 }
 
 .greeting h1 {
