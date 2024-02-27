@@ -4,7 +4,7 @@ $(document).ready(function () {
         const noOfCards = 10;  // Default number of cards
         const cardType = 'web';  // Default card type
         // Additional filters if needed
-        const filters = { 'cx_tagline': 'some_tagline', 'cx_description': 'some_description' };
+        const filters = '';
 
         // Make AJAX request to the API
         $.ajax({
