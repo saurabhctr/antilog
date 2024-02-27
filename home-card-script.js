@@ -20,24 +20,25 @@ $(document).ready(function () {
     }
 
    // Function to dynamically display cards on the HTML page
-function displayCards(cards) {
+   function displayCards(cards) {
     const container = $('#dummy-content');
     container.empty(); // Clear existing content
 
-    let rowDiv = $('<div>').addClass('dummy-content-row');
-    container.append(rowDiv); // Append the row to the container immediately
-
     cards.forEach((card, index) => {
-        const cardDiv = $('<div>').addClass('dummy-card').css({ 'flex': '0 0 30%', 'box-shadow': '0 4px 8px 0 rgba(0, 0, 0, 0.2)', 'margin': '10px' });
-        const image = $('<img>').attr('src', card.cx_image_url).attr('alt', 'Card Image').css({ 'width': '100%', 'height': 'auto' });
-        const name = $('<h3>').text(card.cx_name).css({ 'margin': '10px 0 0 0' });
-        const tagline = $('<p>').text(card.cx_tagline).css({ 'font-style': 'italic' });
-        const description = $('<p>').text(card.cx_description).css({ 'text-align': 'justify' });
+        const cardDiv = $('<div>').addClass('card');
+        const image = $('<img>').addClass('card-image').attr('src', card.cx_image_url).attr('alt', 'Card Image');
+        // Create a secondary image with the same src as the primary image
+        const secondaryImage = $('<img>').addClass('card-secondary-image').attr('src', card.cx_image_url).attr('alt', 'Secondary Image');
+        const contentDiv = $('<div>').addClass('card-content');
+        const name = $('<h3>').addClass('card-title').text(card.cx_name);
+        const description = $('<p>').addClass('card-description').text(card.cx_description);
 
-        cardDiv.append(image, name, tagline, description);
-        rowDiv.append(cardDiv); // Append each card to the existing row
+        contentDiv.append(name, description);
+        cardDiv.append(image, secondaryImage, contentDiv); // Append both images and the content to the card
+        container.append(cardDiv); // Append each card to the container
     });
 }
+
 
     // Fetch cards when the document is ready
     fetchCards();
