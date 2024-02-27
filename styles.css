@@ -1,7 +1,7 @@
 /* index-page-styles.css for Index Page */
 
 body, html {
-    margin: 0;
+    margin: 10px;
     /* overflow: hidden; */ /* Commented out to allow scrolling */
      height: 100%; /* Commented out as it might be unnecessary */
 }
@@ -22,6 +22,11 @@ body.parallax.index-body {
 }
 
 
+.dummy-content-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
 
 
 header, footer {
