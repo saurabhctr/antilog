@@ -3,14 +3,14 @@
 body, html {
     margin: 0;
     /* overflow: hidden; */ /* Commented out to allow scrolling */
-    /* height: 100%; */ /* Commented out as it might be unnecessary */
+     height: 100%; /* Commented out as it might be unnecessary */
 }
 
 body.parallax.index-body {
     font-family: Arial, sans-serif;
     background: none; /* Background image removed */
     background-color: #fff; /* If you want to set a specific background color */
-    /*overflow-x: hidden;
+    /*overflow-x: hidden;*/
 }
 
 .greeting h1 {
