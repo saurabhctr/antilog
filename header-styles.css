@@ -1,7 +1,7 @@
 /* Header adjustments for height and horizontal distribution */
 body, html {
     margin: 0;
-    overflow: hidden;
+    /*overflow: hidden;*/
     height: 100%;
 }
 #starfield {
