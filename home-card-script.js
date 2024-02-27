@@ -7,7 +7,8 @@ $(document).ready(function () {
 
         // Make AJAX request to the API
         $.ajax({
-            url: `http://3.26.226.77:5000/getCards?noOfCard=${noOfCards}&type=${cardType}&filters=${JSON.stringify(filters)}`,
+            url: `http://3.26.226.77:5000/getCards`,
+            /*?noOfCard=${noOfCards}&type=${cardType}&filters=${JSON.stringify(filters)}*/
             type: 'GET',
             success: function (response) {
                 displayCards(response.cards);
