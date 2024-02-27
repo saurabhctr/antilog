@@ -1,5 +1,7 @@
 $(document).ready(function () {
     // Function to fetch cards from the API
+    ////?noOfCard=${noOfCards}&type=${cardType}&filters=${JSON.stringify(filters)}`,
+
     function fetchCards() {
         const noOfCards = 10;  // Default number of cards
         const cardType = 'web';  // Default card type
@@ -8,7 +10,7 @@ $(document).ready(function () {
 
         // Make AJAX request to the API
         $.ajax({
-            url: `http://3.26.226.77:5000/getCards?noOfCard=${noOfCards}&type=${cardType}&filters=${JSON.stringify(filters)}`,
+            url: `http://3.26.226.77:5000/getCards?`,
             type: 'GET',
             success: function (response) {
                 displayCards(response.cards);
