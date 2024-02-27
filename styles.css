@@ -8,13 +8,21 @@ body, html {
 
 body.parallax.index-body {
     font-family: Arial, sans-serif;
-    background-image: none; /* Background image removed */
-    background-color: #fff; /* Set a background color if needed */
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: center;
+    background: none; /* Background image removed */
+    background-color: #fff; /* If you want to set a specific background color */
     overflow-x: hidden;
 }
+
+.greeting h1 {
+    color: #7b68ee; /* Blueish purple for the heading text */
+}
+
+.greeting p {
+    color: #f0e68c; /* Pale yellow for the secondary text */
+}
+
+
+
 
 header, footer {
     text-align: center;
@@ -23,18 +31,6 @@ header, footer {
     color: white;
 }
 
-.greeting {
-    text-align: center;
-    padding: 100px 20px;
-}
-
-.greeting h1 {
-    color: #7b68ee; /* Blueish purple */
-}
-
-.greeting p {
-    color: #f0e68c; /* Pale yellow */
-}
 
 .button-container {
     display: flex;
@@ -43,7 +39,7 @@ header, footer {
 }
 
 .sticky-btn {
-    background-image: linear-gradient(to right, #9acd32, #adff2f); /* Yellowish green gradient */
+    background-image: linear-gradient(to right, #9acd32, #adff2f); /* Yellowish green gradient for the button */
     color: white;
     padding: 10px 20px;
     border-radius: 5px;
