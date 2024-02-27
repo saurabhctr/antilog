@@ -1,46 +1,43 @@
 /* index-page-styles.css for Index Page */
 
 body, html {
-    margin: 10px;
-    /* overflow: hidden; */ /* Commented out to allow scrolling */
-     height: 100%; /* Commented out as it might be unnecessary */
+    margin: 0; /* Updated to remove default margin */
+    padding: 0; /* Added to remove default padding */
+    height: 100%; /* Full height */
+    font-family: Arial, sans-serif; /* Font family for consistency */
 }
 
 body.parallax.index-body {
-    font-family: Arial, sans-serif;
-    background: none; /* Background image removed */
-    background-color: #fff; /* If you want to set a specific background color */
-    /*overflow-x: hidden;*/
+    background: none; /* No background image */
+    background-color: #fff; /* White background color */
+}
+
+/* Greeting section centered with golden red gradient and pitch black paragraph */
+.greeting {
+    text-align: center; /* Centered text */
+    padding: 50px 20px; /* Padding for spacing */
+    color: #000; /* Black color text for the paragraph */
 }
 
 .greeting h1 {
-    color: #7b68ee; /* Blueish purple for the heading text */
+    background: linear-gradient(to right, #DAA520, #FF0000); /* Golden red gradient */
+    -webkit-background-clip: text; /* Applying the gradient to the text */
+    color: transparent; /* Making the text transparent to show the gradient */
+    margin: 0; /* Remove default margin */
+    padding: 20px 0; /* Padding for spacing */
 }
 
 .greeting p {
-    color: #f0e68c; /* Pale yellow for the secondary text */
+    color: #000; /* Pitch black color for the paragraph */
+    margin: 0; /* Remove default margin */
+    padding: 10px 0; /* Padding for spacing */
 }
 
-
-.dummy-content-row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
-
-header, footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #333;
-    color: white;
-}
-
-
+/* Button container centered with appropriate spacing */
 .button-container {
     display: flex;
-    justify-content: center;
-    margin-top: 20px;
+    justify-content: center; /* Center the button */
+    margin: 20px 0; /* Margin for spacing */
 }
 
 .sticky-btn {
@@ -50,25 +47,45 @@ header, footer {
     border-radius: 5px;
     text-decoration: none;
     display: inline-block;
+    transition: background-image 0.3s; /* Transition for smooth color change */
 }
 
 .sticky-btn:hover {
     background-image: linear-gradient(to right, #8db600, #9acd32); /* Darker gradient on hover */
 }
 
+/* Grid layout for dummy content */
+#dummy-content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3-column layout */
+    gap: 1rem; /* Space between the columns */
+    margin: 0 auto; /* Centering the grid horizontally */
+    max-width: 1200px; /* Maximum width of the grid */
+    padding: 20px; /* Padding around the grid */
+}
+
+/* Header and Footer styling */
+header, footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
-    .greeting {
-        padding: 50px 20px;
+    #dummy-content {
+        grid-template-columns: repeat(2, 1fr); /* 2-column layout for tablets */
     }
 }
-/* Media query for even smaller screens (e.g., mobile devices) */
+
 @media (max-width: 480px) {
-    body.parallax.index-body {
-        background-image: none; /* Ensure mobile background is also removed */
+    #dummy-content {
+        grid-template-columns: 1fr; /* 1-column layout for mobile */
     }
 
     .greeting {
-        padding: 30px 20px;
+        padding: 30px 20px; /* Adjusted padding for mobile */
     }
 
     .button-container {
