@@ -1,0 +1,41 @@
+.dummy-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 15px; /* Adjust padding as needed */
+}
+
+.dummy-card {
+    width: calc(33.333% - 20px); /* Adjust width for 3 cards per row, accounting for margin */
+    margin-bottom: 30px; /* Separation between rows */
+    background-color: #f9f9f9; /* Card background */
+    border: 1px solid #ddd; /* Card border */
+    border-radius: 5px; /* Card border radius for rounded corners */
+    overflow: hidden; /* Ensures content fits within the card */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px; /* Card padding */
+}
+
+.dummy-card img {
+    width: 100px;
+    height: 100px;
+}
+
+.dummy-card p {
+    margin-top: 10px; /* Space between image and text */
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .dummy-card {
+        width: calc(50% - 20px); /* Adjust for fewer columns on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .dummy-card {
+        width: 100%; /* Full width cards on very small screens */
+    }
+}
