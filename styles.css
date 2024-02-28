@@ -75,8 +75,8 @@ body.parallax.index-body {
 header, footer {
     text-align: center;
     padding: 20px;
-    background-color: #333;
-    color: rgba(0, 0, 0, 0);
+    background-color: transparent;
+    color: rgb(255, 255, 255);
 }
 
 /* Responsive Design */
