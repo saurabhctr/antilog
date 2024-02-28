@@ -12,7 +12,7 @@ body, html {
 }
 
 .header {
-    background-color: #00000000; /* Pale creamy white */
+    background-color: #c5c5c500; /* Pale creamy white */
     display: flex;
     justify-content: space-between;
     align-items: center;
