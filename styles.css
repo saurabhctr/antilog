@@ -1,15 +1,5 @@
 /* index-page-styles.css for Index Page */
 
-#particles-js {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: -1; /* Ensures it stays in the background */
-  }
-  
-
 body, .index-body, .vector-shape, #header-placeholder, #footer-placeholder, .greeting, #dummy-content {
     background: transparent !important;
   }
