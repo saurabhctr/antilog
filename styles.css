@@ -1,5 +1,9 @@
 /* index-page-styles.css for Index Page */
 
+body, .index-body, .vector-shape, #header-placeholder, #footer-placeholder, .greeting, #dummy-content {
+    background: transparent !important;
+  }
+
 body, html {
     margin: 0; /* Updated to remove default margin */
     padding: 0; /* Added to remove default padding */
