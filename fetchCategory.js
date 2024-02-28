@@ -1,6 +1,6 @@
 // fetchCategories.js
 async function fetchCategories() {
-    const categoriesResponse = await fetch('http://3.26.65.147:5000/getCategories', { method: 'GET' });
+    const categoriesResponse = await fetch('http://127.0.0.1:5000/getCategories', { method: 'GET' });
     const categories = await categoriesResponse.json();
     const categoryTabsContainer = document.getElementById('categoryTabs');
     categoryTabsContainer.innerHTML = ''; // Clear existing content to prevent duplication
