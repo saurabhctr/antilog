@@ -14,8 +14,44 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 </head>
+
+<!-- count particles -->
+<div class="count-particles">
+    <span class="js-count-particles">--</span> particles
+  </div>
+  
+  <!-- particles.js container -->
+  <div id="particles-js"></div>
+  
+  <!-- scripts -->
+  <script src="particlesjs-config.js"></script>
+  <script src="js/app.js"></script>
+  
+  <!-- stats.js -->
+  <script src="js/lib/stats.js"></script>
+  <script>
+    var count_particles, stats, update;
+    stats = new Stats;
+    stats.setMode(0);
+    stats.domElement.style.position = 'absolute';
+    stats.domElement.style.left = '0px';
+    stats.domElement.style.top = '0px';
+    document.body.appendChild(stats.domElement);
+    count_particles = document.querySelector('.js-count-particles');
+    update = function() {
+      stats.begin();
+      stats.end();
+      if (window.pJSDom[0].pJS.particles && window.pJSDom[0].pJS.particles.array) {
+        count_particles.innerText = window.pJSDom[0].pJS.particles.array.length;
+      }
+      requestAnimationFrame(update);
+    };
+    requestAnimationFrame(update);
+  </script>
+
+
 <body class="parallax index-body">
-    <div id="particles-js"></div>
+    <div id="particles-js"></div> <!-- Particles Container -->
     <!-- New vector shapes -->
     <div class="vector-shape" id="shape1"></div>
     <div class="vector-shape" id="shape2"></div>
@@ -40,5 +76,13 @@
     <script src="login-modal.js"></script>
     <script src="loadComponents.js"></script>
     <script src="parallax.js"></script> <!-- Ensure you have this script for the parallax effect -->
+
+    <script>
+        // ParticlesJS Config.
+        particlesJS.load('particles-js', 'particlesjs-config.json', function() {
+          console.log('callback - particles.js config loaded');
+        });
+      </script>
+
 </body>
 </html>
