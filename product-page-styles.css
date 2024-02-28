@@ -63,7 +63,7 @@ header, footer {
     justify-content: center;
     flex-wrap: wrap;
     padding: 10px 0;
-    background-color: #f0f0f0;
+    /*background-color: #f0f0f0;*/
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     margin-bottom: 20px;
 }
