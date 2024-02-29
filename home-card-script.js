@@ -108,6 +108,7 @@ function handleCardClick(card) {
 
 
 
+
     // Fetch cards when the document is ready
     fetchCards();
 });

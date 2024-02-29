@@ -80,6 +80,8 @@
   display: none;
 }
 
+
+
 /* Add these styles to your existing CSS */
 
 .enlarged-image-container {
@@ -119,8 +121,6 @@
   font-size: 20px;
   cursor: pointer;
 }
-
-
 /* This ensures that there are no more than 3 cards per row */
 @media (min-width: 900px) {
   .card-container {
