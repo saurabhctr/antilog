@@ -1,6 +1,6 @@
 $(document).ready(function () {
-    const clickSound = new Audio('resources/audio/deep_click_sound.mp3');
-    const restoreSound = new Audio('resources/audio/fading_air_sound.mp3');
+    const clickSound = new Audio('path/to/deep_click_sound.mp3');
+    const restoreSound = new Audio('path/to/fading_air_sound.mp3');
 
     // Handle click for images
     $('body').on('click', 'img.enlargeable', function () {
