@@ -13,7 +13,13 @@ $(document).ready(function () {
         enlargedImageContainer.append(enlargedImage);
         $('body').append(enlargedImageContainer);
 
-        enlargedImageContainer.click(function () {
+        // Prevent removal when clicking on the enlarged image
+        enlargedImage.click(function (event) {
+            event.stopPropagation();
+        });
+
+        // Click anywhere else to remove the enlargement
+        $('body').one('click', function () {
             restoreSound.play(); // Play restore sound
             enlargedImageContainer.remove();
         });
@@ -31,7 +37,13 @@ $(document).ready(function () {
         enlargedContent.append(closeButton);
         $('body').append(enlargedContent);
 
-        closeButton.click(function () {
+        // Prevent removal when clicking on the enlarged content
+        enlargedContent.click(function (event) {
+            event.stopPropagation();
+        });
+
+        // Click anywhere else to remove the enlargement
+        $('body').one('click', function () {
             restoreSound.play(); // Play restore sound
             enlargedContent.remove();
         });
