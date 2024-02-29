@@ -59,9 +59,10 @@ $(document).ready(function () {
 
     // Handle click for card detail page on white spaces of the card
     $('body').on('click', '.card', function (event) {
-        if ($(event.target).hasClass('card')) {
-            // Open the card detail page (replace this with your actual logic)
-            window.location.href = 'card-detail.html';
-        }
+        // Extract the card_id from the clicked card
+        const cardId = $(this).attr('data-card-id');
+
+        // Open the card detail page with the correct card_id
+        window.location.href = `card-detail.html?card_id=${cardId}`;
     });
 });
