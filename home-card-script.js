@@ -27,6 +27,11 @@ $(document).ready(function () {
         cards.forEach((card, index) => {
             const cardDiv = $('<div>').addClass('card');
 
+             // Make each card clickable and pass the card_id
+             cardDiv.click(function () {
+                window.location.href = `card-detail.html?card_id=${card.card_id}`;
+            });
+                    
             // Make the image clickable with the 'enlargeable' class
             const image = $('<img>').addClass('card-image enlargeable').attr('src', card.cx_image_url).attr('alt', 'Card Image');
             
