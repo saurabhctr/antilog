@@ -17,23 +17,16 @@ $(document).ready(function () {
         // Add a class to indicate the enlarged state
         enlargedImageContainer.addClass('enlarged');
 
-        // Remove the class and play restore sound when clicked again
-        enlargedImage.click(function () {
-            // Check if the element has the 'enlarged' class
-            if (enlargedImageContainer.hasClass('enlarged')) {
-                // Play restore sound
-                restoreSound.play();
-                // Remove the enlarged class after the restore sound is played
-                setTimeout(function () {
-                    enlargedImageContainer.removeClass('enlarged');
-                }, restoreSound.duration * 1000);
-            }
-        });
+        // Handle a second click on the enlarged image
+        enlargedImage.one('click', function () {
+            // Play restore sound
+            restoreSound.play();
 
-        // Remove the container after the transition
-        setTimeout(function () {
-            enlargedImageContainer.remove();
-        }, (enlargedImageContainer.hasClass('enlarged') ? 500 : 0)); // Add 500ms delay if the container is in enlarged state
+            // Remove the 'enlarged' class after the restore sound is played
+            setTimeout(function () {
+                enlargedImageContainer.removeClass('enlarged');
+            }, restoreSound.duration * 1000);
+        });
     });
 
     // Handle click for text description divs
@@ -52,22 +45,23 @@ $(document).ready(function () {
         // Add a class to indicate the enlarged state
         enlargedContent.addClass('enlarged');
 
-        // Remove the class and play restore sound when clicked again
-        closeButton.click(function () {
-            // Check if the element has the 'enlarged' class
-            if (enlargedContent.hasClass('enlarged')) {
-                // Play restore sound
-                restoreSound.play();
-                // Remove the enlarged class after the restore sound is played
-                setTimeout(function () {
-                    enlargedContent.removeClass('enlarged');
-                }, restoreSound.duration * 1000);
-            }
-        });
+        // Handle a second click on the enlarged content
+        closeButton.one('click', function () {
+            // Play restore sound
+            restoreSound.play();
 
-        // Remove the container after the transition
-        setTimeout(function () {
-            enlargedContent.remove();
-        }, (enlargedContent.hasClass('enlarged') ? 500 : 0)); // Add 500ms delay if the container is in enlarged state
+            // Remove the 'enlarged' class after the restore sound is played
+            setTimeout(function () {
+                enlargedContent.removeClass('enlarged');
+            }, restoreSound.duration * 1000);
+        });
+    });
+
+    // Handle click for card detail page on white spaces of the card
+    $('body').on('click', '.card', function (event) {
+        if ($(event.target).hasClass('card')) {
+            // Open the card detail page (replace this with your actual logic)
+            window.location.href = 'card-detail.html';
+        }
     });
 });
