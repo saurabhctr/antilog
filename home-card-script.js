@@ -37,7 +37,44 @@ $(document).ready(function () {
         cardDiv.append(image, secondaryImage, contentDiv); // Append both images and the content to the card
         container.append(cardDiv); // Append each card to the container
     });
+    }
+// Function to handle card click events
+function handleCardClick(card) {
+    const image = card.find('.card-image');
+    const secondaryImage = card.find('.card-secondary-image');
+    const content = card.find('.card-content');
+
+    // Handling image click
+    image.click(function () {
+        // Enlarge the image
+        image.addClass('enlarged-image');
+        secondaryImage.addClass('behind-enlarged-secondary-image');
+        content.addClass('hidden-content');
+
+        // Remove event listener after the animation is complete
+        setTimeout(function () {
+            image.off('click');
+            image.click(function () {
+                // Restore the original size
+                image.removeClass('enlarged-image');
+                secondaryImage.removeClass('behind-enlarged-secondary-image');
+                content.removeClass('hidden-content');
+
+                // Remove the second click event listener
+                image.off('click');
+                // Re-attach the initial click event listener
+                handleCardClick(card);
+            });
+        }, 500); // Adjust the duration based on your animation time
+    });
+
+    // Handling text description click
+    // ... (existing code)
+
+    // Handling white part click
+    // ... (existing code)
 }
+
 
 
     // Fetch cards when the document is ready

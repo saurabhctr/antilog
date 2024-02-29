@@ -57,6 +57,29 @@
     color: #666;
   }
   
+/* Add these styles to your existing CSS */
+
+.card-image.enlarged-image {
+  width: 75vw;
+  height: 75vh;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  transition: all 0.5s ease;
+}
+
+.card-secondary-image.behind-enlarged-secondary-image {
+  transform: translateY(10%) rotateZ(-25deg);
+  z-index: 999;
+}
+
+.card-content.hidden-content {
+  display: none;
+}
+
+
   /* This ensures that there are no more than 3 cards per row */
   @media (min-width: 900px) {
     .card-container {
