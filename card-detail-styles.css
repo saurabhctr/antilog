@@ -1,0 +1,24 @@
+/* Add these styles to your existing CSS */
+
+.card-detail-container {
+    padding: 20px;
+    margin: 20px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-detail-image {
+    max-width: 100%;
+    height: auto;
+}
+
+.card-detail-content {
+    margin-top: 10px;
+}
+
+.card-detail-content p {
+    margin: 5px 0;
+}
+
+/* Rest of your styles */

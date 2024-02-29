@@ -26,7 +26,7 @@ $(document).ready(function () {
 
         cards.forEach((card, index) => {
             const cardDiv = $('<div>').addClass('card');
-            
+
             // Make the image clickable with the 'enlargeable' class
             const image = $('<img>').addClass('card-image enlargeable').attr('src', card.cx_image_url).attr('alt', 'Card Image');
             
@@ -42,6 +42,11 @@ $(document).ready(function () {
             contentDiv.append(name, description);
             cardDiv.append(image, secondaryImage, contentDiv); // Append both images and the content to the card
             container.append(cardDiv); // Append each card to the container
+
+            // Add click event to open card detail page
+            cardDiv.click(function () {
+                window.location.href = `card-detail.html?id=${card.id}`;
+            });
         });
     }
 
