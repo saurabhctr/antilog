@@ -68,11 +68,36 @@ function handleCardClick(card) {
         }, 500); // Adjust the duration based on your animation time
     });
 
+
     // Handling text description click
-    // ... (existing code)
+    const description = card.find('.card-description');
+    description.click(function () {
+        // Popup for text description
+        content.addClass('enlarged-content');
+
+        // Remove event listener after the animation is complete
+        setTimeout(function () {
+            content.off('click');
+            content.click(function () {
+                // Restore the original size
+                content.removeClass('enlarged-content');
+
+                // Remove the second click event listener
+                content.off('click');
+                // Re-attach the initial click event listener
+                handleCardClick(card);
+            });
+        }, 500); // Adjust the duration based on your animation time
+    });
 
     // Handling white part click
-    // ... (existing code)
+    card.click(function (event) {
+        if (event.target === card[0]) {
+            // Redirect to the product detail page
+            window.location.href = 'your_product_detail_page_url';
+        }
+    });
+
 }
 
 

@@ -1,63 +1,64 @@
 #dummy-content {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* This creates a 3-column layout */
-    gap: 1rem; /* Adjust the gap as needed */
-    /* Add any additional styling as required */
-  }
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  /* Add any additional styling as required */
+}
 
 .card-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-    padding: 20px;
-  }
-  
-  .card {
-    position: relative; /* Add this line */
-    display: flex;
-    flex-direction: column;
-    background: #fff;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    border-radius: 10px;
-    overflow: hidden;
-  }
-  
-  .card-secondary-image {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 200px; /* Match the primary image height */
-    object-fit: cover;
-    transform: translateY(80%) rotateZ(-25deg);
-    transition: transform 0.5s ease;
-  }
-  
-  .card:hover .card-secondary-image {
-    transform: translateY(20%) rotateZ(-25deg);
-  }
-  
-  
-  .card-image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-  }
-  
-  .card-content {
-    padding: 15px;
-  }
-  
-  .card-title {
-    font-size: 20px;
-    margin-bottom: 10px;
-  }
-  
-  .card-description {
-    font-size: 14px;
-    color: #666;
-  }
-  
-/* Add these styles to your existing CSS */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer; /* Add cursor pointer to indicate clickability */
+}
+
+.card-secondary-image {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transform: translateY(80%) rotateZ(-25deg);
+  transition: transform 0.5s ease;
+  z-index: 1; /* Ensure secondary image is behind content */
+}
+
+.card:hover .card-secondary-image {
+  transform: translateY(20%) rotateZ(-25deg);
+}
+
+.card-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  z-index: 2; /* Ensure primary image is above secondary image */
+}
+
+.card-content {
+  padding: 15px;
+  z-index: 3; /* Ensure content is above images */
+}
+
+.card-title {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.card-description {
+  font-size: 14px;
+  color: #666;
+}
 
 .card-image.enlarged-image {
   width: 75vw;
@@ -79,11 +80,9 @@
   display: none;
 }
 
-
-  /* This ensures that there are no more than 3 cards per row */
-  @media (min-width: 900px) {
-    .card-container {
-      grid-template-columns: repeat(3, 1fr);
-    }
+/* This ensures that there are no more than 3 cards per row */
+@media (min-width: 900px) {
+  .card-container {
+    grid-template-columns: repeat(3, 1fr);
   }
-  
+}
