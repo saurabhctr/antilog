@@ -50,7 +50,7 @@ $(document).ready(function () {
 
             // Add click event to open card detail page
             cardDiv.click(function () {
-                window.location.href = `card-detail.html?id=${card.id}`;
+                window.location.href = `card-detail.html?id=${card.card_id}`;
             });
         });
     }
