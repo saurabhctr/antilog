@@ -45,6 +45,13 @@ $(document).ready(function () {
     const urlParams = new URLSearchParams(window.location.search);
     const cardId = urlParams.get('card_id');
 
-    // Fetch card details when the document is ready
-    fetchCardDetails(cardId);
+    // Check if cardId is present before making the API call
+    if (cardId) {
+        // Fetch card details when the document is ready
+        fetchCardDetails(cardId);
+    } else {
+        console.log('Card ID not found in the URL');
+        // Handle the case where cardId is not present
+        // You can redirect to an error page or handle it as needed
+    }
 });
