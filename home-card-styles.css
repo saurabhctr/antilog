@@ -102,25 +102,6 @@
   max-height: 80%;
 }
 
-.enlarged-content {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: #fff;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  padding: 20px;
-  z-index: 1000;
-  overflow-y: auto;
-}
-
-.close-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 20px;
-  cursor: pointer;
-}
 /* This ensures that there are no more than 3 cards per row */
 @media (min-width: 900px) {
   .card-container {

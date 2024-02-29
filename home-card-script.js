@@ -40,19 +40,13 @@ $(document).ready(function () {
     }
 // Function to handle card click events
 function handleCardClick(card) {
-    const container = $('#dummy-content'); // Adjust this selector based on your actual container
+    const container = $('#dummy-content');
     const image = card.find('.card-image');
-    const secondaryImage = card.find('.card-secondary-image');
-    const content = card.find('.card-content');
 
-    // Create elements for enlarged image view
+    // Create an element for enlarged image view
     const enlargedImageContainer = $('<div>').addClass('enlarged-image-container');
     const enlargedImage = $('<img>').addClass('enlarged-image').attr('src', image.attr('src')).attr('alt', 'Enlarged Image');
-    
-    // Create elements for enlarged content view
-    const enlargedContent = $('<div>').addClass('enlarged-content');
-    const closeButton = $('<span>').addClass('close-button').text('✖');
-    
+
     // Handling image click
     image.click(function () {
         // Enlarge the image
@@ -66,44 +60,17 @@ function handleCardClick(card) {
                 // Restore the original size
                 enlargedImageContainer.remove();
 
-                // Remove the second click event listener
-                enlargedImageContainer.off('click');
                 // Re-attach the initial click event listener
                 handleCardClick(card);
             });
         }, 500); // Adjust the duration based on your animation time
-    });
-
-    // Handling text description click
-    description.click(function () {
-        // Populate enlarged content
-        enlargedContent.append(content.html());
-        enlargedContent.append(closeButton);
-        container.append(enlargedContent);
-
-        // Remove event listener after the animation is complete
-        setTimeout(function () {
-            content.off('click');
-            closeButton.click(function () {
-                // Restore the original size
-                enlargedContent.remove();
-
-                // Remove the second click event listener
-                closeButton.off('click');
-                // Re-attach the initial click event listener
-                handleCardClick(card);
-            });
-        }, 500); // Adjust the duration based on your animation time
-    });
-
-    // Handling white part click
-    card.click(function (event) {
-        if (event.target === card[0]) {
-            // Redirect to the product detail page
-            window.location.href = 'your_product_detail_page_url';
-        }
     });
 }
+
+// Ensure that the click event is attached to the card when the document is ready
+$(document).ready(function () {
+    handleCardClick($('.card')); // Adjust the selector based on your actual card structure
+});
 
 
 
