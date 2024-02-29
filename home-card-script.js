@@ -38,39 +38,7 @@ $(document).ready(function () {
         container.append(cardDiv); // Append each card to the container
     });
     }
-// Function to handle card click events
-function handleCardClick(card) {
-    const container = $('#dummy-content');
-    const image = card.find('.card-image');
 
-    // Create an element for enlarged image view
-    const enlargedImageContainer = $('<div>').addClass('enlarged-image-container');
-    const enlargedImage = $('<img>').addClass('enlarged-image').attr('src', image.attr('src')).attr('alt', 'Enlarged Image');
-
-    // Handling image click
-    image.click(function () {
-        // Enlarge the image
-        enlargedImageContainer.append(enlargedImage);
-        container.append(enlargedImageContainer);
-
-        // Remove event listener after the animation is complete
-        setTimeout(function () {
-            image.off('click');
-            enlargedImageContainer.click(function () {
-                // Restore the original size
-                enlargedImageContainer.remove();
-
-                // Re-attach the initial click event listener
-                handleCardClick(card);
-            });
-        }, 500); // Adjust the duration based on your animation time
-    });
-}
-
-// Ensure that the click event is attached to the card when the document is ready
-$(document).ready(function () {
-    handleCardClick($('.card')); // Adjust the selector based on your actual card structure
-});
 
 
 
