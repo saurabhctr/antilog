@@ -4,8 +4,6 @@ $(document).ready(function () {
 
     // Handle click for images
     $('body').on('click', 'img.enlargeable', function () {
-        clickSound.play(); // Play click sound
-
         const imageUrl = $(this).attr('src');
         const enlargedImageContainer = $('<div>').addClass('enlarged-image-container');
         const enlargedImage = $('<img>').addClass('enlarged-image').attr('src', imageUrl).attr('alt', 'Enlarged Image');
@@ -13,16 +11,25 @@ $(document).ready(function () {
         enlargedImageContainer.append(enlargedImage);
         $('body').append(enlargedImageContainer);
 
+        // Play click sound
+        clickSound.play();
+
+        // Add a class to indicate the enlarged state
+        enlargedImageContainer.addClass('enlarged');
+
+        // Remove the class and play restore sound when clicked again
         enlargedImageContainer.click(function () {
-            restoreSound.play(); // Play restore sound
-            enlargedImageContainer.remove();
+            if (enlargedImageContainer.hasClass('enlarged')) {
+                // Play restore sound
+                restoreSound.play();
+                // Remove the enlarged class
+                enlargedImageContainer.removeClass('enlarged');
+            }
         });
     });
 
     // Handle click for text description divs
     $('body').on('click', 'div.popupable', function () {
-        clickSound.play(); // Play click sound
-
         const textContent = $(this).text();
         const enlargedContent = $('<div>').addClass('enlarged-content');
         const closeButton = $('<span>').addClass('close-button').text('✖');
@@ -31,9 +38,20 @@ $(document).ready(function () {
         enlargedContent.append(closeButton);
         $('body').append(enlargedContent);
 
+        // Play click sound
+        clickSound.play();
+
+        // Add a class to indicate the enlarged state
+        enlargedContent.addClass('enlarged');
+
+        // Remove the class and play restore sound when clicked again
         closeButton.click(function () {
-            restoreSound.play(); // Play restore sound
-            enlargedContent.remove();
+            if (enlargedContent.hasClass('enlarged')) {
+                // Play restore sound
+                restoreSound.play();
+                // Remove the enlarged class
+                enlargedContent.removeClass('enlarged');
+            }
         });
     });
 });
