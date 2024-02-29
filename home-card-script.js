@@ -19,30 +19,31 @@ $(document).ready(function () {
         });
     }
 
-   // Function to dynamically display cards on the HTML page
-   function displayCards(cards) {
-    const container = $('#dummy-content');
-    container.empty(); // Clear existing content
+    // Function to dynamically display cards on the HTML page
+    function displayCards(cards) {
+        const container = $('#dummy-content');
+        container.empty(); // Clear existing content
 
-    cards.forEach((card, index) => {
-        const cardDiv = $('<div>').addClass('card');
-        const image = $('<img>').addClass('card-image').attr('src', card.cx_image_url).attr('alt', 'Card Image');
-        // Create a secondary image with the same src as the primary image
-        const secondaryImage = $('<img>').addClass('card-secondary-image').attr('src', card.cx_image_url).attr('alt', 'Secondary Image');
-        const contentDiv = $('<div>').addClass('card-content');
-        const name = $('<h3>').addClass('card-title').text(card.cx_name);
-        const description = $('<p>').addClass('card-description').text(card.cx_description);
+        cards.forEach((card, index) => {
+            const cardDiv = $('<div>').addClass('card');
+            
+            // Make the image clickable with the 'enlargeable' class
+            const image = $('<img>').addClass('card-image enlargeable').attr('src', card.cx_image_url).attr('alt', 'Card Image');
+            
+            // Create a secondary image with the same src as the primary image
+            const secondaryImage = $('<img>').addClass('card-secondary-image').attr('src', card.cx_image_url).attr('alt', 'Secondary Image');
+            
+            // Make the content clickable with the 'popupable' class
+            const contentDiv = $('<div>').addClass('card-content popupable');
+            
+            const name = $('<h3>').addClass('card-title').text(card.cx_name);
+            const description = $('<p>').addClass('card-description').text(card.cx_description);
 
-        contentDiv.append(name, description);
-        cardDiv.append(image, secondaryImage, contentDiv); // Append both images and the content to the card
-        container.append(cardDiv); // Append each card to the container
-    });
+            contentDiv.append(name, description);
+            cardDiv.append(image, secondaryImage, contentDiv); // Append both images and the content to the card
+            container.append(cardDiv); // Append each card to the container
+        });
     }
-
-
-
-
-
 
     // Fetch cards when the document is ready
     fetchCards();
