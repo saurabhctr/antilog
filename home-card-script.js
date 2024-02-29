@@ -40,50 +40,56 @@ $(document).ready(function () {
     }
 // Function to handle card click events
 function handleCardClick(card) {
+    const container = $('#dummy-content'); // Adjust this selector based on your actual container
     const image = card.find('.card-image');
     const secondaryImage = card.find('.card-secondary-image');
     const content = card.find('.card-content');
 
+    // Create elements for enlarged image view
+    const enlargedImageContainer = $('<div>').addClass('enlarged-image-container');
+    const enlargedImage = $('<img>').addClass('enlarged-image').attr('src', image.attr('src')).attr('alt', 'Enlarged Image');
+    
+    // Create elements for enlarged content view
+    const enlargedContent = $('<div>').addClass('enlarged-content');
+    const closeButton = $('<span>').addClass('close-button').text('✖');
+    
     // Handling image click
     image.click(function () {
         // Enlarge the image
-        image.addClass('enlarged-image');
-        secondaryImage.addClass('behind-enlarged-secondary-image');
-        content.addClass('hidden-content');
+        enlargedImageContainer.append(enlargedImage);
+        container.append(enlargedImageContainer);
 
         // Remove event listener after the animation is complete
         setTimeout(function () {
             image.off('click');
-            image.click(function () {
+            enlargedImageContainer.click(function () {
                 // Restore the original size
-                image.removeClass('enlarged-image');
-                secondaryImage.removeClass('behind-enlarged-secondary-image');
-                content.removeClass('hidden-content');
+                enlargedImageContainer.remove();
 
                 // Remove the second click event listener
-                image.off('click');
+                enlargedImageContainer.off('click');
                 // Re-attach the initial click event listener
                 handleCardClick(card);
             });
         }, 500); // Adjust the duration based on your animation time
     });
 
-
     // Handling text description click
-    const description = card.find('.card-description');
     description.click(function () {
-        // Popup for text description
-        content.addClass('enlarged-content');
+        // Populate enlarged content
+        enlargedContent.append(content.html());
+        enlargedContent.append(closeButton);
+        container.append(enlargedContent);
 
         // Remove event listener after the animation is complete
         setTimeout(function () {
             content.off('click');
-            content.click(function () {
+            closeButton.click(function () {
                 // Restore the original size
-                content.removeClass('enlarged-content');
+                enlargedContent.remove();
 
                 // Remove the second click event listener
-                content.off('click');
+                closeButton.off('click');
                 // Re-attach the initial click event listener
                 handleCardClick(card);
             });
@@ -97,8 +103,8 @@ function handleCardClick(card) {
             window.location.href = 'your_product_detail_page_url';
         }
     });
-
 }
+
 
 
 
