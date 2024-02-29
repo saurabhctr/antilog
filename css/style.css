@@ -2,7 +2,7 @@
 .index-body {
   position: relative;
   z-index: 1; /* Make sure this is higher than the z-index of #particles-js */
-  background: #fff; /* Or any color you wish the content background to be */
+  background: hsla(0, 0%, 100%, 0); /* Or any color you wish the content background to be */
 }
 
 
@@ -47,7 +47,7 @@ vertical-align:top;
   position: fixed;
   width: 100%;
   height: 100%;
-  background-color: #000000;
+  background-color: #ffffff00;
   background-image: url('');
   background-size: cover;
   background-position: 50% 50%;
