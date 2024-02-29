@@ -57,32 +57,3 @@
     cursor: pointer;
 }
 
-/* Existing styles... */
-
-.enlarged-image {
-    max-width: 80%;
-    max-height: 80%;
-    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
-}
-
-.enlarged-image-container:hover .enlarged-image {
-    transform: scale(1.1);
-    opacity: 0.9;
-}
-
-.enlarged-content {
-    /* Existing styles... */
-    opacity: 0;
-    animation: fadeIn 0.5s ease-in-out;
-    transition: opacity 0.5s ease-in-out; /* Add this line for smooth transition */
-}
-
-.enlarged-content:hover {
-    opacity: 0.6;
-}
-
-/* Add this keyframe animation for fadeIn */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
