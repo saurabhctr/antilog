@@ -17,18 +17,18 @@ $(document).ready(function () {
         // Add a class to indicate the enlarged state
         enlargedImageContainer.addClass('enlarged');
 
-        // Remove the container after the transition
-        setTimeout(function () {
-            // Remove the 'enlarged' class only if it hasn't been clicked again
-            if (!enlargedImageContainer.hasClass('clicked-again')) {
-                restoreSound.play();
-                enlargedImageContainer.removeClass('enlarged');
-                // Remove the container after the restore sound is played
-                setTimeout(function () {
-                    enlargedImageContainer.remove();
-                }, restoreSound.duration * 1000);
-            }
-        }, (enlargedImageContainer.hasClass('enlarged') ? 0 : 500)); // Add 500ms delay if the container is in enlarged state
+        // // Remove the container after the transition
+        // setTimeout(function () {
+        //     // Remove the 'enlarged' class only if it hasn't been clicked again
+        //     if (!enlargedImageContainer.hasClass('clicked-again')) {
+        //         restoreSound.play();
+        //         enlargedImageContainer.removeClass('enlarged');
+        //         // Remove the container after the restore sound is played
+        //         setTimeout(function () {
+        //             enlargedImageContainer.remove();
+        //         }, restoreSound.duration * 1000);
+        //     }
+        // }, (enlargedImageContainer.hasClass('enlarged') ? 0 : 500)); // Add 500ms delay if the container is in enlarged state
 
         // Handle a second click on the enlarged image
         enlargedImage.click(function () {
