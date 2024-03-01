@@ -2,60 +2,73 @@ $(document).ready(function () {
     const clickSound = new Audio('resources/audio/deep_click_sound.mp3');
     const restoreSound = new Audio('resources/audio/fading_air_sound.mp3');
 
-    // Handle click for images
-    $('body').on('click', 'img.enlargeable', function () {
-        const imageUrl = $(this).attr('src');
-        const enlargedImageContainer = $('<div>').addClass('enlarged-image-container');
-        const enlargedImage = $('<img>').addClass('enlarged-image').attr('src', imageUrl).attr('alt', 'Enlarged Image');
+    // Function to handle click for images
+$('body').on('click', 'img.enlargeable', function () {
+    const imageUrl = $(this).attr('src');
 
-        enlargedImageContainer.append(enlargedImage);
-        $('body').append(enlargedImageContainer);
+    // Create overlay container
+    const overlayContainer = $('<div>').addClass('image-overlay');
+    const overlayImage = $('<img>').addClass('overlay-image').attr('src', imageUrl).attr('alt', 'Enlarged Image');
 
-        // Play click sound
-        clickSound.play();
+    overlayContainer.append(overlayImage);
+    $('body').append(overlayContainer);
 
-        // Add a class to indicate the enlarged state
-        enlargedImageContainer.addClass('enlarged');
+    // Play click sound
+    clickSound.play();
 
-        // Handle a second click on the enlarged image
-        enlargedImage.one('click', function () {
-            // Play restore sound
-            restoreSound.play();
+    // Add a class to indicate the enlarged state
+    overlayContainer.addClass('enlarged');
 
-            // Remove the 'enlarged' class after the restore sound is played
-            setTimeout(function () {
-                enlargedImageContainer.removeClass('enlarged');
-            }, restoreSound.duration * 3000);
-        });
+    // Handle a second click on the enlarged image to restore
+    overlayContainer.one('click', function () {
+        // Play restore sound
+        restoreSound.play();
+
+        // Remove the 'enlarged' class after the second click
+        overlayContainer.removeClass('enlarged');
+
+        // Remove the overlay after the restore animation
+        setTimeout(function () {
+            overlayContainer.remove();
+        }, restoreSound.duration * 1000);
     });
+});
 
-    // Handle click for text description divs
-    $('body').on('click', 'div.popupable', function () {
-        const textContent = $(this).text();
-        const enlargedContent = $('<div>').addClass('enlarged-content');
-        const closeButton = $('<span>').addClass('close-button').text('✖');
+// Function to handle click for text description divs
+$('body').on('click', 'div.popupable', function () {
+    const textContent = $(this).text();
 
-        enlargedContent.text(textContent);
-        enlargedContent.append(closeButton);
-        $('body').append(enlargedContent);
+    // Create overlay container
+    const overlayContainer = $('<div>').addClass('text-overlay');
+    const overlayContent = $('<div>').addClass('overlay-content');
+    const closeButton = $('<span>').addClass('close-button').text('✖');
 
-        // Play click sound
-        clickSound.play();
+    overlayContent.text(textContent);
+    overlayContent.append(closeButton);
+    overlayContainer.append(overlayContent);
+    $('body').append(overlayContainer);
 
-        // Add a class to indicate the enlarged state
-        enlargedContent.addClass('enlarged');
+    // Play click sound
+    clickSound.play();
 
-        // Handle a second click on the enlarged content
-        closeButton.one('click', function () {
-            // Play restore sound
-            restoreSound.play();
+    // Add a class to indicate the enlarged state
+    overlayContainer.addClass('enlarged');
 
-            // Remove the 'enlarged' class after the restore sound is played
-            setTimeout(function () {
-                enlargedContent.removeClass('enlarged');
-            }, restoreSound.duration * 3000);
-        });
+    // Handle a second click on the enlarged content to restore
+    closeButton.one('click', function () {
+        // Play restore sound
+        restoreSound.play();
+
+        // Remove the 'enlarged' class after the second click
+        overlayContainer.removeClass('enlarged');
+
+        // Remove the overlay after the restore animation
+        setTimeout(function () {
+            overlayContainer.remove();
+        }, restoreSound.duration * 1000);
     });
+});
+
 
     // Handle click for card detail page on white spaces of the card
     $('body').on('click', '.card', function (event) {
