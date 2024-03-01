@@ -1,31 +1,41 @@
-#cardDetailContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
+/* Styles for card details page */
+
+.card-detail-body {
+    /* Add any specific styles for the body if needed */
 }
 
 .card-detail-image-container {
+    max-width: 100%;
     margin-bottom: 20px;
 }
 
 .card-detail-image {
-    max-width: 100%;
-    max-height: 400px;
-    border: 2px solid #ddd; /* Add a border around the image */
+    width: 100%;
+    height: auto;
+    border: 1px solid #ddd; /* Add any border styles you want */
 }
 
 .card-detail-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Add background color with transparency */
+    border-radius: 10px;
 }
 
-.card-detail-name,
-.card-detail-tagline,
-.card-detail-description {
+.card-detail-name {
+    font-size: 24px;
+    font-weight: bold;
     margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #ddd; /* Add a border around text divs */
-    background-color: rgba(255, 255, 255, 0.8); /* Add a light background color with transparency */
 }
+
+.card-detail-tagline {
+    font-style: italic;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.card-detail-description {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Add any additional styles as needed */
