@@ -7,7 +7,7 @@ async function fetchCategories() {
     categories.forEach(category => {
         const tab = document.createElement('button');
         tab.innerText = category; // Assuming the category object has a 'name' property
-        tab.onclick = () => fetchProductsByCategory(category);
+        tab.onclick = () => navigateToCategoryPage(category);
         categoryTabsContainer.appendChild(tab);
     });
 }
@@ -20,9 +20,13 @@ function displayCategories(categories) {
     categories.forEach(category => {
         const tab = document.createElement('button');
         tab.innerText = category;
-        tab.onclick = () => fetchProductsForCategory(category);
+        tab.onclick = () => navigateToCategoryPage(category);
         categoryTabsContainer.appendChild(tab);
     });
     document.body.insertBefore(categoryTabsContainer, document.getElementById('product-details'));
 }
 
+// Function to navigate to the category page with query parameter
+function navigateToCategoryPage(category) {
+    window.location.href = `category.html?category=${encodeURIComponent(category)}`;
+}
