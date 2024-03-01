@@ -2,23 +2,31 @@
 
 .card-detail-body {
     /* Add any specific styles for the body if needed */
+    font-family: 'Arial', sans-serif; /* Use a clean and widely supported font */
+    background-color: #f7f7f7; /* Set a light background color */
+    color: #333; /* Set the main text color */
 }
 
 .card-detail-image-container {
     max-width: 100%;
     margin-bottom: 20px;
+    overflow: hidden; /* Ensure the image does not overflow its container */
 }
 
 .card-detail-image {
     width: 100%;
     height: auto;
     border: 1px solid #ddd; /* Add any border styles you want */
+    border-radius: 10px; /* Add rounded corners to the image */
 }
 
 .card-detail-content {
+    max-width: 800px; /* Set a maximum width for the content */
+    margin: 0 auto; /* Center the content */
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8); /* Add background color with transparency */
+    background-color: rgba(255, 255, 255, 0.9); /* Add background color with transparency */
     border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
 }
 
 .card-detail-name {
@@ -36,6 +44,24 @@
 .card-detail-description {
     font-size: 16px;
     line-height: 1.5;
+    word-wrap: break-word; /* Ensure words break to the next line if they exceed the container width */
+}
+
+/* Responsive Styles */
+@media only screen and (max-width: 768px) {
+    .card-detail-content {
+        padding: 15px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .card-detail-name {
+        font-size: 20px;
+    }
+
+    .card-detail-description {
+        font-size: 14px;
+    }
 }
 
 /* Add any additional styles as needed */
