@@ -39,11 +39,11 @@
     <script src="fetchCategory.js"></script>
 
     <!-- Main Content Section -->
-    <main>
+   
         <section id="card-detail-content">
             <script src="card-detail-populate.js"></script>
         </section>
-    </main>
+
 
     <!-- Footer Section -->
     <footer>
@@ -63,8 +63,16 @@
     <script src="parallax.js"></script>
 
     <script>
-        document.addEventListener("DOMContentLoaded", async function () {
-            // Any additional logic you may need for this page
+        // ParticlesJS Config.
+        particlesJS.load('particles-js', 'particlesjs-config.json', function() {
+          console.log('callback - particles.js config loaded');
+        });
+      </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", async function() {
+            await fetchCategories();
+            // After categories are fetched, click the first category button
+            document.querySelector('#categoryTabs button')?.click();
         });
     </script>
 </body>
