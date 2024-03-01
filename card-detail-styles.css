@@ -8,25 +8,28 @@
 }
 
 .card-detail-image-container {
-    max-width: 100%;
-    margin-bottom: 20px;
+    max-width: 70vw; /* Set the maximum width to 70% of the viewport width */
+    margin: 0 auto; /* Center the container horizontally */
     overflow: hidden; /* Ensure the image does not overflow its container */
+    border: 10px solid #ffd700; /* Add a golden metallic border */
+    border-radius: 10px; /* Add rounded corners to the container */
+    box-sizing: border-box; /* Include border in the container dimensions */
 }
 
 .card-detail-image {
     width: 100%;
     height: auto;
-    border: 1px solid #ddd; /* Add any border styles you want */
-    border-radius: 10px; /* Add rounded corners to the image */
+    display: block; /* Remove extra space below the image */
 }
 
 .card-detail-content {
-    max-width: 800px; /* Set a maximum width for the content */
-    margin: 0 auto; /* Center the content */
+    max-width: 70vw; /* Set the maximum width to 70% of the viewport width */
+    margin: 20px auto; /* Center the content */
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.9); /* Add background color with transparency */
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+    box-sizing: border-box; /* Include padding in the container dimensions */
 }
 
 .card-detail-name {
@@ -49,18 +52,9 @@
 
 /* Responsive Styles */
 @media only screen and (max-width: 768px) {
-    .card-detail-content {
-        padding: 15px;
-    }
-}
-
-@media only screen and (max-width: 600px) {
-    .card-detail-name {
-        font-size: 20px;
-    }
-
-    .card-detail-description {
-        font-size: 14px;
+    .card-detail-content,
+    .card-detail-image-container {
+        max-width: 90vw;
     }
 }
 
