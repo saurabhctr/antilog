@@ -1,5 +1,4 @@
-// fetchCategoriesByCats.js
-$(document).ready(function () {
+
     // Function to fetch cards by category from the API
     function fetchCardsByCategory(category) {
         const noOfCards = 10; // Default number of cards
@@ -61,4 +60,3 @@ $(document).ready(function () {
     function navigateToCategoryPage(category) {
         window.location.href = `category.html?category=${encodeURIComponent(category)}`;
     }
-});
