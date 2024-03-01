@@ -9,10 +9,11 @@
 
 .card-detail-image-container {
     max-width: 70vw; /* Set the maximum width to 70% of the viewport width */
+    max-height: 60vh; /* Set the maximum height to 60% of the viewport height */
     margin: 0 auto; /* Center the container horizontally */
     overflow: hidden; /* Ensure the image does not overflow its container */
-    border: 10px solid #ffd700; /* Add a golden metallic border */
-    border-radius: 10px; /* Add rounded corners to the container */
+    border: 15px solid #fffacd; /* Add a pale yellow wide border for a royal look */
+    border-radius: 15px; /* Add rounded corners to the container */
     box-sizing: border-box; /* Include border in the container dimensions */
 }
 
