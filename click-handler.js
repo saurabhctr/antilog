@@ -25,7 +25,7 @@ $(document).ready(function () {
             // Remove the 'enlarged' class after the restore sound is played
             setTimeout(function () {
                 enlargedImageContainer.removeClass('enlarged');
-            }, restoreSound.duration * 1000);
+            }, restoreSound.duration * 3000);
         });
     });
 
@@ -53,7 +53,7 @@ $(document).ready(function () {
             // Remove the 'enlarged' class after the restore sound is played
             setTimeout(function () {
                 enlargedContent.removeClass('enlarged');
-            }, restoreSound.duration * 1000);
+            }, restoreSound.duration * 3000);
         });
     });
 

@@ -25,7 +25,8 @@ $(document).ready(function () {
 
         cards.forEach((card, index) => {
             const cardDiv = $('<div>').addClass('card');
-
+        // Set the data-card-id attribute
+            cardDiv.attr('data-card-id', card.cx_id);
             // Make each card clickable and pass the card_id
             cardDiv.click(function () {
                 window.location.href = `card-detail.html?card_id=${card.cx_id}`;
