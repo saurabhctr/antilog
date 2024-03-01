@@ -15,7 +15,7 @@
     <link rel="stylesheet" media="screen" href="css/style.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="click-handler.js"></script>
-    <script src="fetchCategory.js"></script> <!-- New script for fetching category details -->
+    <!-- New script for fetching category details -->
 </head>
 
 <body class="parallax category-body">
@@ -24,7 +24,7 @@
     <div id="categoryTabs"></div>
     
     <section id="dummy-content">
-        <!-- This section will be populated with category details -->
+        <script src="fetchCategoryOnPaage.js"></script> 
     </section>
     
     <div id="footer-placeholder"></div>
@@ -52,7 +52,7 @@
             // Fetch category details based on query parameter
             const urlParams = new URLSearchParams(window.location.search);
             const selectedCategory = urlParams.get('category');
-            await fetchCategoryDetails(selectedCategory);
+            await fetchCardsByCategory(selectedCategory);
         });
     </script>
 </body>
