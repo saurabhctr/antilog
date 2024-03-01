@@ -61,7 +61,13 @@
           console.log('callback - particles.js config loaded');
         });
       </script>
-    
+    <script>
+        document.addEventListener("DOMContentLoaded", async function() {
+            await fetchCategories();
+            // After categories are fetched, click the first category button
+            //document.querySelector('#categoryTabs button')?.click();
+        });
+    </script>
   
   
   
