@@ -26,7 +26,7 @@ function displayCategories(categories) {
     document.body.insertBefore(categoryTabsContainer, document.getElementById('product-details'));
 }
 
-// fetchCategories.js
+// fetchCategoriesByCats.js
 $(document).ready(function () {
     // Function to fetch cards by category from the API
     function fetchCardsByCategory(category) {
@@ -87,6 +87,6 @@ $(document).ready(function () {
 
     // Function to navigate to the category page with query parameter
     function navigateToCategoryPage(category) {
-        window.location.href = `category-page.html?category=${encodeURIComponent(category)}`;
+        window.location.href = `category.html?category=${encodeURIComponent(category)}`;
     }
 });
