@@ -7,32 +7,26 @@
     color: #333; /* Set the main text color */
 }
 
-.card-detail-container {
-    display: flex;
-    flex-direction: column;
-    max-width: 800px; /* Set a maximum width for the content */
-    margin: 0 auto; /* Center the content */
-    background-color: rgba(255, 255, 255, 0.9); /* Add background color with transparency */
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
-    overflow: hidden; /* Ensure the content does not overflow */
-}
-
 .card-detail-image-container {
-    flex: 0 0 auto; /* Do not grow, do not shrink, and use auto size */
     max-width: 100%;
+    margin-bottom: 20px;
     overflow: hidden; /* Ensure the image does not overflow its container */
 }
 
 .card-detail-image {
     width: 100%;
     height: auto;
-    border-bottom: 1px solid #ddd; /* Add a border between image and text */
+    border: 1px solid #ddd; /* Add any border styles you want */
+    border-radius: 10px; /* Add rounded corners to the image */
 }
 
 .card-detail-content {
-    flex: 1 1 auto; /* Grow and shrink, and use auto size */
+    max-width: 800px; /* Set a maximum width for the content */
+    margin: 0 auto; /* Center the content */
     padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9); /* Add background color with transparency */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
 }
 
 .card-detail-name {
@@ -50,15 +44,11 @@
 .card-detail-description {
     font-size: 16px;
     line-height: 1.5;
-    margin-bottom: 10px;
+    word-wrap: break-word; /* Ensure words break to the next line if they exceed the container width */
 }
 
 /* Responsive Styles */
 @media only screen and (max-width: 768px) {
-    .card-detail-container {
-        flex-direction: column; /* Stack content vertically on smaller screens */
-    }
-    
     .card-detail-content {
         padding: 15px;
     }
