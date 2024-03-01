@@ -1,4 +1,3 @@
-// fetchCategoriesByCats.js
 $(document).ready(function () {
     // Function to fetch cards by category from the API
     function fetchCardsByCategory(category) {
