@@ -8,7 +8,10 @@ function fetchCardsByCategory(category) {
     $.ajax({
         url: `${API_BASE_URL}:5000/getCards`,
         type: 'GET',
-        data: { type: `"${category}"`, noOfCards: noOfCards }, // Wrap category in quotes
+        data: {
+            noOfCard: noOfCards,
+            type: category
+        },
         success: function (response) {
             displayCards(response.cards);
         },
