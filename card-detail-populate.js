@@ -1,6 +1,8 @@
 $(document).ready(function () {
     // Function to fetch card details from the API
     function fetchCardDetails(cardId) {
+        // Convert cardId to a numeric value
+        cardId = Number(cardId);
         // Replace the API_BASE_URL with your actual API base URL
         const API_BASE_URL = 'http://3.25.164.137';
 
