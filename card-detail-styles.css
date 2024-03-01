@@ -20,7 +20,7 @@
 .card-detail-image {
     width: 100%;
     height: auto;
-    object-fit: contain; /* Maintain aspect ratio and fit within the container */
+    object-fit: cover; /* Maintain aspect ratio and fit within the container */
     object-position: center; /* Center the image */
     display: block; /* Remove extra space below the image */
 }
