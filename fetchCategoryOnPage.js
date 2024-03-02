@@ -1,4 +1,3 @@
-// fetchCategoriesByCats.js
 
 // Function to fetch cards by category from the API
 function fetchCardsByCategory(category) {
