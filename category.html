@@ -54,6 +54,7 @@
             const urlParams = new URLSearchParams(window.location.search);
             const selectedCategory = urlParams.get('category');
             await fetchCardsByCategory(selectedCategory);
+            await displayCards(cards)
         });
     </script>
 </body>
