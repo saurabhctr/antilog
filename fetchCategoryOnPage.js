@@ -1,22 +1,25 @@
+// fetchCategoriesByCats.js
 
 // Function to fetch cards by category from the API
 function fetchCardsByCategory(category) {
-    const noOfCards = 10; // Default number of cards
+    return new Promise(function(resolve, reject) {
+        const noOfCards = 10; // Default number of cards
 
-    // Make AJAX request to the API with category filter
-    $.ajax({
-        url: `${API_BASE_URL}:5000/getCards`,
-        type: 'GET',
-        data: {
-            noOfCard: noOfCards,
-            type: category
-        },
-        success: function (response) {
-            displayCards(response.cards);
-        },
-        error: function (error) {
-            console.log(`Error fetching ${category} cards:`, error);
-        }
+        // Make AJAX request to the API with category filter
+        $.ajax({
+            url: `${API_BASE_URL}:5000/getCards`,
+            type: 'GET',
+            data: {
+                noOfCard: noOfCards,
+                type: category
+            },
+            success: function (response) {
+                resolve(response.cards);
+            },
+            error: function (error) {
+                reject(error);
+            }
+        });
     });
 }
 
@@ -53,9 +56,15 @@ function displayCards(cards) {
 }
 
 // Click handler for category tabs
-$('body').on('click', '#categoryTabs button', function () {
+$('body').on('click', '#categoryTabs button', async function () {
     const category = $(this).text(); // Get the category text
-    navigateToCategoryPage(category); // Redirect to the category page
+    try {
+        const cards = await fetchCardsByCategory(category);
+        displayCards(cards);
+        navigateToCategoryPage(category); // Redirect to the category page
+    } catch (error) {
+        console.log(`Error fetching ${category} cards:`, error);
+    }
 });
 
 // Function to navigate to the category page with a query parameter
