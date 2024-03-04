@@ -75,6 +75,6 @@ const urlParams = new URLSearchParams(window.location.search);
 const selectedCategory = urlParams.get('category');
 
 const cards =  fetchCardsByCategory(selectedCategory).then((response)=>{
-    console.log(response)
+    console.log(response);
     displayCards(response);
 });
