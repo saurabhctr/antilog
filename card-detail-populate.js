@@ -3,7 +3,7 @@ function fetchCardDetails(cardId) {
     // Convert cardId to a numeric value
     cardId = Number(cardId);
     // Replace the API_BASE_URL with your actual API base URL
-    const API_BASE_URL = 'http://3.106.255.65';
+    const API_BASE_URL = 'http://3.104.111.22';
 
     // Make AJAX request to the API for card details
     $.ajax({
