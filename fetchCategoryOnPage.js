@@ -24,7 +24,7 @@ function fetchCardsByCategory(category) {
 }
 
 // Function to dynamically display cards on the HTML page
-function displayCards(card) {
+function displayCards(cards) {
     const container = $('#dummy-content');
     container.empty(); // Clear existing content
 
