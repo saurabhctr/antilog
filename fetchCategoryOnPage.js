@@ -76,5 +76,5 @@ function navigateToCategoryPage(category) {
 
 const cards =  fetchCardsByCategory('Aesthetics').then((response)=>{
     console.log(response)
-    // displayCards(cards);
+    displayCards(response);
 });
