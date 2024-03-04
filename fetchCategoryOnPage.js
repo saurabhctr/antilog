@@ -70,3 +70,9 @@ $('body').on('click', '#categoryTabs button', async function () {
 function navigateToCategoryPage(category) {
     window.location.href = `category.html?category=${encodeURIComponent(category)}`;
 }
+
+const urlParams = new URLSearchParams(window.location.search);
+const selectedCategory = urlParams.get('category');
+
+const cards = await fetchCardsByCategory(category);
+displayCards(cards);
