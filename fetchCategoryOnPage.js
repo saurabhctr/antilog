@@ -71,10 +71,10 @@ function navigateToCategoryPage(category) {
     window.location.href = `category.html?category=${encodeURIComponent(category)}`;
 }
 
-const urlParams = new URLSearchParams(window.location.search);
-const selectedCategory = urlParams.get('category');
+// const urlParams = new URLSearchParams(window.location.search);
+// const selectedCategory = urlParams.get('category');
 
-const cards =  fetchCardsByCategory(selectedCategory).then((response)=>{
+const cards =  fetchCardsByCategory('Aesthetics').then((response)=>{
     console.log(response)
     // displayCards(cards);
 });
