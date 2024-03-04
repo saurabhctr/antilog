@@ -31,23 +31,23 @@ function displayCards(cards) {
     cards.forEach((card, index) => {
         const cardDiv = $('<div>').addClass('card');
         // Set the data-card-id attribute
-        cardDiv.attr('data-card-id', card[0].cx_id);
+        cardDiv.attr('data-card-id', card.cx_id);
         // Make each card clickable and pass the card_id
         cardDiv.click(function () {
-            window.location.href = `card-detail.html?card_id=${card[0].cx_id}`;
+            window.location.href = `card-detail.html?card_id=${card.cx_id}`;
         });
 
         // Make the image clickable with the 'enlargeable' class
-        const image = $('<img>').addClass('card-image enlargeable').attr('src', card[0].cx_image_url).attr('alt', 'Card Image');
+        const image = $('<img>').addClass('card-image enlargeable').attr('src', card.cx_image_url).attr('alt', 'Card Image');
 
         // Create a secondary image with the same src as the primary image
-        const secondaryImage = $('<img>').addClass('card-secondary-image').attr('src', card[0].cx_image_url).attr('alt', 'Secondary Image');
+        const secondaryImage = $('<img>').addClass('card-secondary-image').attr('src', card.cx_image_url).attr('alt', 'Secondary Image');
 
         // Make the content clickable with the 'popupable' class
         const contentDiv = $('<div>').addClass('card-content popupable');
 
-        const name = $('<h3>').addClass('card-title').text(card[0].cx_name);
-        const description = $('<p>').addClass('card-description').text(card[0].cx_description);
+        const name = $('<h3>').addClass('card-title').text(card.cx_name);
+        const description = $('<p>').addClass('card-description').text(card.cx_description);
 
         contentDiv.append(name, description);
         cardDiv.append(image, secondaryImage, contentDiv); // Append both images and the content to the card
