@@ -74,7 +74,7 @@ function navigateToCategoryPage(category) {
 const urlParams = new URLSearchParams(window.location.search);
 const selectedCategory = urlParams.get('category');
 
-const cards =  fetchCardsByCategory(category).then((response)=>{
+const cards =  fetchCardsByCategory(selectedCategory).then((response)=>{
     console.log(response)
     // displayCards(cards);
 });
