@@ -81,7 +81,33 @@
     opacity: 1;
 }
 
-/* ... Remaining styles ... */
+/* Buy Now Button Styles */
+.buy-now-btn {
+    background-color: #007bff; /* Button background color */
+    color: #fff; /* Text color */
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+}
+
+.buy-now-btn:hover {
+    background-color: #0056b3; /* Button background color on hover */
+}
+
+/* Sticky Button for Mobile */
+@media (max-width: 768px) {
+    .buy-now-btn {
+        width: calc(100% - 40px);
+        bottom: 10px;
+    }
+}
 
 
 /* Responsive Styles */

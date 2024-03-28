@@ -76,6 +76,13 @@ function navigateToCategoryPage(category) {
     window.location.href = `category.html?category=${encodeURIComponent(category)}`;
 }
 
+// Function to handle the click event of the "Buy Now" button
+$('#buyNowButton').click(function () {
+    const cardId = urlParams.get('card_id'); // Get the card ID from the URL parameter
+    createOrder(cardId); // Call the function to create an order
+});
+
+
 // const urlParams = new URLSearchParams(window.location.search);
 // const selectedCategory = urlParams.get('category');
 
