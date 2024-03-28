@@ -34,11 +34,12 @@
 .footer-section ul li a {
     color: #333; /* Link color */
     text-decoration: none; /* Remove underline from links */
-    transition: color 0.3s ease; /* Transition for hover effect */
+    transition: color 0.3s ease, text-shadow 0.3s ease; /* Transition for hover effect */
 }
 
 .footer-section ul li a:hover {
     color: #007bff; /* Color change on hover */
+    text-shadow: 0 0 5px #007bff; /* Glow effect on hover */
 }
 
 .footer-bottom {
@@ -67,15 +68,6 @@ body {
 
 .site-footer {
     flex-shrink: 0; /* The footer will not shrink */
-}
-
-/* Glow effect on hover for all text */
-.site-footer * {
-    transition: text-shadow 0.3s ease; /* Transition for hover effect */
-}
-
-.site-footer *:hover {
-    text-shadow: 0 0 5px #007bff; /* Glow effect on hover */
 }
 
 /* Responsive styles */
