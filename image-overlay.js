@@ -1,3 +1,6 @@
+
+import API_BASE_URL from './api-config.js'; // Import API_BASE_URL
+
 $(document).ready(function () {
     // Function to handle image click
     $('body').on('click', '.card-detail-image', function () {

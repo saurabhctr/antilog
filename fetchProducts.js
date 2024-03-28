@@ -1,3 +1,5 @@
+import API_BASE_URL from './api-config.js'; // Import API_BASE_URL
+
 window.onload = function() {
     fetchCategoriesAndProducts(); // Ensure this also selects the first category by default
 };

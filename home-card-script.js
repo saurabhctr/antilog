@@ -1,3 +1,5 @@
+import API_BASE_URL from './api-config.js'; // Import API_BASE_URL
+
 $(document).ready(function () {
     // Function to fetch cards from the API
     function fetchCards() {
