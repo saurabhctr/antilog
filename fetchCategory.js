@@ -1,7 +1,6 @@
 // fetchCategories.js
 async function fetchCategories() {
-    const url ='${window.API_BASE_URL}:5000/getCategories'
-
+    const url = `${window.API_BASE_URL}:5000/getCategories`;
     const categoriesResponse = await fetch(url, { method: 'GET' });
     const categories = await categoriesResponse.json();
     const categoryTabsContainer = document.getElementById('categoryTabs');
