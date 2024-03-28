@@ -1,4 +1,3 @@
-import API_BASE_URL from './api-config.js'; // Import API_BASE_URL
 
 $(document).ready(function () {
     // Function to fetch cards from the API
@@ -6,10 +5,10 @@ $(document).ready(function () {
         const noOfCards = 10; // Default number of cards
         const cardType = 'web'; // Default card type
         const filters = ''; // Additional filters if needed
-
+        
         // Make AJAX request to the API
         $.ajax({
-            url: `${API_BASE_URL}:5000/getCards`,
+            url: `${window.API_BASE_URL}:5000/getCards`,
             type: 'GET',
             success: function (response) {
                 displayCards(response.cards);
