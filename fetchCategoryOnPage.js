@@ -1,7 +1,6 @@
 // fetchCategoriesByCats.js
 
 // Function to fetch cards by category from the API
-import API_BASE_URL from './api-config.js'; // Import API_BASE_URL
 
 function fetchCardsByCategory(category) {
     return new Promise(function(resolve, reject) {

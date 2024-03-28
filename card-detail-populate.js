@@ -1,4 +1,3 @@
-import API_BASE_URL from './api-config.js'; // Import API_BASE_URL
 
 // Function to fetch card details from the API
 function fetchCardDetails(cardId) {

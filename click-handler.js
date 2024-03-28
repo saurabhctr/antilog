@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
     const clickSound = new Audio('resources/audio/deep_click_sound.mp3');
     const restoreSound = new Audio('resources/audio/fading_air_sound.mp3');

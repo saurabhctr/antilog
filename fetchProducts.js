@@ -1,4 +1,3 @@
-import API_BASE_URL from './api-config.js'; // Import API_BASE_URL
 
 window.onload = function() {
     fetchCategoriesAndProducts(); // Ensure this also selects the first category by default
@@ -19,7 +18,7 @@ async function fetchCategoriesAndProducts() {
     if (sessionStorage.getItem(categoryName)) {
         displayProducts(JSON.parse(sessionStorage.getItem(categoryName)));
     } else {
-        const response = await fetch('${API_BASE_URL}:5000/getProducts', {
+        const response = await fetch(`${window.API_BASE_URL}:5000/getProducts`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
