@@ -1,5 +1,4 @@
 // Function to fetch cards by category from the API
-
 function fetchCardsByCategory(category) {
     return new Promise(function(resolve, reject) {
         const noOfCards = 10; // Default number of cards
@@ -78,17 +77,7 @@ function navigateToCategoryPage(category) {
 
 // Function to handle the click event of the "Buy Now" button
 $('#buyNowButton').click(function () {
+    const urlParams = new URLSearchParams(window.location.search);
     const cardId = urlParams.get('card_id'); // Get the card ID from the URL parameter
     createOrder(cardId); // Call the function to create an order
 });
-
-
-// const urlParams = new URLSearchParams(window.location.search);
-// const selectedCategory = urlParams.get('category');
-
-// const cards =  fetchCardsByCategory(selectedCategory).then((response)=>{
-//     console.log(response);
-//     displayCards(response);
-// });
-
-
