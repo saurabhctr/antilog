@@ -1,9 +1,7 @@
-
-
 /* Footer styles */
 .site-footer {
     flex-shrink: 0; /* The footer will not shrink */
-    background-color: #f2f2f2; /* Pale white background */
+    background-color: #7531310f; /* Pale white background */
     color: #333; /* Dark text color for contrast */
     text-align: center;
     padding: 20px 0;
@@ -36,11 +34,12 @@
 .footer-section ul li a {
     color: #333; /* Link color */
     text-decoration: none; /* Remove underline from links */
-    transition: color 0.3s ease; /* Transition for hover effect */
+    transition: color 0.3s ease, text-shadow 0.3s ease; /* Transition for hover effect */
 }
 
 .footer-section ul li a:hover {
     color: #007bff; /* Color change on hover */
+    text-shadow: 0 0 5px #007bff; /* Glow effect on hover */
 }
 
 .footer-bottom {
