@@ -1,7 +1,6 @@
 // fetchCategories.js
-import API_BASE_URL from './api-config.js'; // Import API_BASE_URL
 async function fetchCategories() {
-    const url ='${API_BASE_URL}:5000/getCategories'
+    const url ='${window.API_BASE_URL}:5000/getCategories'
 
     const categoriesResponse = await fetch(url, { method: 'GET' });
     const categories = await categoriesResponse.json();
