@@ -8,7 +8,7 @@ function fetchCardDetails(cardId) {
 
     // Make AJAX request to the API for card details
     $.ajax({
-        url: `${API_BASE_URL}:5000/getCardDetails`,
+        url: `${window.API_BASE_URL}:5000/getCardDetails`,
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify({ cardIds: [cardId] }),
