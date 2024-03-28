@@ -23,9 +23,14 @@ function fetchCardsByCategory(category) {
 }
 
 // Function to dynamically display cards on the HTML page
-function displayCards(card) {
+function displayCards(cards) {
     const container = $('#dummy-content');
     container.empty(); // Clear existing content
+
+    // Ensure cards is an array
+    if (!Array.isArray(cards)) {
+        cards = [cards];
+    }
 
     cards.forEach((card, index) => {
         const cardDiv = $('<div>').addClass('card');
@@ -53,6 +58,7 @@ function displayCards(card) {
         container.append(cardDiv); // Append each card to the container
     });
 }
+
 // Click handler for category tabs
 $('body').on('click', '#categoryTabs button', async function () {
     const category = $(this).text(); // Get the category text
