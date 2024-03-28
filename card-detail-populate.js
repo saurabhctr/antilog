@@ -1,13 +1,13 @@
+
 // Function to fetch card details from the API
 function fetchCardDetails(cardId) {
     // Convert cardId to a numeric value
     cardId = Number(cardId);
     // Replace the API_BASE_URL with your actual API base URL
-    const API_BASE_URL = 'http://3.104.111.22';
 
     // Make AJAX request to the API for card details
     $.ajax({
-        url: `${API_BASE_URL}:5000/getCardDetails`,
+        url: `${window.API_BASE_URL}:5000/getCardDetails`,
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify({ cardIds: [cardId] }),

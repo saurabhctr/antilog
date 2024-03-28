@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
     // Function to handle image click
     $('body').on('click', '.card-detail-image', function () {

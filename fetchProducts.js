@@ -1,3 +1,4 @@
+
 window.onload = function() {
     fetchCategoriesAndProducts(); // Ensure this also selects the first category by default
 };
@@ -17,7 +18,7 @@ async function fetchCategoriesAndProducts() {
     if (sessionStorage.getItem(categoryName)) {
         displayProducts(JSON.parse(sessionStorage.getItem(categoryName)));
     } else {
-        const response = await fetch('http://3.104.111.22:5000/getProducts', {
+        const response = await fetch(`${window.API_BASE_URL}:5000/getProducts`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

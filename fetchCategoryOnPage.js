@@ -1,13 +1,12 @@
-// fetchCategoriesByCats.js
-
 // Function to fetch cards by category from the API
+
 function fetchCardsByCategory(category) {
     return new Promise(function(resolve, reject) {
         const noOfCards = 10; // Default number of cards
 
         // Make AJAX request to the API with category filter
         $.ajax({
-            url: `${API_BASE_URL}:5000/getCards`,
+            url: `${window.API_BASE_URL}:5000/getCards`,
             type: 'GET',
             data: {
                 noOfCard: noOfCards,
