@@ -123,7 +123,7 @@ header, footer {
 /* sub-greeting CSS */
 .sub-greeting {
     font-size: 2.5em; /* Larger font size */
-    background: linear-gradient(45deg, gold, #f9f6f2); /* Golden-pale white gradient */
+    background: linear-gradient(45deg, rgb(193, 177, 194), #975c0e); /* Golden-pale white gradient */
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent; /* Hide the text */
@@ -143,6 +143,23 @@ header, footer {
 .animated-text {
     animation: shine 3s linear infinite alternate;
 }
+
+.category-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px; /* Adjust padding as needed */
+}
+
+.logo-container {
+    flex-shrink: 0; /* Prevent logo container from shrinking */
+}
+
+.logo-container img {
+    max-height: 50px; /* Adjust max-height as needed */
+    max-width: 100%; /* Ensure the logo image does not exceed the container width */
+}
+
 
 /* Responsive Design */
 @media (max-width: 768px) {
