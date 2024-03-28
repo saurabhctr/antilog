@@ -144,22 +144,6 @@ header, footer {
     animation: shine 3s linear infinite alternate;
 }
 
-.category-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 20px; /* Adjust padding as needed */
-}
-
-.logo-container {
-    flex-shrink: 0; /* Prevent logo container from shrinking */
-}
-
-.logo-container img {
-    max-height: 50px; /* Adjust max-height as needed */
-    max-width: 100%; /* Ensure the logo image does not exceed the container width */
-}
-
 
 /* Responsive Design */
 @media (max-width: 768px) {
