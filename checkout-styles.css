@@ -1,4 +1,12 @@
 /* checkout-styles.css */
+/* Center the h1 element */
+.custom-heading {
+    text-align: center;
+    color: white; /* Text color */
+    text-shadow: 0 0 10px white, 0 0 20px white, 0 0 30px white; /* Glow effect */
+    font-size: 48px; /* Adjust font size as needed */
+    margin-top: 50px; /* Adjust top margin as needed */
+}
 
 /* Form container */
 #checkoutForm {
