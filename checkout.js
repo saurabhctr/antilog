@@ -77,15 +77,32 @@ function togglePlaceholder(input) {
 // Function to create the order
 // Function to create the order
 // Function to create the order
-function createOrder() {
-    const orderId = generateOrderId(); // Generate a random order ID
-    const paymentDetailsUrl = `payment-details.html?order_id=${orderId}`; // Construct the URL for payment details page
-    // Redirect to the payment details page
-    window.location.href = paymentDetailsUrl;
-}
+// Function to create the order
+async function createOrder() {
+    const cardId = 'your_card_id'; // Replace with the actual card ID
 
+    try {
+        const response = await fetch('/createOrder', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ cardId: cardId })
+        });
 
-// Function to generate a random order ID
-function generateOrderId() {
-    return Math.random().toString(36).substr(2, 9); // Example: "5a8bh7c9k"
+        if (!response.ok) {
+            throw new Error('Failed to create order');
+        }
+
+        const data = await response.json();
+
+        // Assuming the API response contains the order ID
+        const orderId = data.order_data.order_id;
+
+        const paymentDetailsUrl = `payment-details.html?order_id=${orderId}`; // Construct the URL
+        window.location.href = paymentDetailsUrl; // Redirect to the payment details page
+    } catch (error) {
+        console.error('Error creating order:', error);
+        alert('Error creating order. Please try again.');
+    }
 }
