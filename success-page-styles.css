@@ -9,9 +9,28 @@
 
 
 
+
+/* Go to Dashboard button */
 #goToDashboardBtn {
     display: block;
     margin: 20px auto;
     padding: 10px 20px;
     font-size: 16px;
+    background: linear-gradient(to right, #ffa647, #ff6527, #ff0027, #ff2765, #ff27ff, #6527ff, #0027ff, #2765ff, #27ffff);
+    background-size: 200% 100%;
+    animation: rollingShine 2s linear infinite;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* Rolling shine animation */
+@keyframes rollingShine {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
 }
