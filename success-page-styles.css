@@ -1,12 +1,33 @@
 /* success-page-styles.css */
 
 
-.success-message {
-    text-align: center;
-    margin: 20px 0;
-    font-size: 20px;
+/* Container for success message and particles */
+.success-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
+/* Success message */
+.success-message {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    font-size: 36px; /* Adjust font size as needed */
+    color: #f5f5dc; /* Golden color */
+    text-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700, 0 0 30px #ffd700; /* Golden glow effect */
+}
+/* Particle container */
+#particles-js {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
 
 
 
