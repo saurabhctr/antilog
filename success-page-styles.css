@@ -1,15 +1,5 @@
 /* success-page-styles.css */
 
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-}
-
-header {
-    background-color: #f0f0f0;
-    padding: 20px;
-    text-align: center;
-}
 
 .success-message {
     text-align: center;
