@@ -10,7 +10,8 @@
 /* Form field labels */
 label {
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 4px; /* Decreased spacing between labels */
+    color: white; /* Set label color to white */
 }
 
 /* Form input fields */
@@ -18,12 +19,20 @@ input[type="text"],
 input[type="tel"],
 input[type="email"],
 input[type="checkbox"] {
-    width: 100%;
+    width: calc(100% - 22px); /* Adjusted input width */
     padding: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 12px; /* Decreased spacing between input fields */
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
+    color: #000; /* Set input text color */
+}
+
+/* Placeholder text */
+input[type="text"]::placeholder,
+input[type="tel"]::placeholder,
+input[type="email"]::placeholder {
+    color: #999; /* Set placeholder color */
 }
 
 /* Checkbox label */
