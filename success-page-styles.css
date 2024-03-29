@@ -34,6 +34,9 @@
     color: #f5f5dc; /* Golden color */
     text-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700, 0 0 30px #ffd700; /* Golden glow effect */
 }
+.success-message:hover {
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.8); /* Increase glow intensity on hover */
+}
 /* Particle container */
 #particles-js {
     position: absolute;
