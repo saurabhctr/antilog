@@ -55,7 +55,8 @@ function displayCards(cards) {
         container.append(cardDiv); // Append each card to the container
     });
 }
-
+fetchCardsByCategory(category);
+displayCards(cards);
 // Click handler for category tabs
 $('body').on('click', '#categoryTabs button', async function () {
     const category = $(this).text(); // Get the category text
