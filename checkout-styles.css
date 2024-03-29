@@ -1,63 +1,81 @@
-/* checkout-styles.css for Checkout Page */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0; /* Light background for contrast */
-    margin: 0;
-    padding: 0;
+/* checkout-styles.css */
+
+/* Form container */
+#checkoutForm {
+    width: 60%;
+    margin: 0 auto;
+    padding-bottom: 100px; /* Adjust based on the button height */
 }
 
-header, footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #333;
-    color: white;
-}
-
-.checkout {
-    background-color: #fff;
-    margin: 20px auto;
-    width: 80%;
-    max-width: 600px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    border-radius: 8px;
-}
-
-.checkout h2 {
-    color: #333;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-}
-
+/* Form field labels */
 label {
-    margin-top: 10px;
+    display: block;
+    margin-bottom: 8px;
 }
 
-input[type="text"], input[type="email"], textarea, button[type="submit"] {
+/* Form input fields */
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="checkbox"] {
+    width: 100%;
     padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box; /* Ensures padding doesn't increase the box size */
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
 }
 
-button[type="submit"] {
-    background-color: #007bff;
-    color: white;
+/* Checkbox label */
+label[for="disclaimer"] {
+    display: inline;
+    margin-bottom: 0;
+}
+
+/* Continue to Payment button */
+#continueToPayment {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff; /* Adjust this to match your website's color scheme */
+    color: #fff;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
-    margin-top: 20px;
+    transition: background-color 0.3s ease;
+    position: sticky;
+    bottom: 20px;
+    margin: 0 auto;
+    width: 80%;
 }
 
-button[type="submit"]:hover {
-    background-color: #0056b3;
+/* Rolling shine animation */
+@keyframes rollingShine {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
 }
 
-@media (max-width: 768px) {
-    .checkout {
+#continueToPayment:enabled {
+    background: linear-gradient(to right, #ffa647, #ff6527, #ff0027, #ff2765, #ff27ff, #6527ff, #0027ff, #2765ff, #27ffff);
+    background-size: 200% 100%;
+    animation: rollingShine 2s linear infinite;
+}
+
+#continueToPayment:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Media query for smaller screens */
+@media screen and (max-width: 768px) {
+    #checkoutForm {
+        width: 90%;
+    }
+
+    #continueToPayment {
         width: 90%;
     }
 }
