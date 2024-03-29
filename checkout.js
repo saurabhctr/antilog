@@ -8,6 +8,23 @@ document.addEventListener('DOMContentLoaded', function() {
     const disclaimerCheckbox = document.getElementById('disclaimer');
     const continueToPaymentButton = document.getElementById('continueToPayment');
 
+    // Define placeholder text for input fields
+    const placeholders = {
+        name: 'Enter your name',
+        mobile: 'Enter your mobile number',
+        email: 'Enter your email address',
+    };
+
+    // Set initial placeholder text
+    setInitialPlaceholders();
+
+    // Function to set initial placeholder text
+    function setInitialPlaceholders() {
+        nameInput.placeholder = placeholders.name;
+        mobileInput.placeholder = placeholders.mobile;
+        emailInput.placeholder = placeholders.email;
+    }
+
     // Function to toggle button state based on checkbox and input fields
     function toggleButtonState() {
         const name = nameInput.value.trim();
@@ -26,9 +43,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Add event listeners for input fields and checkbox
-    nameInput.addEventListener('input', toggleButtonState);
-    mobileInput.addEventListener('input', toggleButtonState);
-    emailInput.addEventListener('input', toggleButtonState);
+    nameInput.addEventListener('input', function() {
+        togglePlaceholder(nameInput);
+        toggleButtonState();
+    });
+    mobileInput.addEventListener('input', function() {
+        togglePlaceholder(mobileInput);
+        toggleButtonState();
+    });
+    emailInput.addEventListener('input', function() {
+        togglePlaceholder(emailInput);
+        toggleButtonState();
+    });
     disclaimerCheckbox.addEventListener('change', toggleButtonState);
 
     // Add submit event listener for the form
@@ -39,6 +65,16 @@ document.addEventListener('DOMContentLoaded', function() {
         window.location.href = checkoutUrl; // Redirect to checkout page with order ID
     });
 });
+
+// Function to toggle placeholder text based on input
+function togglePlaceholder(input) {
+    if (input.value.trim()) {
+        input.placeholder = '';
+    } else {
+        const fieldName = input.id;
+        input.placeholder = placeholders[fieldName];
+    }
+}
 
 // Function to generate a random order ID
 function generateOrderId() {
