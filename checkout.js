@@ -79,10 +79,10 @@ function togglePlaceholder(input) {
 // Function to create the order
 // Function to create the order
 async function createOrder() {
-    const cardId = 'your_card_id'; // Replace with the actual card ID
-
+    const cardId = 4; // Replace with the actual card ID
+    
     try {
-        const response = await fetch('/createOrder', {
+        const response = await fetch(`${window.API_BASE_URL}:5000/createOrder`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
