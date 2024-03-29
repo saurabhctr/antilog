@@ -60,9 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add submit event listener for the form
     form.addEventListener('submit', function(event) {
         event.preventDefault(); // Prevent form submission
-        const orderId = generateOrderId(); // Function to generate order ID
-        const checkoutUrl = `checkout.html?order_id=${orderId}`;
-        window.location.href = checkoutUrl; // Redirect to checkout page with order ID
+        createOrder(); // Call the function to create the order
     });
 });
 
@@ -74,6 +72,26 @@ function togglePlaceholder(input) {
         const fieldName = input.id;
         input.placeholder = placeholders[fieldName];
     }
+}
+
+// Function to create the order
+function createOrder() {
+    const cardId = 'your_card_id'; // Replace with the actual card ID
+    $.ajax({
+        url: `${window.API_BASE_URL}:5000/createOrder`,
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({ cardId: cardId }),
+        success: function(response) {
+            const orderId = response.orderId; // Extract the order ID from the response
+            const paymentDetailsUrl = `payment-details.html?order_id=${orderId}`; // Construct the URL
+            window.location.href = paymentDetailsUrl; // Redirect to the payment details page
+        },
+        error: function(error) {
+            console.log('Error creating order:', error);
+            alert('Error creating order. Please try again.');
+        }
+    });
 }
 
 // Function to generate a random order ID
