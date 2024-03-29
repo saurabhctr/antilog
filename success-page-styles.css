@@ -1,20 +1,29 @@
 /* success-page-styles.css */
+
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+header {
     background-color: #f0f0f0;
-}
-
-#successMessage {
-    font-size: 24px;
+    padding: 20px;
     text-align: center;
-    animation: fadeInOut 2s ease-in-out infinite;
 }
 
-@keyframes fadeInOut {
-    0%, 100% { opacity: 0; }
-    50% { opacity: 1; }
+.success-message {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 20px;
+}
+
+#animated-form {
+    /* Styling for animated form */
+}
+
+#goToDashboardBtn {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
 }

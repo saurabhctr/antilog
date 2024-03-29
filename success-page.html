@@ -2,53 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="success-page-styles.css">
-    <!-- Inside the <head> or before other script tags in the <body> -->
-    <script src="api-config.js"></script>
-    <link rel="stylesheet" href="payment-details-styles.css">
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transaction Success</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="vector-styles.css">
-    <link rel="stylesheet" href="home-card-styles.css">
-    <link rel="stylesheet" href="product-page-styles.css">
-    <link rel="stylesheet" href="click-handler-styles.css">
-    <link rel="stylesheet" media="screen" href="css/style.css">
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="click-handler.js"></script>
-    <script src="fetchCategoryOnPage.js"></script>
-    <script src="parallax.js"></script>
+    <link rel="stylesheet" href="success-page-styles.css">
+    <!-- Add any additional stylesheets as needed -->
+    <!-- You may also include the script tags for your JavaScript files here -->
 
+    <!-- Include necessary scripts before other script tags in the body -->
+    <script src="api-config.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 </head>
-
-
-
 <body class="parallax index-body">
-     <!-- particles.js container -->
-  <div id="particles-js">
-  <!-- scripts -->
-  <script src="particles.js"></script>
-  </div>
+    <!-- particles.js container -->
+    <div id="particles-js"></div>
+
     <div id="header-placeholder"></div>
     <div id="categoryTabs"></div>
+
     <script src="fetchCategory.js"></script>
-   
-    
+
+    <div id="successMessage">Your transaction is received successfully and you are now a member!</div>
+
+    <!-- Add any additional script tags as needed -->
 
     <script src="success-page.js"></script>
-
     <script src="script.js"></script>
-
     <script src="loadComponents.js"></script>
-    <div id="successMessage">Your transaction is received successfully and you are now a member!</div>
 
     <script>
         // ParticlesJS Config.
         particlesJS.load('particles-js', 'particlesjs-config.json', function() {
-          console.log('callback - particles.js config loaded');
+            console.log('callback - particles.js config loaded');
         });
-      </script>
+    </script>
+
     <script>
         document.addEventListener("DOMContentLoaded", async function() {
             await fetchCategories();
@@ -56,8 +43,5 @@
             //document.querySelector('#categoryTabs button')?.click();
         });
     </script>
-  
-  
-  
 </body>
 </html>
