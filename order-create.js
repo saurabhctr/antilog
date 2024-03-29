@@ -1,38 +1,35 @@
-// Function to create an order
+
 function createOrder(cardId) {
-    // API endpoint for order creation
-    const createOrderUrl = `${window.API_BASE_URL}:5000/createOrder`;
+    // Make AJAX request to create the order
+    $.ajax({
+        url: `${window.API_BASE_URL}:5000/createOrder`,
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({ cardId: cardId }),
+        success: function(response) {
+            if (response && response.message === 'Order created successfully') {
+                // Extract the order data from the response
+                const orderData = response.order_data; // Adjust this based on your response structure
 
-    // Data to be sent in the request body
-    const requestData = {
-        cardId: cardId
-    };
+                // Check if the order data is valid
+                if (orderData && orderData.order_id) {
+                    // Construct URL for checkout page with order ID as query parameter
+                    const checkoutUrl = `checkout.html?order_id=${orderData.order_id}`;
 
-    // Options for the fetch request
-    const requestOptions = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(requestData)
-    };
-
-    // Send the fetch request to create the order
-    fetch(createOrderUrl, requestOptions)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Failed to create order');
+                    // Redirect user to the checkout page
+                    window.location.href = checkoutUrl;
+                } else {
+                    console.log('Invalid order data received:', orderData);
+                    alert('Error processing order data. Please try again.');
+                }
+            } else {
+                console.log('Error creating order:', response.error);
+                alert('Error creating order. Please try again.');
             }
-            return response.json();
-        })
-        .then(data => {
-            // Handle successful order creation
-            console.log('Order created successfully:', data);
-            // You can perform additional actions here, such as showing a success message to the user
-        })
-        .catch(error => {
-            // Handle errors
-            console.error('Error creating order:', error);
-            // You can display an error message to the user or perform other error handling actions
-        });
+        },
+        error: function(error) {
+            console.log('Error creating order:', error);
+            alert('Error creating order. Please try again.');
+        }
+    });
 }
