@@ -1,3 +1,5 @@
+// fetchCategoriesByCats.js
+
 // Function to fetch cards by category from the API
 function fetchCardsByCategory(category) {
     return new Promise(function(resolve, reject) {
@@ -26,11 +28,6 @@ function displayCards(cards) {
     const container = $('#dummy-content');
     container.empty(); // Clear existing content
 
-    // Ensure cards is an array
-    if (!Array.isArray(cards)) {
-        cards = [cards];
-    }
-
     cards.forEach((card, index) => {
         const cardDiv = $('<div>').addClass('card');
         // Set the data-card-id attribute
@@ -57,7 +54,6 @@ function displayCards(cards) {
         container.append(cardDiv); // Append each card to the container
     });
 }
-
 // Click handler for category tabs
 $('body').on('click', '#categoryTabs button', async function () {
     const category = $(this).text(); // Get the category text
@@ -75,9 +71,10 @@ function navigateToCategoryPage(category) {
     window.location.href = `category.html?category=${encodeURIComponent(category)}`;
 }
 
-// Function to handle the click event of the "Buy Now" button
-$('#buyNowButton').click(function () {
-    const urlParams = new URLSearchParams(window.location.search);
-    const cardId = urlParams.get('card_id'); // Get the card ID from the URL parameter
-    createOrder(cardId); // Call the function to create an order
+const urlParams = new URLSearchParams(window.location.search);
+const selectedCategory = urlParams.get('category');
+
+const cards =  fetchCardsByCategory(selectedCategory).then((response)=>{
+    console.log(response);
+    displayCards(response);
 });
