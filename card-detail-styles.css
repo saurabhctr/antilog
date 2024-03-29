@@ -101,6 +101,30 @@
     background-color: #0056b3; /* Button background color on hover */
 }
 
+
+/* Additional content iframe */
+.additional-content-iframe {
+    margin-top: 20px; /* Add some space between elements */
+}
+
+.additional-content-iframe iframe {
+    width: 100%; /* Ensure the iframe fills its container */
+    height: 400px; /* Set a fixed height for the iframe */
+    border: none; /* Remove border */
+    border-radius: 10px; /* Add rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+}
+
+/* Additional content 1 and 2 */
+.additional-content {
+    margin-top: 20px; /* Add some space between elements */
+    padding: 10px; /* Add padding */
+    background-color: #f9f9f9; /* Light background color */
+    border-radius: 10px; /* Add rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+
+
 /* Sticky Button for Mobile */
 @media (max-width: 768px) {
     .buy-now-btn {
