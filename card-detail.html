@@ -71,9 +71,19 @@
     <script>
         // ParticlesJS Config.
         particlesJS.load('particles-js', 'particlesjs-config.json', function() {
-          console.log('callback - particles.js config loaded');
+            console.log('callback - particles.js config loaded');
         });
-      </script>
+    
+        // Add event listener to Buy Now button
+        document.getElementById('buyNowButton').addEventListener('click', function() {
+            // Get the cardId from the URL query parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            const cardId = urlParams.get('card_id');
+    
+            // Call the createOrder function with cardId as argument
+            createOrder(cardId);
+        });
+    </script>
     <script>
         document.addEventListener("DOMContentLoaded", async function() {
             await fetchCategories();
