@@ -76,24 +76,12 @@ function togglePlaceholder(input) {
 
 // Function to create the order
 // Function to create the order
+// Function to create the order
 function createOrder() {
-    const cardId = 'your_card_id'; // Replace with the actual card ID
-    $.ajax({
-        url: `${window.API_BASE_URL}:5000/createOrder`,
-        type: 'POST',
-        contentType: 'application/json',
-        data: JSON.stringify({ cardId: cardId }),
-        success: function(response) {
-            const orderId = response.orderId; // Extract the order ID from the response
-            const paymentDetailsUrl = `payment-details.html?order_id=${orderId}`; // Construct the URL
-            // Redirect to the payment details page
-            window.location.href = paymentDetailsUrl;
-        },
-        error: function(error) {
-            console.log('Error creating order:', error);
-            alert('Error creating order. Please try again.');
-        }
-    });
+    const orderId = generateOrderId(); // Generate a random order ID
+    const paymentDetailsUrl = `payment-details.html?order_id=${orderId}`; // Construct the URL for payment details page
+    // Redirect to the payment details page
+    window.location.href = paymentDetailsUrl;
 }
 
 
