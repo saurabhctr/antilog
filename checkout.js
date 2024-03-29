@@ -1,3 +1,5 @@
+// checkout.js
+
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('checkoutForm');
     const nameInput = document.getElementById('name');
@@ -6,9 +8,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const disclaimerCheckbox = document.getElementById('disclaimer');
     const continueToPaymentButton = document.getElementById('continueToPayment');
 
-    // Function to enable/disable button based on checkbox state
+    // Function to toggle button state based on checkbox and input fields
     function toggleButtonState() {
-        continueToPaymentButton.disabled = !disclaimerCheckbox.checked || !form.checkValidity();
+        const name = nameInput.value.trim();
+        const mobile = mobileInput.value.trim();
+        const email = emailInput.value.trim();
+        const disclaimerChecked = disclaimerCheckbox.checked;
+
+        // Enable button if all mandatory fields are filled and disclaimer is checked
+        if (name && mobile && email && disclaimerChecked) {
+            continueToPaymentButton.classList.add('enabled');
+            continueToPaymentButton.disabled = false;
+        } else {
+            continueToPaymentButton.classList.remove('enabled');
+            continueToPaymentButton.disabled = true;
+        }
     }
 
     // Add event listeners for input fields and checkbox
