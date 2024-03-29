@@ -104,24 +104,47 @@
 
 /* Additional content iframe */
 .additional-content-iframe {
-    margin-top: 20px; /* Add some space between elements */
+    margin-top: 40px; /* Add more space between sections */
 }
 
 .additional-content-iframe iframe {
     width: 100%; /* Ensure the iframe fills its container */
-    height: 400px; /* Set a fixed height for the iframe */
+    height: 600px; /* Set a fixed height for the iframe */
     border: none; /* Remove border */
     border-radius: 10px; /* Add rounded corners */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Add a stronger shadow */
 }
 
 /* Additional content 1 and 2 */
 .additional-content {
-    margin-top: 20px; /* Add some space between elements */
-    padding: 10px; /* Add padding */
+    margin-top: 40px; /* Add more space between sections */
+    padding: 20px; /* Add more padding */
     background-color: #f9f9f9; /* Light background color */
     border-radius: 10px; /* Add rounded corners */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+}
+
+.additional-content h2 {
+    font-size: 24px; /* Increase heading font size */
+    color: #333; /* Darken heading color */
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a subtle text shadow */
+    margin-bottom: 20px; /* Add space below headings */
+}
+
+/* Glowing effect */
+.additional-content button,
+.additional-content a.button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(0, 0, 255, 0.5); /* Blue glow effect */
+}
+
+.additional-content button:hover,
+.additional-content a.button:hover {
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5); /* Green glow effect on hover */
 }
 
 
