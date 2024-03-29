@@ -25,6 +25,7 @@ function fetchCardsByCategory(category) {
 
 // Function to dynamically display cards on the HTML page
 function displayCards(cards) {
+    console.log("Displaying cards:", cards); // Log cards to console
     const container = $('#dummy-content');
     container.empty(); // Clear existing content
 
@@ -54,6 +55,7 @@ function displayCards(cards) {
         container.append(cardDiv); // Append each card to the container
     });
 }
+
 // Click handler for category tabs
 $('body').on('click', '#categoryTabs button', async function () {
     const category = $(this).text(); // Get the category text
