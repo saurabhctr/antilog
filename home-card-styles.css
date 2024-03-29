@@ -21,6 +21,11 @@
   border-radius: 10px;
   overflow: hidden;
   cursor: pointer; /* Add cursor pointer to indicate clickability */
+  transition: box-shadow 0.3s ease; /* Smooth transition for the box-shadow property */
+}
+
+.card:hover {
+  box-shadow: 0 0 20px rgba(70, 130, 180, 0.7); /* Brownish-blue glow effect on hover */
 }
 
 .card-secondary-image {
