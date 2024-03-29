@@ -27,7 +27,7 @@ function displayCardDetails(card) {
 
     // Create an image container
     const imageContainer = $('<div>').addClass('card-detail-image-container');
-    
+    const image = $('<img>').addClass('card-detail-image').attr('src', card.cx_image_url).attr('alt', 'Card Image');
     imageContainer.append(image);
 
     // Create a content container
@@ -38,10 +38,11 @@ function displayCardDetails(card) {
     const tagline = $('<div>').addClass('card-detail-tagline').text(card.cx_tagline);
     const description = $('<div>').addClass('card-detail-description').text(card.cx_description);
 
+
     // Additional components
     const additionalContent1 = $('<div>').addClass('additional-content').text('Additional Content 1');
     const additionalContent2 = $('<div>').addClass('additional-content-iframe');
-    const iframe = $('<iframe>').attr('src', '/home/ubuntu/graph.html').attr('frameborder', '0');
+    const iframe = $('<iframe>').attr('src', 'your_html_file_or_url.html').attr('frameborder', '0');
     additionalContent2.append(iframe);
 
     // Append image and text content to the main container
