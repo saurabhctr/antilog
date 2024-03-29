@@ -1,5 +1,3 @@
-// payment-detail.js
-
 document.addEventListener('DOMContentLoaded', function() {
     const qrCodeContainer = document.getElementById('qrCodeContainer');
 
@@ -18,4 +16,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Generate QR code
     generateQRCode(orderId);
+
+    // Set timeout to redirect to success page after 10 seconds
+    setTimeout(function() {
+        window.location.href = 'success-page.html';
+    }, 10000); // 10 seconds
 });
