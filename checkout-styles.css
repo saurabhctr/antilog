@@ -66,6 +66,25 @@ label[for="disclaimer"] {
     }
 }
 
+/* checkout-styles.css */
+
+/* Form group styling */
+.form-group {
+    margin-bottom: 20px; /* Adjust spacing between form groups */
+}
+
+/* Disclaimer checkbox group styling */
+.disclaimer-group {
+    display: flex; /* Align checkbox and label horizontally */
+    align-items: center; /* Align items vertically */
+}
+
+/* Disclaimer checkbox styling */
+.disclaimer-group input[type="checkbox"] {
+    margin-right: 10px; /* Adjust spacing between checkbox and label */
+}
+
+
 #continueToPayment.enabled {
     background: linear-gradient(to right, #ffa647, #ff6527, #ff0027, #ff2765, #ff27ff, #6527ff, #0027ff, #2765ff, #27ffff);
     background-size: 200% 100%;
