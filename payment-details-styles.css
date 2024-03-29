@@ -1,0 +1,50 @@
+/* payment-details-styles.css */
+
+body {
+    background-color: #111;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#qrCodeContainer {
+    border: 2px solid #0ff; /* Tron Legacy-like border */
+    border-radius: 10px;
+    padding: 20px;
+    position: relative;
+}
+
+#qrCode {
+    width: 200px; /* Adjust as needed */
+    height: 200px; /* Adjust as needed */
+    display: block;
+    margin: 0 auto;
+}
+
+/* Laser-like light animation */
+@keyframes laser {
+    0% {
+        box-shadow: 0 0 10px 2px #0ff;
+    }
+    50% {
+        box-shadow: 0 0 20px 5px #0ff;
+    }
+    100% {
+        box-shadow: 0 0 10px 2px #0ff;
+    }
+}
+
+#laserEffect {
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    animation: laser 1s infinite alternate;
+}
+
