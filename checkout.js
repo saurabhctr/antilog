@@ -10,9 +10,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Define placeholder text for input fields
     const placeholders = {
-        name: 'Enter your name',
-        mobile: 'Enter your mobile number',
-        email: 'Enter your email address',
+        name: 'Turiya Matata',
+        mobile: '9870956783',
+        email: 'testYourLimits@sensitation.rj',
     };
 
     // Set initial placeholder text
@@ -75,6 +75,7 @@ function togglePlaceholder(input) {
 }
 
 // Function to create the order
+// Function to create the order
 function createOrder() {
     const cardId = 'your_card_id'; // Replace with the actual card ID
     $.ajax({
@@ -85,7 +86,8 @@ function createOrder() {
         success: function(response) {
             const orderId = response.orderId; // Extract the order ID from the response
             const paymentDetailsUrl = `payment-details.html?order_id=${orderId}`; // Construct the URL
-            window.location.href = paymentDetailsUrl; // Redirect to the payment details page
+            // Redirect to the payment details page
+            window.location.href = paymentDetailsUrl;
         },
         error: function(error) {
             console.log('Error creating order:', error);
@@ -93,6 +95,7 @@ function createOrder() {
         }
     });
 }
+
 
 // Function to generate a random order ID
 function generateOrderId() {
