@@ -49,8 +49,10 @@ function displayCardDetails(card) {
 
     // Set the width of additionalContent2 dynamically based on content
     iframe.on('load', function() {
-        const contentWidth = iframe.contents().width();
+        const contentWidth = iframe.contents().find('body').width();
+        const contentHeight = iframe.contents().find('body').height();
         additionalContent2.css('width', contentWidth + 'px');
+        additionalContent2.css('height', contentHeight + 'px');
     });
 
 
