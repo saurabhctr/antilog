@@ -101,7 +101,11 @@
     background-color: #0056b3; /* Button background color on hover */
 }
 
-
+.bokeh-layout {
+    width: 100%; /* Make the layout container full width */
+    max-width: 400px; /* Set maximum width to 400px */
+    height: auto; /* Allow the height to adjust based on content */
+}
 /* Additional content iframe */
 .additional-content-iframe {
     margin-top: 40px; /* Add more space between sections */
