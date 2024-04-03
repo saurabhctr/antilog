@@ -1,4 +1,3 @@
-
 // Function to fetch card details from the API
 function fetchCardDetails(cardId) {
     // Convert cardId to a numeric value
@@ -38,20 +37,33 @@ function displayCardDetails(card) {
     const tagline = $('<div>').addClass('card-detail-tagline').text(card.cx_tagline);
     const description = $('<div>').addClass('card-detail-description').text(card.cx_description);
 
-
     // Additional components
     const additionalContent1 = $('<div>').addClass('additional-content').text('Additional Content 1');
     const additionalContent2 = $('<div>').addClass('additional-content-iframe');
-    const iframe = $('<iframe>').attr('src', 'your_html_file_or_url.html').attr('frameborder', '0');
+    const iframe = $('<iframe>').attr('src', `${window.API_BASE_URL}:5006/gra`).attr('frameborder', '0');
     additionalContent2.append(iframe);
 
     // Append image and text content to the main container
     container.append(imageContainer, contentDiv);
     contentDiv.append(name, tagline, description, additionalContent1, additionalContent2);
+
+    // Create a script tag to include Bokeh library and your Bokeh application code
+    const bokehScript = document.createElement('script');
+    bokehScript.src = 'https://cdn.bokeh.org/bokeh/release/bokeh-2.3.3.min.js'; // Replace with the Bokeh CDN URL
+    bokehScript.onload = function () {
+        const bokehAppScript = document.createElement('script');
+        const bokehAppUrl = `${window.API_BASE_URL}:5006/gra`; // Parameterized Bokeh application URL
+        bokehAppScript.src = bokehAppUrl;
+        additionalContent2.append(bokehAppScript);
+    };
+    document.body.appendChild(bokehScript);
 }
+
 // Get card_id from query parameter
 const urlParams = new URLSearchParams(window.location.search);
 const cardId = urlParams.get('card_id');
 
 // Fetch card details when the document is ready
-fetchCardDetails(cardId);
+$(document).ready(function() {
+    fetchCardDetails(cardId);
+});
