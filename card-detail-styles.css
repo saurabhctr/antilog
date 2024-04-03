@@ -3,9 +3,8 @@
 .card-detail-body {
     /* Add any specific styles for the body if needed */
     font-family: 'Arial', sans-serif; /* Use a clean and widely supported font */
-    background-color: #f7f7f7; /* Set a light background color */
-    color: #333; /* Set the main text color */
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Add a solid shadow */
+    background-color: #222; /* Set a dark background color */
+    color: #fff; /* Set the main text color to white */
 }
 
 .card-detail-image-container {
@@ -13,7 +12,7 @@
     max-height: 60vh; /* Set the maximum height to 60% of the viewport height */
     margin: 0 auto; /* Center the container horizontally */
     overflow: hidden; /* Ensure the image does not overflow its container */
-    border: 15px solid #fffacd; /* Add a pale yellow wide border for a royal look */
+    border: 15px solid #333; /* Add a wide border for a metal look */
     border-radius: 15px; /* Add rounded corners to the container */
     box-sizing: border-box; /* Include border in the container dimensions */
 }
@@ -22,7 +21,6 @@
     width: 100%;
     height: auto;
     object-fit: cover; /* Maintain aspect ratio and fit within the container */
-    
     display: block; /* Remove extra space below the image */
 }
 
@@ -30,11 +28,10 @@
     max-width: 70vw; /* Set the maximum width to 70% of the viewport width */
     margin: 20px auto; /* Center the content */
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8); /* Add background color with transparency */
+    background-color: rgba(0, 0, 0, 0.8); /* Add background color with increased transparency */
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); /* Add a subtle box shadow */
     box-sizing: border-box; /* Include padding in the container dimensions */
-    opacity: 0.8; /* Adjust transparency */
 }
 
 .card-detail-name {
@@ -45,7 +42,7 @@
 
 .card-detail-tagline {
     font-style: italic;
-    color: #666;
+    color: #aaa; /* Lighten the tagline color */
     margin-bottom: 10px;
 }
 
@@ -53,11 +50,40 @@
     font-size: 16px;
     line-height: 1.5;
     word-wrap: break-word; /* Ensure words break to the next line if they exceed the container width */
+    color: #ccc; /* Lighten the text color */
+}
+
+/* ... Previous styles ... */
+
+.image-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8); /* Black transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: opacity 0.5s;
+    opacity: 0; /* Initially hidden */
+}
+
+.overlay-image {
+    max-width: 80%;
+    max-height: 80%;
+    object-fit: contain; /* Maintain the image's aspect ratio */
+}
+
+/* Class to show the overlay and image when enlarged */
+.image-overlay.enlarged {
+    opacity: 1;
 }
 
 /* Buy Now Button Styles */
 .buy-now-btn {
-    background-color: #007bff; /* Button background color */
+    background-color: #333; /* Darken the button background color */
     color: #fff; /* Text color */
     border: none;
     border-radius: 5px;
@@ -72,7 +98,60 @@
 }
 
 .buy-now-btn:hover {
-    background-color: #0056b3; /* Button background color on hover */
+    background-color: #555; /* Darken the button background color on hover */
+}
+
+/* Additional content iframe */
+.additional-content-iframe {
+    margin-top: 40px; /* Add more space between sections */
+}
+
+.additional-content-iframe iframe {
+    width: 100%; /* Ensure the iframe fills its container */
+    height: 600px; /* Set a fixed height for the iframe */
+    border: none; /* Remove border */
+    border-radius: 10px; /* Add rounded corners */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3); /* Add a stronger shadow */
+}
+
+/* Additional content 1 and 2 */
+.additional-content {
+    margin-top: 40px; /* Add more space between sections */
+    padding: 20px; /* Add more padding */
+    background-color: rgba(0, 0, 0, 0.8); /* Darken the background color with increased transparency */
+    border-radius: 10px; /* Add rounded corners */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2); /* Add a subtle shadow */
+}
+
+.additional-content h2 {
+    font-size: 24px; /* Increase heading font size */
+    color: #fff; /* Lighten the heading color */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2); /* Add a subtle text shadow */
+    margin-bottom: 20px; /* Add space below headings */
+}
+
+/* Glowing effect */
+.additional-content button,
+.additional-content a.button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(0, 0, 255, 0.5); /* Blue glow effect */
+}
+
+.additional-content button:hover,
+.additional-content a.button:hover {
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5); /* Green glow effect on hover */
+}
+
+/* Sticky Button for Mobile */
+@media (max-width: 768px) {
+    .buy-now-btn {
+        width: calc(100% - 40px);
+        bottom: 10px;
+    }
 }
 
 /* Responsive Styles */
@@ -82,3 +161,5 @@
         max-width: 90vw;
     }
 }
+
+/* Add any additional styles as needed */
