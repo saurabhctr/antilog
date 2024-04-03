@@ -48,8 +48,11 @@ function displayCardDetails(card) {
     contentDiv.append(name, tagline, description, additionalContent1, additionalContent2);
 
     // Set the width of additionalContent2 dynamically based on content
-    const additionalContentWidth = additionalContent2.outerWidth();
-    additionalContent2.css('width', additionalContentWidth + 'px');
+    iframe.on('load', function() {
+        const contentWidth = iframe.contents().width();
+        additionalContent2.css('width', contentWidth + 'px');
+    });
+
 
     // Create a script tag to include Bokeh library and your Bokeh application code
     const bokehScript = document.createElement('script');
