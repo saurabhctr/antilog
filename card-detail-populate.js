@@ -47,15 +47,6 @@ function displayCardDetails(card) {
     container.append(imageContainer, contentDiv);
     contentDiv.append(name, tagline, description, additionalContent1, additionalContent2);
 
-    // // Set the width of additionalContent2 dynamically based on content
-    // iframe.on('load', function() {
-    //     const contentWidth = iframe.contents().find('body').width();
-    //     const contentHeight = iframe.contents().find('body').height();
-    //     additionalContent2.css('width', contentWidth + 'px');
-    //     additionalContent2.css('height', contentHeight + 'px');
-    // });
-
-
     // Create a script tag to include Bokeh library and your Bokeh application code
     const bokehScript = document.createElement('script');
     bokehScript.src = 'https://cdn.bokeh.org/bokeh/release/bokeh-2.3.3.min.js'; // Replace with the Bokeh CDN URL
