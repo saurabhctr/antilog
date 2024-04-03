@@ -47,6 +47,10 @@ function displayCardDetails(card) {
     container.append(imageContainer, contentDiv);
     contentDiv.append(name, tagline, description, additionalContent1, additionalContent2);
 
+    // Set the width of additionalContent2 dynamically based on content
+    const additionalContentWidth = additionalContent2.outerWidth();
+    additionalContent2.css('width', additionalContentWidth + 'px');
+
     // Create a script tag to include Bokeh library and your Bokeh application code
     const bokehScript = document.createElement('script');
     bokehScript.src = 'https://cdn.bokeh.org/bokeh/release/bokeh-2.3.3.min.js'; // Replace with the Bokeh CDN URL

@@ -105,14 +105,16 @@
 /* Additional content iframe */
 .additional-content-iframe {
     margin-top: 40px; /* Add more space between sections */
+    display: flex;
+    justify-content: center; /* Center the content horizontally */
+    align-items: center; /* Center the content vertically */
 }
 
 .additional-content-iframe iframe {
-    width: 100%; /* Ensure the iframe fills its container */
-    height: 600px; /* Set a fixed height for the iframe */
     border: none; /* Remove border */
     border-radius: 10px; /* Add rounded corners */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Add a stronger shadow */
+    max-width: 100%; /* Ensure the iframe fills its container */
 }
 
 /* Additional content 1 and 2 */
