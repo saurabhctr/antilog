@@ -1,7 +1,8 @@
-/* Styles for the canvas */
-canvas {
+/* CSS for the WebGL canvas */
+#webgl-canvas {
     width: 100%; /* Make the canvas fill the entire width of its container */
-    height: 100%; /* Make the canvas fill the entire height of its container */
+    height: 400px; /* Set a fixed height for the canvas */
     display: block; /* Ensure the canvas behaves like a block-level element */
     background-color: #000; /* Set background color */
+    margin-bottom: 20px; /* Add some space below the canvas */
 }
