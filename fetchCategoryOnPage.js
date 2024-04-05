@@ -1,26 +1,22 @@
 // fetchCategoriesByCats.js
 
 // Function to fetch cards by category from the API
-function fetchCardsByCategory(category) {
-    return new Promise(function(resolve, reject) {
+async function fetchCardsByCategory(category) {
+    try {
         const noOfCards = 10; // Default number of cards
-
-        // Make AJAX request to the API with category filter
-        $.ajax({
+        const response = await $.ajax({
             url: `${window.API_BASE_URL}:5000/getCards`,
             type: 'GET',
             data: {
                 noOfCard: noOfCards,
                 type: category
-            },
-            success: function (response) {
-                resolve(response.cards);
-            },
-            error: function (error) {
-                reject(error);
             }
         });
-    });
+        return response.cards;
+    } catch (error) {
+        console.log(`Error fetching ${category} cards:`, error);
+        throw error;
+    }
 }
 
 // Function to dynamically display cards on the HTML page
@@ -55,6 +51,23 @@ function displayCards(cards) {
         container.append(cardDiv); // Append each card to the container
     });
 }
+
+// Function to navigate to the category page with a query parameter
+function navigateToCategoryPage(category) {
+    window.location.href = `category.html?category=${encodeURIComponent(category)}`;
+}
+
+$(document).ready(async function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const selectedCategory = urlParams.get('category');
+    try {
+        const cards = await fetchCardsByCategory(selectedCategory);
+        displayCards(cards);
+    } catch (error) {
+        console.log('Error:', error);
+    }
+});
+
 // Click handler for category tabs
 $('body').on('click', '#categoryTabs button', async function () {
     const category = $(this).text(); // Get the category text
@@ -66,25 +79,3 @@ $('body').on('click', '#categoryTabs button', async function () {
         console.log(`Error fetching ${category} cards:`, error);
     }
 });
-
-// Function to navigate to the category page with a query parameter
-function navigateToCategoryPage(category) {
-    window.location.href = `category.html?category=${encodeURIComponent(category)}`;
-}
-
-const urlParams = new URLSearchParams(window.location.search);
-const selectedCategory = urlParams.get('category');
-
-// Fetch and display cards based on category from URL parameter
-async function fetchAndDisplayCardsFromURL() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const selectedCategory = urlParams.get('category');
-    if (selectedCategory) {
-        try {
-            const cards = await fetchCardsByCategory(selectedCategory);
-            displayCards(cards);
-        } catch (error) {
-            console.log(`Error fetching ${selectedCategory} cards:`, error);
-        }
-    }
-}
