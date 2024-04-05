@@ -47,6 +47,12 @@ function displayCardDetails(card) {
     container.append(imageContainer, contentDiv);
     contentDiv.append(name, tagline, description, additionalContent1, additionalContent2);
 
+    // Add WebGL canvas
+    const webglCanvas = $('<canvas>').attr('id', 'webgl-canvas');
+    const scriptTag = $('<script>').attr('src', '3dcube.js');
+    container.prepend(webglCanvas, scriptTag); // Add canvas and script before Bokeh loading div
+
+
     // Create a script tag to include Bokeh library and your Bokeh application code
     const bokehScript = document.createElement('script');
     bokehScript.src = 'https://cdn.bokeh.org/bokeh/release/bokeh-2.3.3.min.js'; // Replace with the Bokeh CDN URL

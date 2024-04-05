@@ -1,0 +1,7 @@
+/* Styles for the canvas */
+canvas {
+    width: 100%; /* Make the canvas fill the entire width of its container */
+    height: 100%; /* Make the canvas fill the entire height of its container */
+    display: block; /* Ensure the canvas behaves like a block-level element */
+    background-color: #000; /* Set background color */
+}
