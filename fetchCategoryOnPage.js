@@ -55,8 +55,6 @@ function displayCards(cards) {
         container.append(cardDiv); // Append each card to the container
     });
 }
-fetchCardsByCategory(category);
-displayCards(cards);
 // Click handler for category tabs
 $('body').on('click', '#categoryTabs button', async function () {
     const category = $(this).text(); // Get the category text
@@ -79,5 +77,5 @@ const selectedCategory = urlParams.get('category');
 
 const cards =  fetchCardsByCategory(selectedCategory).then((response)=>{
     console.log(response);
-    displayCards(response);
+    displayCards(cards);
 });
