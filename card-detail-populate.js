@@ -38,7 +38,8 @@ function displayCardDetails(card) {
     const description = $('<div>').addClass('card-detail-description').text(card.cx_description);
 
     // Additional components
- 
+    
+    const additionalContent1 = $('<div>').addClass('additional-content-iframe');
 
     const additionalContent2 = $('<div>').addClass('additional-content-iframe');
     const iframe = $('<iframe>').attr('src', `${window.API_BASE_URL}:5006/gra`).attr('frameborder', '0');
