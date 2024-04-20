@@ -1,4 +1,3 @@
-// Change from fetchCategoriesByCats.js to fetchCategoryOnPage.js
 
 // Function to fetch cards by category from the API
 async function fetchCardsByCategory(category) {
@@ -22,7 +21,7 @@ async function fetchCardsByCategory(category) {
  // Function to dynamically display cards on the HTML page
  function displayCards(cards) {
     console.log('Displaying Cards')
-    const container = $('category-content');
+    const container = $('#category-content');
     container.empty(); // Clear existing content
 
     cards.forEach((card, index) => {
@@ -49,6 +48,7 @@ async function fetchCardsByCategory(category) {
         contentDiv.append(name, description);
         cardDiv.append(image, secondaryImage, contentDiv); // Append both images and the content to the card
         container.append(cardDiv); // Append each card to the container
+        console.log('Displaying Cards done')
     });
 }
 
@@ -58,13 +58,13 @@ function navigateToCategoryPage(category) {
 }
 
 // // Update this part to use the correct function name
-// $(document).ready(async function() {
-//     const urlParams = new URLSearchParams(window.location.search);
-//     const selectedCategory = urlParams.get('category');
-//     try {
-//         const cards = await fetchCardsByCategory(selectedCategory);
-//         displayCards(cards);
-//     } catch (error) {
-//         console.log('Error:', error);
-//     }
-// });
+$(document).ready(async function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const selectedCategory = urlParams.get('category');
+    try {
+        const cards = await fetchCardsByCategory(selectedCategory);
+        displayCards(cards);
+    } catch (error) {
+        console.log('Error:', error);
+    }
+});
