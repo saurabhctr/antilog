@@ -40,34 +40,47 @@ function displayCardDetails(card) {
     // Additional components
     
     // Create additional content sections
+    // Additional content container
     const additionalContentContainer = $('<div>').addClass('additional-content-container');
-
     const addContentSection = (title, content) => {
         if (content) {
             const section = $('<div>').addClass('additional-content-section');
             const titleEl = $('<h4>').addClass('section-title').text(title);
-            const contentEl = $('<p>').addClass('section-content').text(content);
+            const contentEl = $('<div>').addClass('section-content');
+            
+            // If content includes commas, split into a bulleted list
+            if (content.includes(',')) {
+                const list = $('<ul>');
+                content.split(',').forEach(item => {
+                    const listItem = $('<li>').text(item.trim());
+                    list.append(listItem);
+                });
+                contentEl.append(list);
+            } else {
+                contentEl.text(content);
+            }
+            
             section.append(titleEl, contentEl);
             additionalContentContainer.append(section);
         }
     };
-    
-    // Add dynamic sections to additionalContentContainer
+
+    // Append dynamic content sections
     addContentSection('Duration', card.cx_payload_opt);
     addContentSection('Expectations', card.cx_expectations);
     addContentSection('Vedic Hymn Reference', card.cx_evidence);
     addContentSection('Materials/Structures Required', card.cx_subdata);
 
-    // Append additional content to the contentDiv
-    contentDiv.append(additionalContentContainer);
+
 
     const additionalContent2 = $('<div>').addClass('additional-content-iframe');
     const iframe = $('<iframe>').attr('src', `${window.API_BASE_URL}:5006/gra`).attr('frameborder', '0');
     additionalContent2.append(iframe);
 
     // Append image and text content to the main container
+    
+    contentDiv.append(name, tagline, description,additionalContentContainer, additionalContent2);
     container.append(imageContainer, contentDiv);
-    contentDiv.append(name, tagline, description, additionalContent2);
 
 
     // Create a script tag to include Bokeh library and your Bokeh application code
