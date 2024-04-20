@@ -151,6 +151,8 @@
     flex-wrap: wrap;
     justify-content: space-around; /* Centers the items on the line with space around them */
     gap: 20px; /* Adds space between the cards */
+    margin: 0 auto; /* Center the container */
+    max-width: 1200px; /* Set a max-width for large screens */
   }
   
   .additional-content-section {
@@ -160,7 +162,7 @@
     padding: 15px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease, transform 0.3s ease;
-    flex-basis: 48%; /* Nearly half the container width, accounting for the gap */
+    flex: 1 1 calc(50% - 20px); /* Flex-grow, flex-shrink, flex-basis */
     margin: 10px; /* Spacing around the section */
     box-sizing: border-box;
   }
@@ -197,6 +199,15 @@
       flex-basis: 100%; /* Full width on small screens */
     }
   }
+  
+  /* If additional adjustments are needed for very small screens */
+  @media (max-width: 480px) {
+    .additional-content-section {
+      flex-basis: 100%;
+      margin: 10px 0;
+    }
+  }
+  
   
   
 
