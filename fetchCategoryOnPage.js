@@ -12,7 +12,7 @@ async function fetchCardsByCategory(category) {
                 type: category
             }
         });
-        return response.card;
+        return response.cards;
     } catch (error) {
         console.log(`Error fetching ${category} cards:`, error);
         throw error;
@@ -20,7 +20,7 @@ async function fetchCardsByCategory(category) {
 }
 
  // Function to dynamically display cards on the HTML page
- function displayCards(card) {
+ function displayCards(cards) {
     console.log('Displaying Cards')
     const container = $('#dummy-content');
     container.empty(); // Clear existing content
