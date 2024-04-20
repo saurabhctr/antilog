@@ -67,7 +67,7 @@ function displayCardDetails(card) {
 
     // Append image and text content to the main container
     container.append(imageContainer, contentDiv);
-    contentDiv.append(name, tagline, description, additionalContent1, additionalContent2);
+    contentDiv.append(name, tagline, description, additionalContent2);
 
 
     // Create a script tag to include Bokeh library and your Bokeh application code
