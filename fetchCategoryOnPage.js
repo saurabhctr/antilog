@@ -57,14 +57,14 @@ function navigateToCategoryPage(category) {
     window.location.href = `category.html?category=${encodeURIComponent(category)}`;
 }
 
-// Update this part to use the correct function name
-$(document).ready(async function() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const selectedCategory = urlParams.get('category');
-    try {
-        const cards = await fetchCardsByCategory(selectedCategory);
-        displayCards(cards);
-    } catch (error) {
-        console.log('Error:', error);
-    }
-});
+// // Update this part to use the correct function name
+// $(document).ready(async function() {
+//     const urlParams = new URLSearchParams(window.location.search);
+//     const selectedCategory = urlParams.get('category');
+//     try {
+//         const cards = await fetchCardsByCategory(selectedCategory);
+//         displayCards(cards);
+//     } catch (error) {
+//         console.log('Error:', error);
+//     }
+// });
