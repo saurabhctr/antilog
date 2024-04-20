@@ -38,7 +38,41 @@ function displayCardDetails(card) {
     const description = $('<div>').addClass('card-detail-description').text(card.cx_description);
 
     // Additional components
-    const additionalContent1 = $('<div>').addClass('additional-content').text('Additional Content 1');
+    // Create additional content sections
+    const createAdditionalContentSection = (title, content) => {
+        const section = $('<div>').addClass('additional-content-section');
+        const sectionTitle = $('<h4>').addClass('section-title').text(title);
+        const sectionContent = $('<div>').addClass('section-content');
+
+        if (content.includes(',')) {
+            const list = $('<ul>');
+            content.split(',').forEach(item => {
+                list.append($('<li>').text(item.trim()));
+            });
+            sectionContent.append(list);
+        } else {
+            sectionContent.text(content);
+        }
+
+        section.append(sectionTitle, sectionContent);
+        return section;
+    };
+
+    const durationSection = createAdditionalContentSection('Duration', card.cx_payload_opt);
+    const expectationSection = createAdditionalContentSection('Expectations', card.cx_expectations);
+    const sourceSection = createAdditionalContentSection('Vedic Hymn Reference', card.cx_evidence);
+    const materialsSection = createAdditionalContentSection('Materials/Structures Required', card.cx_subdata);
+
+    // Hide or show sections based on data availability
+    [durationSection, expectationSection, sourceSection, materialsSection].forEach(section => {
+        if (section.find('.section-content').text().trim() === '') {
+            section.hide();
+        }
+    });
+
+    // Append new content to the contentDiv
+    contentDiv.append(name, tagline, description, durationSection, expectationSection, sourceSection, materialsSection);
+
     const additionalContent2 = $('<div>').addClass('additional-content-iframe');
     const iframe = $('<iframe>').attr('src', `${window.API_BASE_URL}:5006/gra`).attr('frameborder', '0');
     additionalContent2.append(iframe);
