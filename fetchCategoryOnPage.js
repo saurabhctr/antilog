@@ -3,7 +3,7 @@
 // Function to fetch cards by category from the API
 async function fetchCardsByCategory(category) {
     try {
-        const noOfCards = 10; // Default number of cards
+        const noOfCards = 20; // Default number of cards
         const response = await $.ajax({
             url: `${window.API_BASE_URL}:5000/getCards`,
             type: 'GET',
@@ -22,7 +22,7 @@ async function fetchCardsByCategory(category) {
  // Function to dynamically display cards on the HTML page
  function displayCards(cards) {
     console.log('Displaying Cards')
-    const container = $('#dummy-content');
+    const container = $('category-content');
     container.empty(); // Clear existing content
 
     cards.forEach((card, index) => {
