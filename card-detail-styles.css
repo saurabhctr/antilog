@@ -147,36 +147,30 @@
 }
 
 .additional-content-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around; /* Centers the items on the line with space around them */
-    gap: 20px; /* Adds space between the cards */
-    margin: 0 auto; /* Center the container */
-    max-width: 1200px; /* Set a max-width for large screens */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Creates 2 columns */
+    gap: 20px; /* Space between grid items */
+    margin-bottom: 20px; /* Space below the container */
   }
   
   .additional-content-section {
-    background: #f0f8ff; /* A light background color for the section */
-    border: 1px solid #e0e0e0; /* A subtle border */
-    border-radius: 8px;
+    background: #f0f8ff; /* Light blue background for readability */
+    border: 1px solid #e0e0e0; /* Light gray border */
+    border-radius: 8px; /* Rounded corners */
     padding: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     transition: box-shadow 0.3s ease, transform 0.3s ease;
-    flex: 1 1 calc(50% - 20px); /* Flex-grow, flex-shrink, flex-basis */
-    margin: 10px; /* Spacing around the section */
-    box-sizing: border-box;
   }
   
   .additional-content-section:hover {
-    box-shadow: 0 8px 16px rgba(173, 216, 230, 0.6); /* Light blue glow effect */
-    transform: translateY(-5px); /* Slight lift effect */
+    box-shadow: 0 8px 16px rgba(173, 216, 230, 0.6); /* Glowing effect on hover */
+    transform: translateY(-5px); /* Lift effect on hover */
   }
   
   .section-title {
     font-size: 1.1em;
     color: #333;
-    margin-bottom: 8px;
-    text-transform: uppercase; /* Optional style */
+    margin-bottom: 0.5em;
   }
   
   .section-content {
@@ -184,29 +178,13 @@
     color: #666;
   }
   
-  .section-content ul {
-    padding-left: 20px;
-  }
-  
-  .section-content li {
-    list-style-type: disc;
-    margin-bottom: 5px;
-  }
-  
-  /* Responsive design adjustments for smaller screens */
+  /* Adjustments for smaller screens */
   @media (max-width: 768px) {
-    .additional-content-section {
-      flex-basis: 100%; /* Full width on small screens */
+    .additional-content-container {
+      grid-template-columns: 1fr; /* Only 1 column on smaller screens */
     }
   }
   
-  /* If additional adjustments are needed for very small screens */
-  @media (max-width: 480px) {
-    .additional-content-section {
-      flex-basis: 100%;
-      margin: 10px 0;
-    }
-  }
   
   
   
