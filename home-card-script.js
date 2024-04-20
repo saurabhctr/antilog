@@ -2,7 +2,7 @@
 $(document).ready(function () {
     // Function to fetch cards from the API
     function fetchCards() {
-        const noOfCards = 10; // Default number of cards
+        const noOfCards = 30; // Default number of cards
         const cardType = 'web'; // Default card type
         const filters = ''; // Additional filters if needed
         

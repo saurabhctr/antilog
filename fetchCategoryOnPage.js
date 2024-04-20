@@ -68,15 +68,3 @@ $(document).ready(async function() {
         console.log('Error:', error);
     }
 });
-
-// Click handler for category tabs
-$('body').on('click', '#categoryTabs button', async function () {
-    const category = $(this).text(); // Get the category text
-    try {
-        const cards = await fetchCardsByCategory(category);
-        displayCards(cards);
-        navigateToCategoryPage(category); // Redirect to the category page
-    } catch (error) {
-        console.log(`Error fetching ${category} cards:`, error);
-    }
-});
