@@ -39,7 +39,27 @@ function displayCardDetails(card) {
 
     // Additional components
     
-    const additionalContent1 = $('<div>').addClass('additional-content-iframe');
+    // Create additional content sections
+    const additionalContentContainer = $('<div>').addClass('additional-content-container');
+
+    const addContentSection = (title, content) => {
+        if (content) {
+            const section = $('<div>').addClass('additional-content-section');
+            const titleEl = $('<h4>').addClass('section-title').text(title);
+            const contentEl = $('<p>').addClass('section-content').text(content);
+            section.append(titleEl, contentEl);
+            additionalContentContainer.append(section);
+        }
+    };
+    
+    // Add dynamic sections to additionalContentContainer
+    addContentSection('Duration', card.cx_payload_opt);
+    addContentSection('Expectations', card.cx_expectations);
+    addContentSection('Vedic Hymn Reference', card.cx_evidence);
+    addContentSection('Materials/Structures Required', card.cx_subdata);
+
+    // Append additional content to the contentDiv
+    contentDiv.append(additionalContentContainer);
 
     const additionalContent2 = $('<div>').addClass('additional-content-iframe');
     const iframe = $('<iframe>').attr('src', `${window.API_BASE_URL}:5006/gra`).attr('frameborder', '0');
