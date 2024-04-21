@@ -50,8 +50,8 @@ class WebcamCapture {
         this.overlay.style.position = 'absolute';
         this.overlay.style.top = '0';
         this.overlay.style.left = '0';
-        this.overlay.style.width = '100%';
-        this.overlay.style.height = '100%';
+        this.overlay.style.width = '75%';  // Set to 75% of its container
+        this.overlay.style.height = '75%'; // Set to 75% of its container
         this.overlay.style.objectFit = 'cover';
         this.overlay.style.opacity = '0.6';
         this.overlay.style.filter = 'sepia(20%)';
@@ -123,6 +123,7 @@ class WebcamCapture {
         preview.src = imageUrl;
         preview.onload = () => {
             this.container.appendChild(preview);
+            this.proceedButton.style.display = 'block'; // Show the proceed button immediately
 
             const closeButton = document.createElement('button');
             closeButton.innerHTML = '❌';
@@ -130,17 +131,16 @@ class WebcamCapture {
             closeButton.onclick = () => {
                 this.container.removeChild(preview);
                 this.container.removeChild(closeButton);
+                this.proceedButton.style.display = 'none'; // Hide the proceed button when closing the preview
                 this.video.style.display = 'block';
-                this.captureButton.style.display = 'none'; // Hide capture button
+                this.captureButton.style.display = 'none';
                 this.overlay.style.display = 'inline';
-                this.proceedButton.style.display = 'block'; // Show proceed button
             };
 
             this.container.appendChild(closeButton);
             this.video.style.display = 'none';
             this.captureButton.style.display = 'none';
             this.overlay.style.display = 'none';
-            this.proceedButton.style.display = 'none'; // Ensure proceed button is not visible until needed
         };
     }
 
@@ -152,6 +152,7 @@ class WebcamCapture {
             this.captureButton.style.display = 'none';
             this.overlay.style.display = 'none';
             this.startButton.style.display = 'inline';
+            this.proceedButton.style.display = 'none'; // Also hide proceed button when not in preview mode
         }
     }
 }
