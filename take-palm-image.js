@@ -1,18 +1,18 @@
 class WebcamCapture {
     constructor(containerId) {
         this.container = document.getElementById(containerId);
-        this.container.style.position = 'relative';
-        this.container.style.width = '640px';
-        this.container.style.height = '480px';
+        this.container.style.position = 'relative'; // Ensures positioning is relative to the container
+        this.container.style.width = '640px'; // Adjust width as needed based on video resolution
+        this.container.style.height = '480px'; // Adjust height as needed
 
         this.video = document.createElement('video');
-        this.video.style.width = '100%';
+        this.video.style.width = '100%'; // Ensures the video fills the container
         this.video.style.height = '100%';
 
         this.canvas = document.createElement('canvas');
         this.captureButton = document.createElement('button');
-        this.startButton = document.createElement('button'); // This will now act as the 'Retake' button
-        this.proceedButton = document.createElement('button');
+        this.startButton = document.createElement('button');
+        this.proceedButton = document.createElement('button'); // Proceed button
         this.videoStream = null;
 
         this.setup();
@@ -26,13 +26,13 @@ class WebcamCapture {
         this.canvas.style.display = 'none';
         this.container.appendChild(this.canvas);
 
-        // Start (Retake) Button setup
-        this.startButton.innerHTML = 'Retake';
-        this.startButton.style.cssText = "display: none; padding: 12px 20px; font-size: 18px; background-color: orange; color: white; border: none; border-radius: 8px; box-shadow: 2px 2px 10px rgba(0,0,0,0.2); margin-top: 8px; cursor: pointer;";
+        // Start Button styling and functionality
+        this.startButton.innerHTML = 'Start Capture';
+        this.startButton.style.cssText = "padding: 12px 20px; font-size: 18px; background-color: gold; color: black; border: none; border-radius: 8px; box-shadow: 2px 2px 10px rgba(0,0,0,0.2); margin-top: 8px; cursor: pointer;";
         this.container.appendChild(this.startButton);
         this.startButton.addEventListener('click', () => this.startVideo());
 
-        // Capture Button setup
+        // Capture Button styling and functionality
         this.captureButton.innerHTML = 'Capture Image';
         this.captureButton.style.cssText = "padding: 12px 20px; font-size: 18px; background-color: gold; color: black; border: none; border-radius: 8px; box-shadow: 2px 2px 10px rgba(0,0,0,0.2); margin-top: 8px; cursor: pointer; display: none;";
         this.container.appendChild(this.captureButton);
@@ -40,7 +40,7 @@ class WebcamCapture {
 
         // Proceed Button setup
         this.proceedButton.innerHTML = 'Proceed';
-        this.proceedButton.style.cssText = "display: none; padding: 12px 20px; font-size: 18px; background-color: darkgreen; color: white; border: none; border-radius: 8px; box-shadow: 2px 2px 10px rgba(0,0,0,0.2); margin-top: 8px; cursor: pointer;";
+        this.proceedButton.style.cssText = "padding: 12px 20px; font-size: 18px; background-color: darkgreen; color: white; border: none; border-radius: 8px; box-shadow: 2px 2px 10px rgba(0,0,0,0.2); margin-top: 8px; cursor: pointer; display: none;";
         this.proceedButton.onclick = () => window.location.href = 'enquiry-detail.html';
         this.container.appendChild(this.proceedButton);
 
@@ -50,20 +50,17 @@ class WebcamCapture {
         this.overlay.style.position = 'absolute';
         this.overlay.style.top = '0';
         this.overlay.style.left = '0';
-        this.overlay.style.width = '75%';
-        this.overlay.style.height = '75%';
+        this.overlay.style.width = '75%';  // Set to 75% of its container
+        this.overlay.style.height = '75%'; // Set to 75% of its container
         this.overlay.style.objectFit = 'cover';
         this.overlay.style.opacity = '0.6';
         this.overlay.style.filter = 'sepia(20%)';
         this.overlay.style.display = 'none';
-        this.overlay.style.zIndex = '1';
+        this.overlay.style.zIndex = '1'; // Ensure the overlay is above the video but below the buttons
         this.container.appendChild(this.overlay);
     }
 
     startVideo() {
-        if (this.videoStream) {
-            this.videoStream.getTracks().forEach(track => track.stop()); // Stop the current video stream if it's running
-        }
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
             navigator.mediaDevices.getUserMedia({ video: true })
                 .then(stream => {
@@ -71,9 +68,8 @@ class WebcamCapture {
                     this.video.srcObject = stream;
                     this.video.play();
                     this.startButton.style.display = 'none';
-                    this.captureButton.style.display = 'block';
+                    this.captureButton.style.display = 'block'; // Change to 'block' to appear below the video
                     this.overlay.style.display = 'inline';
-                    this.proceedButton.style.display = 'none'; // Hide 'Proceed' button until next capture
                 })
                 .catch(error => {
                     console.error("Error accessing the webcam: ", error);
@@ -127,8 +123,7 @@ class WebcamCapture {
         preview.src = imageUrl;
         preview.onload = () => {
             this.container.appendChild(preview);
-            this.startButton.style.display = 'block'; // Show 'Retake' button
-            this.proceedButton.style.display = 'block'; // Show 'Proceed' button
+            this.proceedButton.style.display = 'block'; // Show the proceed button immediately
 
             const closeButton = document.createElement('button');
             closeButton.innerHTML = '❌';
@@ -153,12 +148,11 @@ class WebcamCapture {
     stopVideo() {
         if (this.videoStream) {
             this.videoStream.getTracks().forEach(track => track.stop());
+            this.video.style.display = 'none';
+            this.captureButton.style.display = 'none';
+            this.overlay.style.display = 'none';
+            this.startButton.style.display = 'inline';
         }
-        this.video.style.display = 'none';
-        this.captureButton.style.display = 'none';
-        this.overlay.style.display = 'none';
-        this.startButton.style.display = 'inline';
-        this.proceedButton.style.display = 'none';
     }
 }
 
