@@ -61,10 +61,62 @@ class WebcamCapture {
         const context = this.canvas.getContext('2d');
         context.drawImage(this.video, 0, 0, this.canvas.width, this.canvas.height);
         const imageDataUrl = this.canvas.toDataURL('image/png');
+        // Convert the data URL to a Blob
+        fetch(imageDataUrl)
+            .then(res => res.blob())
+            .then(blob => {
+                const formData = new FormData();
+                formData.append('image', blob, 'capture.png'); // Append the image Blob to FormData
+                formData.append('created_by', 'user'); // Example data, update with actual data
+                formData.append('image_purpose', 'identification'); // Example data, update with actual data
+                // etc...
+
+                // Send the image to the server
+                return fetch('${window.API_BASE_URL}:5000/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data && data.document_id) {
+                    this.displayPreview(data.document_id);
+                } else {
+                    throw new Error('Image upload failed.');
+                }
+            })
+            .catch(error => {
+                console.error('Error uploading image:', error);
+            });
         console.log('Image captured');
         this.stopVideo();
     }
+    displayPreview(documentId) {
+        // Fetch the image from the server using the document ID
+        const imageUrl = `${window.API_BASE_URL}:5000/image/${documentId}`;
 
+        // Create an image element for the preview
+        const preview = new Image();
+        preview.src = imageUrl;
+        preview.onload = () => {
+            this.container.appendChild(preview); // Add the preview image to the DOM
+
+            // Create a close button to hide the preview and show the capture button again
+            const closeButton = document.createElement('button');
+            closeButton.innerText = 'Close Preview';
+            closeButton.onclick = () => {
+                this.container.removeChild(preview);
+                this.container.removeChild(closeButton);
+                this.video.style.display = 'block';
+                this.captureButton.style.display = 'inline';
+            };
+
+            this.container.appendChild(closeButton);
+            // Hide the video and capture button
+            this.video.style.display = 'none';
+            this.captureButton.style.display = 'none';
+        };
+    }
     stopVideo() {
         if (this.videoStream) {
             this.videoStream.getTracks().forEach(track => track.stop());
