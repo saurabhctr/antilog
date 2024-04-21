@@ -68,7 +68,7 @@ class WebcamCapture {
                 const formData = new FormData();
                 formData.append('image', blob, 'capture.png'); // Append the image Blob to FormData
                 formData.append('created_by', 'user'); // Example data, update with actual data
-                formData.append('image_purpose', 'identification'); // Example data, update with actual data
+                formData.append('image_purpose', 'Palm_identification'); // Example data, update with actual data
                 // etc...
 
                 // Send the image to the server
