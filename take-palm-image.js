@@ -72,7 +72,7 @@ class WebcamCapture {
                 // etc...
 
                 // Send the image to the server
-                return fetch(':5000/upload', {
+                return fetch(`${window.API_BASE_URL}:5000/upload`, {
                     method: 'POST',
                     body: formData
                 });
@@ -93,7 +93,7 @@ class WebcamCapture {
     }
     displayPreview(documentId) {
         // Fetch the image from the server using the document ID
-        const imageUrl = `:5000/image/${documentId}`;
+        const imageUrl = `${window.API_BASE_URL}:5000/image/${documentId}`;
 
         // Create an image element for the preview
         const preview = new Image();
