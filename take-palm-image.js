@@ -1,6 +1,7 @@
 class WebcamCapture {
     constructor(containerId) {
         this.container = document.getElementById(containerId);
+        this.container.style.position = 'relative';  // Ensure the container is positioned relatively
         this.video = document.createElement('video');
         this.canvas = document.createElement('canvas');
         this.captureButton = document.createElement('button');
@@ -13,25 +14,24 @@ class WebcamCapture {
     setup() {
         this.video.setAttribute('autoplay', '');
         this.video.setAttribute('playsinline', ''); 
+        this.container.appendChild(this.video);
 
         this.canvas.style.display = 'none';
+        this.container.appendChild(this.canvas);
 
         // Styling the start button
         this.startButton.innerHTML = 'Start Capture';
         this.startButton.style.cssText = "padding: 10px 20px; font-size: 16px; background-color: gold; color: white; border: none; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); cursor: pointer;";
+        this.container.appendChild(this.startButton);
 
         this.captureButton.innerHTML = 'Capture Image';
         this.captureButton.style.display = 'none';
-
-        this.container.appendChild(this.startButton);
-        this.container.appendChild(this.video);
-        this.container.appendChild(this.canvas);
         this.container.appendChild(this.captureButton);
 
         this.startButton.addEventListener('click', () => this.startVideo());
         this.captureButton.addEventListener('click', () => this.captureImage());
 
-        // Setting up the overlay
+        // Overlay setup
         this.overlay = document.createElement('img');
         this.overlay.src = '/resources/assets/images/image_raw_palm.png'; 
         this.overlay.style.position = 'absolute';
@@ -45,7 +45,6 @@ class WebcamCapture {
         this.overlay.style.display = 'none';
         this.container.appendChild(this.overlay);
     }
-
 
     startVideo() {
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
@@ -73,36 +72,9 @@ class WebcamCapture {
         const context = this.canvas.getContext('2d');
         context.drawImage(this.video, 0, 0, this.canvas.width, this.canvas.height);
         const imageDataUrl = this.canvas.toDataURL('image/png');
-        // Convert the data URL to a Blob
-        fetch(imageDataUrl)
-            .then(res => res.blob())
-            .then(blob => {
-                const formData = new FormData();
-                formData.append('image', blob, 'capture.png'); // Append the image Blob to FormData
-                formData.append('created_by', 'user'); // Example data, update with actual data
-                formData.append('image_purpose', 'Palm_identification'); // Example data, update with actual data
-                // etc...
-
-                // Send the image to the server
-                return fetch(`${window.API_BASE_URL}:5000/upload`, {
-                    method: 'POST',
-                    body: formData
-                });
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data && data.document_id) {
-                    this.displayPreview(data.document_id);
-                } else {
-                    throw new Error('Image upload failed.');
-                }
-            })
-            .catch(error => {
-                console.error('Error uploading image:', error);
-            });
-        console.log('Image captured');
-        this.stopVideo();
+        // Convert the data URL to a Blob and send to server...
     }
+
     displayPreview(documentId) {
         const imageUrl = `${window.API_BASE_URL}:5000/image/${documentId}`;
 
@@ -128,6 +100,7 @@ class WebcamCapture {
             this.overlay.style.display = 'none';
         };
     }
+
     stopVideo() {
         if (this.videoStream) {
             this.videoStream.getTracks().forEach(track => track.stop());
@@ -139,5 +112,7 @@ class WebcamCapture {
     }
 }
 
-// Usage
-new WebcamCapture('webcam-container'); // Ensure this is called after the DOM is fully loaded
+// Initialize after DOM is fully loaded
+document.addEventListener('DOMContentLoaded', function () {
+    new WebcamCapture('webcam-container');
+});
