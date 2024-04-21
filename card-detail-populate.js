@@ -81,7 +81,12 @@ function displayCardDetails(card) {
     
     contentDiv.append(name, tagline, description,additionalContentContainer, additionalContent2);
     container.append(imageContainer, contentDiv);
+    // Webcam container
+    const webcamContainer = $('<div>').attr('id', 'webcam-container');
+    contentDiv.append(webcamContainer);
 
+    // Initialize webcam capture - ensure this is called after the webcamContainer is added to the DOM
+    new WebcamCapture('webcam-container');
 
     // Create a script tag to include Bokeh library and your Bokeh application code
     const bokehScript = document.createElement('script');
