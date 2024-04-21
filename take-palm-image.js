@@ -11,30 +11,29 @@ class WebcamCapture {
     }
 
     setup() {
-        // Video setup
         this.video.setAttribute('autoplay', '');
-        this.video.setAttribute('playsinline', ''); // Necessary for video to play inline on iOS devices
-        this.container.appendChild(this.video);
+        this.video.setAttribute('playsinline', ''); 
 
-        // Canvas setup
         this.canvas.style.display = 'none';
-        this.container.appendChild(this.canvas);
 
-        // Start Button setup
+        // Styling the start button
         this.startButton.innerHTML = 'Start Capture';
         this.startButton.style.cssText = "padding: 10px 20px; font-size: 16px; background-color: gold; color: white; border: none; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); cursor: pointer;";
-        this.container.appendChild(this.startButton);
-        this.startButton.addEventListener('click', () => this.startVideo());
 
-        // Capture Button setup
         this.captureButton.innerHTML = 'Capture Image';
         this.captureButton.style.display = 'none';
+
+        this.container.appendChild(this.startButton);
+        this.container.appendChild(this.video);
+        this.container.appendChild(this.canvas);
         this.container.appendChild(this.captureButton);
+
+        this.startButton.addEventListener('click', () => this.startVideo());
         this.captureButton.addEventListener('click', () => this.captureImage());
 
-        // Overlay setup
+        // Setting up the overlay
         this.overlay = document.createElement('img');
-        this.overlay.src = '/resources/assets/images/image_raw_palm.png'; // Update the path as needed
+        this.overlay.src = '/resources/assets/images/image_raw_palm.png'; 
         this.overlay.style.position = 'absolute';
         this.overlay.style.top = '0';
         this.overlay.style.left = '0';
@@ -44,23 +43,25 @@ class WebcamCapture {
         this.overlay.style.opacity = '0.6';
         this.overlay.style.filter = 'sepia(20%)';
         this.overlay.style.display = 'none';
-        this.container.style.position = 'relative';
         this.container.appendChild(this.overlay);
     }
 
+
     startVideo() {
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-            navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
-                this.videoStream = stream;
-                this.video.srcObject = stream;
-                this.video.play();
-                this.startButton.style.display = 'none';
-                this.captureButton.style.display = 'inline';
-                this.overlay.style.display = 'inline';
-            }).catch(error => {
-                console.error("Error accessing the webcam: ", error);
-                alert("Error accessing the webcam: " + error.message);
-            });
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(stream => {
+                    this.videoStream = stream;
+                    this.video.srcObject = stream;
+                    this.video.play();
+                    this.startButton.style.display = 'none';
+                    this.captureButton.style.display = 'inline';
+                    this.overlay.style.display = 'inline';
+                })
+                .catch(error => {
+                    console.error("Error accessing the webcam: ", error);
+                    alert("Error accessing the webcam: " + error.message);
+                });
         } else {
             alert("Webcam is not supported by your browser.");
         }
@@ -72,32 +73,39 @@ class WebcamCapture {
         const context = this.canvas.getContext('2d');
         context.drawImage(this.video, 0, 0, this.canvas.width, this.canvas.height);
         const imageDataUrl = this.canvas.toDataURL('image/png');
-        
-        fetch(imageDataUrl).then(res => res.blob()).then(blob => {
-            const formData = new FormData();
-            formData.append('image', blob, 'capture.png'); // Append the image Blob to FormData
-            formData.append('created_by', 'user'); // Example data, update with actual data
-            formData.append('image_purpose', 'Palm_identification'); // Example data, update with actual data
+        // Convert the data URL to a Blob
+        fetch(imageDataUrl)
+            .then(res => res.blob())
+            .then(blob => {
+                const formData = new FormData();
+                formData.append('image', blob, 'capture.png'); // Append the image Blob to FormData
+                formData.append('created_by', 'user'); // Example data, update with actual data
+                formData.append('image_purpose', 'Palm_identification'); // Example data, update with actual data
+                // etc...
 
-            return fetch(`${window.API_BASE_URL}:5000/upload`, {
-                method: 'POST',
-                body: formData
+                // Send the image to the server
+                return fetch(`${window.API_BASE_URL}:5000/upload`, {
+                    method: 'POST',
+                    body: formData
+                });
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data && data.document_id) {
+                    this.displayPreview(data.document_id);
+                } else {
+                    throw new Error('Image upload failed.');
+                }
+            })
+            .catch(error => {
+                console.error('Error uploading image:', error);
             });
-        }).then(response => response.json()).then(data => {
-            if (data && data.document_id) {
-                this.displayPreview(data.document_id);
-            } else {
-                throw new Error('Image upload failed.');
-            }
-        }).catch(error => {
-            console.error('Error uploading image:', error);
-        });
         console.log('Image captured');
         this.stopVideo();
     }
-
     displayPreview(documentId) {
         const imageUrl = `${window.API_BASE_URL}:5000/image/${documentId}`;
+
         const preview = new Image();
         preview.src = imageUrl;
         preview.onload = () => {
@@ -120,7 +128,6 @@ class WebcamCapture {
             this.overlay.style.display = 'none';
         };
     }
-
     stopVideo() {
         if (this.videoStream) {
             this.videoStream.getTracks().forEach(track => track.stop());
@@ -132,5 +139,5 @@ class WebcamCapture {
     }
 }
 
-// Ensure this is called after the DOM is fully loaded
-new WebcamCapture('webcam-container');
+// Usage
+new WebcamCapture('webcam-container'); // Ensure this is called after the DOM is fully loaded
