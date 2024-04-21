@@ -12,6 +12,7 @@ class WebcamCapture {
         this.canvas = document.createElement('canvas');
         this.captureButton = document.createElement('button');
         this.startButton = document.createElement('button');
+        this.proceedButton = document.createElement('button'); // Proceed button
         this.videoStream = null;
 
         this.setup();
@@ -36,6 +37,12 @@ class WebcamCapture {
         this.captureButton.style.cssText = "padding: 12px 20px; font-size: 18px; background-color: gold; color: black; border: none; border-radius: 8px; box-shadow: 2px 2px 10px rgba(0,0,0,0.2); margin-top: 8px; cursor: pointer; display: none;";
         this.container.appendChild(this.captureButton);
         this.captureButton.addEventListener('click', () => this.captureImage());
+
+        // Proceed Button setup
+        this.proceedButton.innerHTML = 'Proceed';
+        this.proceedButton.style.cssText = "padding: 12px 20px; font-size: 18px; background-color: darkgreen; color: white; border: none; border-radius: 8px; box-shadow: 2px 2px 10px rgba(0,0,0,0.2); margin-top: 8px; cursor: pointer; display: none;";
+        this.proceedButton.onclick = () => window.location.href = 'enquiry-detail.html';
+        this.container.appendChild(this.proceedButton);
 
         // Overlay setup
         this.overlay = document.createElement('img');
@@ -124,14 +131,16 @@ class WebcamCapture {
                 this.container.removeChild(preview);
                 this.container.removeChild(closeButton);
                 this.video.style.display = 'block';
-                this.captureButton.style.display = 'block'; // Ensure visible for further captures
+                this.captureButton.style.display = 'none'; // Hide capture button
                 this.overlay.style.display = 'inline';
+                this.proceedButton.style.display = 'block'; // Show proceed button
             };
 
             this.container.appendChild(closeButton);
             this.video.style.display = 'none';
             this.captureButton.style.display = 'none';
             this.overlay.style.display = 'none';
+            this.proceedButton.style.display = 'none'; // Ensure proceed button is not visible until needed
         };
     }
 
