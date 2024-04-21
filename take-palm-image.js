@@ -1,8 +1,14 @@
 class WebcamCapture {
     constructor(containerId) {
         this.container = document.getElementById(containerId);
-        this.container.style.position = 'relative';  // Ensure the container is positioned relatively
+        this.container.style.position = 'relative'; // Ensures positioning is relative to the container
+        this.container.style.width = '640px'; // Adjust width as needed based on video resolution
+        this.container.style.height = '480px'; // Adjust height as needed
+
         this.video = document.createElement('video');
+        this.video.style.width = '100%'; // Ensures the video fills the container
+        this.video.style.height = '100%';
+
         this.canvas = document.createElement('canvas');
         this.captureButton = document.createElement('button');
         this.startButton = document.createElement('button');
@@ -13,27 +19,27 @@ class WebcamCapture {
 
     setup() {
         this.video.setAttribute('autoplay', '');
-        this.video.setAttribute('playsinline', ''); 
+        this.video.setAttribute('playsinline', '');
         this.container.appendChild(this.video);
 
         this.canvas.style.display = 'none';
         this.container.appendChild(this.canvas);
 
-        // Styling the start button
+        // Start Button styling and functionality
         this.startButton.innerHTML = 'Start Capture';
-        this.startButton.style.cssText = "padding: 10px 20px; font-size: 16px; background-color: gold; color: white; border: none; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); cursor: pointer;";
+        this.startButton.style.cssText = "padding: 12px 20px; font-size: 18px; background-color: gold; color: black; border: none; border-radius: 8px; box-shadow: 2px 2px 10px rgba(0,0,0,0.2); margin-top: 8px; cursor: pointer;";
         this.container.appendChild(this.startButton);
-
-        this.captureButton.innerHTML = 'Capture Image';
-        this.captureButton.style.display = 'none';
-        this.container.appendChild(this.captureButton);
-
         this.startButton.addEventListener('click', () => this.startVideo());
+
+        // Capture Button styling and functionality
+        this.captureButton.innerHTML = 'Capture Image';
+        this.captureButton.style.cssText = "padding: 12px 20px; font-size: 18px; background-color: gold; color: black; border: none; border-radius: 8px; box-shadow: 2px 2px 10px rgba(0,0,0,0.2); margin-top: 8px; cursor: pointer; display: none;";
+        this.container.appendChild(this.captureButton);
         this.captureButton.addEventListener('click', () => this.captureImage());
 
         // Overlay setup
         this.overlay = document.createElement('img');
-        this.overlay.src = '/resources/assets/images/image_raw_palm.png'; 
+        this.overlay.src = '/resources/assets/images/image_raw_palm.png';
         this.overlay.style.position = 'absolute';
         this.overlay.style.top = '0';
         this.overlay.style.left = '0';
@@ -43,6 +49,7 @@ class WebcamCapture {
         this.overlay.style.opacity = '0.6';
         this.overlay.style.filter = 'sepia(20%)';
         this.overlay.style.display = 'none';
+        this.overlay.style.zIndex = '1'; // Ensure the overlay is above the video but below the buttons
         this.container.appendChild(this.overlay);
     }
 
@@ -54,7 +61,7 @@ class WebcamCapture {
                     this.video.srcObject = stream;
                     this.video.play();
                     this.startButton.style.display = 'none';
-                    this.captureButton.style.display = 'inline';
+                    this.captureButton.style.display = 'block'; // Change to 'block' to appear below the video
                     this.overlay.style.display = 'inline';
                 })
                 .catch(error => {
@@ -72,12 +79,39 @@ class WebcamCapture {
         const context = this.canvas.getContext('2d');
         context.drawImage(this.video, 0, 0, this.canvas.width, this.canvas.height);
         const imageDataUrl = this.canvas.toDataURL('image/png');
-        // Convert the data URL to a Blob and send to server...
+        // Convert the data URL to a Blob
+        fetch(imageDataUrl)
+            .then(res => res.blob())
+            .then(blob => {
+                const formData = new FormData();
+                formData.append('image', blob, 'capture.png'); // Append the image Blob to FormData
+                formData.append('created_by', 'user'); // Example data, update with actual data
+                formData.append('image_purpose', 'Palm_identification'); // Example data, update with actual data
+                // etc...
+
+                // Send the image to the server
+                return fetch(`${window.API_BASE_URL}:5000/upload`, {
+                    method: 'POST',
+                    body: formData
+                });
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data && data.document_id) {
+                    this.displayPreview(data.document_id);
+                } else {
+                    throw new Error('Image upload failed.');
+                }
+            })
+            .catch(error => {
+                console.error('Error uploading image:', error);
+            });
+        console.log('Image captured');
+        this.stopVideo();
     }
 
     displayPreview(documentId) {
         const imageUrl = `${window.API_BASE_URL}:5000/image/${documentId}`;
-
         const preview = new Image();
         preview.src = imageUrl;
         preview.onload = () => {
@@ -90,7 +124,7 @@ class WebcamCapture {
                 this.container.removeChild(preview);
                 this.container.removeChild(closeButton);
                 this.video.style.display = 'block';
-                this.captureButton.style.display = 'inline';
+                this.captureButton.style.display = 'block'; // Ensure visible for further captures
                 this.overlay.style.display = 'inline';
             };
 
@@ -100,6 +134,7 @@ class WebcamCapture {
             this.overlay.style.display = 'none';
         };
     }
+
 
     stopVideo() {
         if (this.videoStream) {
