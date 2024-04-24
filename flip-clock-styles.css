@@ -3,7 +3,7 @@
     justify-content: center;
     align-items: center;
     background: rgba(0, 0, 0, 0.1); /* Highly transparent black background */
-    width: 15%; /* Clock width is 15% of the screen width */
+    width: 40%; /* Clock width is 15% of the screen width */
     height: 150px;
     position: fixed;
     top: 50px;
