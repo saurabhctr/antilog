@@ -1,58 +1,47 @@
-#flip-clock {
-    position: absolute;
-    top: 20px;
-    left: 0;
-    z-index: 10;
-    display: flex;
-    align-items: center;
-  }
-  
-  .flip {
-    background: rgba(0, 0, 0, 0.98);
-    color: #E0E0E0;
-    font-size: 3vw; /* Size for mobile, will adjust on larger screens below */
+.flip {
+    background: rgba(20, 20, 20, 0.98); /* Darker background */
+    color: #E0E0E0; /* Pale white color */
+    font-size: 5vw; /* Responsive font size */
     border-radius: 5px;
     margin: 0 10px;
-    display: inline-block;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
     text-align: center;
-    min-width: 8vw;
-    perspective: 1000px;
+    min-width: 8vw; /* Responsive width */
+    transition: background-color 0.3s ease;
+    user-select: none;
   }
   
-  .flip .card {
-    position: relative;
-    width: 100%;
-    height: 100%;
-  }
-  
-  .flip .top-half,
-  .flip .bottom-half {
+  .flip::before, .flip::after {
+    content: '';
     position: absolute;
-    width: 100%;
-    height: 50%;
-    overflow: hidden;
+    left: 0;
+    right: 0;
     backface-visibility: hidden;
+    background: rgba(20, 20, 20, 0.98); /* Match the flip background */
   }
   
-  .flip .top-half {
-    bottom: 50%;
-  }
-  
-  .flip .bottom-half {
+  .flip::before {
     top: 50%;
-    background: rgba(0, 0, 0, 0.98);
-    transform: rotateX(-180deg);
+    transform: rotateX(0deg);
+    transform-origin: bottom;
   }
   
-  @media (min-width: 768px) {
-    .flip {
-      font-size: 1.5vw; /* Larger size for larger screens */
-    }
+  .flip::after {
+    bottom: 50%;
+    transform: rotateX(180deg);
+    transform-origin: top;
   }
   
-  @media (hover: hover) {
-    .flip:hover {
-      background: rgba(0, 0, 0, 0.25); /* Hover effect for devices with hover capability */
-    }
+  /* Hover effect */
+  #flip-clock:hover .flip {
+    background: rgba(20, 20, 20, 0.25); /* More transparent on hover */
   }
-  
+
+  #flip-clock {
+    position: absolute;
+    top: 20px; /* Adjust this value to position below your header */
+    left: 0;
+    transform: translateX(0%); /* Align with the left side */
+  }

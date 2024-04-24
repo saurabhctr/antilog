@@ -1,61 +1,48 @@
-
-window.onload = function() {
-    fetchCategoriesAndProducts(); // Ensure this also selects the first category by default
-};
-
-  
-async function fetchCategoriesAndProducts() {
-    await fetchCategories(); // This should populate the category buttons
-    const categories = JSON.parse(sessionStorage.getItem('categories'));
-    if (categories && categories.length > 0) {
-      // Programmatically click the first category button
-      document.querySelectorAll('button')[0].click();
-    }
-  }
-  
-  
-  async function fetchProductsByCategory(categoryName) {
-    if (sessionStorage.getItem(categoryName)) {
-        displayProducts(JSON.parse(sessionStorage.getItem(categoryName)));
-    } else {
-        const response = await fetch(`${window.API_BASE_URL}:5000/getProducts`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({categoryName: categoryName})
-        });
-        const products = await response.json();
-        sessionStorage.setItem(categoryName, JSON.stringify(products)); // Cache the response
-        displayProducts(products);
-    }
+// Function to generate random dates
+function getRandomDate(startYear, endYear) {
+  const start = new Date(startYear, 0, 1);
+  const end = new Date(endYear, 11, 31);
+  return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime())).toISOString().split('T')[0];
 }
 
-  function fetchFirstCategoryProducts() {
-    // Assuming the first category is fetched and stored
-    // Call fetchProductsByCategory with the first category's ID or name
-  }
-  
-  function displayProducts(products) {
-    const container = document.getElementById('products');
-    container.innerHTML = ''; // Clear existing products
-    products.forEach(product => {
-      const productCard = `
-        <div class="product-card">
-          <img src="${product.image}" alt="${product.name}">
-          <div class="product-details">
-            <h3>${product.name}</h3>
-            <p>${product.subtitle}</p>
-            <p>${product.description}</p>
-            <ul>
-                  ${product.benefits.map(benefit => `<li>${benefit}</li>`).join('')}
-            </ul>
-            <p>Services: ${product.services.join(', ')}</p>
-            <p>Price: $${product.price}</p>
-            <button class="buy-now-btn" onclick="location.href='payment-page.html';">Buy Now</button>
-          </div>
-        </div>`;
-      container.innerHTML += productCard;
-    });
-  }
-  
+// Function to create flip clock UI
+function createFlipClockUI() {
+  const flipClockContainer = document.createElement('div');
+  flipClockContainer.id = 'flip-clock';
+  document.body.appendChild(flipClockContainer);
+  flipClockContainer.innerHTML = '<div class="flip" id="day"></div><div class="flip" id="month"></div><div class="flip" id="year"></div>';
+
+  // Add mouseover event listeners
+  flipClockContainer.addEventListener('mouseover', () => {
+      flipClockContainer.style.opacity = '0.25';
+  });
+
+  flipClockContainer.addEventListener('mouseout', () => {
+      flipClockContainer.style.opacity = '0.98';
+  });
+}
+
+// Function to update flip clock with a random date
+function updateFlipClock() {
+  const dateString = getRandomDate(-20000, 2025);
+  const [year, month, day] = dateString.split('-');
+  document.getElementById('day').textContent = day;
+  document.getElementById('month').textContent = month;
+  document.getElementById('year').textContent = year;
+}
+
+// Function to start the flip clock with random intervals
+function startFlipClock() {
+  createFlipClockUI();
+  updateFlipClock();
+  setInterval(updateFlipClock, Math.random() * (4600 - 400) + 400); // Update every 0.4 to 4.6 seconds
+}
+
+// Call startFlipClock when the window loads and adjust the position based on the header
+window.addEventListener('load', () => {
+  const header = document.getElementById('header-placeholder');
+  startFlipClock();
+  const flipClock = document.getElementById('flip-clock');
+  const headerHeight = header.offsetHeight;
+  flipClock.style.top = `${headerHeight + 20}px`; // Adjusts position below the header
+});
