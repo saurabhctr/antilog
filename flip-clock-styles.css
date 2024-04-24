@@ -1,59 +1,81 @@
-/* Base container for the flip clock */
 .flip-clock {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(0, 0, 0, 0.1); /* Very transparent background */
-    width: 15%; /* Total width of clock */
+    background: rgba(0, 0, 0, 0); /* Completely transparent */
+    width: 15%; /* Set total width of all cards together */
     height: 150px;
     position: fixed;
-    top: 50px;
+    top: 20px;
     left: 50%;
     transform: translateX(-50%);
-    cursor: grab; /* Indicates the element can be grabbed */
-    z-index: 9999; /* Make sure it's on top of other elements */
+    z-index: 1000;
+    cursor: grab;
 }
 
-/* Individual card for each digit */
-.card {
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border for each card */
-    color: rgba(255, 255, 255, 0.9); /* Text less transparent than background */
-    font-size: 5vw; /* Responsive font size */
-    text-align: center;
-    vertical-align: middle;
-    line-height: 150px; /* Center text vertically */
-    margin: 0 2%; /* Spacing between cards */
-    width: 15%; /* Width of each card */
+.card-container {
+    background: rgba(0, 0, 0, 0.1); /* Highly transparent black background */
+    margin: 0 2%; /* Margin between cards */
+    width: calc(15% / 6); /* Individual card width as a fraction of the total clock width */
     height: 100%;
-    overflow: hidden; /* Hide overflow during flip */
+    perspective: 1000px;
+    transition: background 0.3s; /* Smooth transition for background */
+}
+
+.card {
     position: relative;
-    transform-style: preserve-3d; /* Required for flip effect */
-    transition: transform 0.6s, color 0.3s ease-in-out; /* Smooth transition for flip */
+    width: 100%;
+    height: 100%;
+    color: white; /* White text */
+    font-size: 5vw; /* Responsive font size */
+    font-weight: bold; /* Thick font weight */
+    text-align: center;
+    line-height: 150px; /* Center text vertically */
 }
 
-/* Hover effect to decrease transparency of the card */
-.flip-clock:hover .card {
-    background: rgba(0, 0, 0, 0.7); /* Less transparent on hover */
-    color: white; /* Text fully opaque on hover */
-}
-
-/* Flip animations for the top and bottom halves */
-.top-half {
+.top-half, .bottom-half {
     position: absolute;
-    top: 0;
     width: 100%;
     height: 50%;
-    background: rgba(0, 0, 0, 0.1);
-    transform-origin: bottom;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backface-visibility: hidden;
+}
+
+.top-half {
+    top: 0;
+    background: rgba(0, 0, 0, 0.1); /* Slightly visible top half */
 }
 
 .bottom-half {
-    position: absolute;
     bottom: 0;
-    width: 100%;
-    height: 50%;
-    background: rgba(0, 0, 0, 0.1);
-    transform-origin: top;
+    background: rgba(0, 0, 0, 0.1); /* Slightly visible bottom half */
     transform: rotateX(-180deg);
+}
+
+/* Flip animations for the top and bottom halves */
+@keyframes flip-top {
+    0% { transform: rotateX(0deg); }
+    100% { transform: rotateX(-180deg); }
+}
+
+@keyframes flip-bottom {
+    0% { transform: rotateX(180deg); }
+    100% { transform: rotateX(0deg); }
+}
+
+/* Apply animations to the flipping elements */
+.flipping .top-half {
+    animation: flip-top 0.6s forwards;
+}
+
+.flipping .bottom-half {
+    animation: flip-bottom 0.6s forwards;
+}
+
+/* Hover effect for each card */
+.card-container:hover {
+    background: rgba(0, 0, 0, 0.3); /* Less transparent on hover */
 }

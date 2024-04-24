@@ -1,24 +1,30 @@
-// Wait for the DOM to fully load before running the script
 document.addEventListener("DOMContentLoaded", function() {
-    // Create and append the flip clock container
     const clock = document.createElement('div');
     clock.id = 'flip-clock';
-    clock.className = 'flip-clock';
     document.body.appendChild(clock);
 
-    // Define time units and create their respective HTML structure
-    const timeUnits = ['hour', 'minute', 'second'];
-    timeUnits.forEach(unit => {
+    // Generate cards for each digit of the clock
+    ['hour', 'minute', 'second'].forEach(unit => {
         for (let i = 0; i < 2; i++) {
-            const digit = document.createElement('div');
-            digit.className = 'digit ' + unit;
-            digit.innerHTML = `<div class="card">
-                                   <div class="top-half" id="${unit}${i}-top"></div>
-                                   <div class="bottom-half" id="${unit}${i}-bottom"></div>
-                               </div>`;
-            clock.appendChild(digit);
+            const cardContainer = document.createElement('div');
+            cardContainer.className = 'card-container';
+            
+            const card = document.createElement('div');
+            card.className = 'card';
+            cardContainer.appendChild(card);
+            
+            const topHalf = document.createElement('div');
+            topHalf.className = 'top-half';
+            card.appendChild(topHalf);
+            
+            const bottomHalf = document.createElement('div');
+            bottomHalf.className = 'bottom-half';
+            card.appendChild(bottomHalf);
+            
+            clock.appendChild(cardContainer);
         }
     });
+    
 
     // Function to update the clock
     function updateClock() {
