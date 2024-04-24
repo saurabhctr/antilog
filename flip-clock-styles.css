@@ -1,74 +1,62 @@
-/* Container styling */
 .flip-clock {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(0, 0, 0, 0.75); /* Semi-transparent black background */
+    background: rgba(0, 0, 0, 0.75);
     width: 2300px;
     height: 150px;
-    border-radius: 5px;
     position: fixed;
     top: 50px;
     left: 50%;
     transform: translateX(-50%);
-    cursor: move; /* Indicates the element is movable */
+    cursor: move;
+    z-index: 1000;
 }
 
-/* Digit styling */
-.digit {
-    position: relative;
+.card {
     color: white;
-    font-size: 100px; /* Large font for readability */
-    font-family: 'Arial', sans-serif;
-    width: 150px; /* Sufficient width for each digit */
-    height: 150px; /* Square to facilitate flipping effect */
+    font-size: 100px;
+    width: 150px; /* Adjust as needed */
+    height: 150px; /* Adjust as needed */
     margin: 0 10px;
-    perspective: 1000px; /* Depth perspective for flipping */
+    perspective: 1000px;
+    position: relative;
 }
 
-/* Half digit setup for flipping effect */
-.digit .top-half, .digit .bottom-half {
+.top-half, .bottom-half {
     position: absolute;
     width: 100%;
     height: 50%;
     overflow: hidden;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     backface-visibility: hidden;
 }
 
-.digit .top-half {
+.top-half {
     top: 0;
-    left: 0;
 }
 
-.digit .bottom-half {
+.bottom-half {
     bottom: 0;
-    left: 0;
     transform: rotateX(-180deg);
 }
 
-/* Animation for flipping effect */
-@keyframes flip-top {
-    0% { transform: rotateX(0deg); }
+/* Flipping animation for the digits */
+@keyframes flip {
+    0% { transform: rotateX(0); }
     100% { transform: rotateX(-180deg); }
 }
 
-@keyframes flip-bottom {
-    0% { transform: rotateX(180deg); }
-    100% { transform: rotateX(0deg); }
+.flipping .top-half {
+    animation: flip 1s;
 }
 
-.digit .top-half.flip {
-    animation: flip-top 0.6s forwards;
+.flipping .bottom-half {
+    animation: flip 1s;
 }
 
-.digit .bottom-half.flip {
-    animation: flip-bottom 0.6s forwards;
-}
-
-/* Hover effect for changing background transparency */
 #flip-clock:hover {
-    background-color: rgba(0, 0, 0, 0.5); /* Lighter on hover */
+    background-color: rgba(0, 0, 0, 0.5);
 }
