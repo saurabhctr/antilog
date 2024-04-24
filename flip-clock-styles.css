@@ -1,47 +1,58 @@
+#flip-clock {
+    position: fixed;
+    top: 20px;
+    left: 0;
+    transform: translateX(0%);
+    display: flex;
+    background: rgba(0, 0, 0, 0.9); /* Matt black background with 90% transparency */
+    padding: 10px;
+    border-radius: 10px;
+    z-index: 1000; /* High z-index to float above other content */
+    cursor: move; /* Cursor indicates that this element is movable */
+}
+
 .flip {
-    background: rgba(20, 20, 20, 0.98); /* Darker background */
-    color: #E0E0E0; /* Pale white color */
-    font-size: 5vw; /* Responsive font size */
+    background: transparent;
+    color: #E0E0E0;
+    font-size: 4vw; /* Responsive font size adjusted for visibility */
     border-radius: 5px;
-    margin: 0 10px;
-    display: inline-flex;
+    margin: 5px;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    min-width: 8vw; /* Responsive width */
-    transition: background-color 0.3s ease;
+    width: 20vw; /* Width of each flip segment */
+    perspective: 1000px; /* Needed for the 3D flip effect */
     user-select: none;
-  }
-  
-  .flip::before, .flip::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    backface-visibility: hidden;
-    background: rgba(20, 20, 20, 0.98); /* Match the flip background */
-  }
-  
-  .flip::before {
-    top: 50%;
-    transform: rotateX(0deg);
-    transform-origin: bottom;
-  }
-  
-  .flip::after {
-    bottom: 50%;
-    transform: rotateX(180deg);
-    transform-origin: top;
-  }
-  
-  /* Hover effect */
-  #flip-clock:hover .flip {
-    background: rgba(20, 20, 20, 0.25); /* More transparent on hover */
-  }
+    pointer-events: none; /* Prevents interaction with clicks */
+}
 
-  #flip-clock {
+.card, .top-half, .bottom-half {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    backface-visibility: hidden;
+    transition: transform 0.6s;
+}
+
+.top-half {
     position: absolute;
-    top: 20px; /* Adjust this value to position below your header */
-    left: 0;
-    transform: translateX(0%); /* Align with the left side */
-  }
+    top: 0;
+    background: rgba(0, 0, 0, 0.9);
+    transform-origin: bottom;
+}
+
+.bottom-half {
+    position: absolute;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.9);
+    transform-origin: top;
+    transform: rotateX(180deg);
+}
+
+#flip-clock:hover {
+    background: rgba(0, 0, 0, 0.25); /* Lighter on hover */
+}
