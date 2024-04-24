@@ -27,24 +27,38 @@ document.addEventListener("DOMContentLoaded", function() {
         const minutes = now.getMinutes().toString().padStart(2, '0');
         const seconds = now.getSeconds().toString().padStart(2, '0');
         const newTime = hours + minutes + seconds;
-
-        for (let i = 0; i < newTime.length; i++) {
+    
+        for (let i = 0; i < 6; i++) {
             const digit = document.getElementById(['hour', 'minute', 'second'][Math.floor(i / 2)] + (i % 2));
-            const topHalf = digit.querySelector('.top-half');
-            const bottomHalf = digit.querySelector('.bottom-half');
-            const newValue = newTime.charAt(i);
-
-            if (topHalf.textContent !== newValue) {
-                // Reset the bottom half's text and rotate it back
-                bottomHalf.textContent = topHalf.textContent;
-                bottomHalf.style.transform = 'rotateX(180deg)';
-
-                // Set new value and animate the top half
-                topHalf.textContent = newValue;
-                topHalf.style.transform = 'rotateX(-180deg)';
-                topHalf.style.animation = 'flip 0.5s forwards';
+            const newValue = newTime[i];
+    
+            // Only animate when the digit value changes
+            if (digit.textContent !== newValue) {
+                animateFlip(digit, newValue);
             }
         }
+    }
+    
+    function animateFlip(digit, newValue) {
+        const topHalf = digit.querySelector('.top-half');
+        const bottomHalf = digit.querySelector('.bottom-half');
+    
+        // Prepare new bottom half
+        const newBottomHalf = bottomHalf.cloneNode(true);
+        newBottomHalf.textContent = newValue;
+        newBottomHalf.style.transform = 'rotateX(180deg)';
+        newBottomHalf.style.transition = 'none';
+    
+        // Flip top half
+        topHalf.textContent = newValue;
+        topHalf.style.transform = 'rotateX(-180deg)';
+        topHalf.addEventListener('transitionend', () => {
+            topHalf.textContent = newValue;
+            topHalf.style.transform = 'rotateX(0deg)';
+    
+            // Replace old bottom half with the new one
+            digit.replaceChild(newBottomHalf, bottomHalf);
+        }, { once: true });
     }
 
     // Update the clock every second
