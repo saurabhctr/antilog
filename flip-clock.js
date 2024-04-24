@@ -54,7 +54,7 @@ function makeDraggable(element) {
     }
 
     function elementDrag(e) {
-        e =e = e || window.event;
+        e = e || window.event;
         e.preventDefault();
         // calculate the new cursor position:
         pos1 = pos3 - e.clientX;
@@ -71,6 +71,12 @@ function makeDraggable(element) {
         document.onmouseup = null;
         document.onmousemove = null;
     }
+}
+
+function startFlipClock() {
+    createFlipClockUI();
+    updateFlipClock();
+    setInterval(updateFlipClock, Math.random() * (4600 - 400) + 400); // Update every 0.4 to 4.6 seconds
 }
 
 // Call startFlipClock when the window loads
