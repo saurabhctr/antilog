@@ -29,15 +29,20 @@ document.addEventListener("DOMContentLoaded", function() {
         const newTime = hours + minutes + seconds;
 
         for (let i = 0; i < newTime.length; i++) {
-            const topHalf = document.getElementById(timeUnits[Math.floor(i / 2)] + (i % 2) + '-top');
-            const bottomHalf = document.getElementById(timeUnits[Math.floor(i / 2)] + (i % 2) + '-bottom');
-            if (topHalf.textContent !== newTime[i]) {
-                topHalf.textContent = newTime[i];
-                topHalf.classList.add('flip');
-                setTimeout(() => {
-                    topHalf.classList.remove('flip');
-                    bottomHalf.textContent = newTime[i];
-                }, 500);
+            const digit = document.getElementById(['hour', 'minute', 'second'][Math.floor(i / 2)] + (i % 2));
+            const topHalf = digit.querySelector('.top-half');
+            const bottomHalf = digit.querySelector('.bottom-half');
+            const newValue = newTime.charAt(i);
+
+            if (topHalf.textContent !== newValue) {
+                // Reset the bottom half's text and rotate it back
+                bottomHalf.textContent = topHalf.textContent;
+                bottomHalf.style.transform = 'rotateX(180deg)';
+
+                // Set new value and animate the top half
+                topHalf.textContent = newValue;
+                topHalf.style.transform = 'rotateX(-180deg)';
+                topHalf.style.animation = 'flip 0.5s forwards';
             }
         }
     }

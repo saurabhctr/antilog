@@ -1,27 +1,29 @@
 .flip-clock {
-    position: fixed;
-    top: 20px;
-    left: 0;
-    right: 0;
-    margin: auto;
     display: flex;
-    width: 2300px;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.1); /* Highly transparent black background */
+    width: 15%; /* Clock width is 15% of the screen width */
     height: 150px;
-    background: rgba(0, 0, 0, 0.75);
-    color: white;
-    font-size: 4rem;
-    font-weight: bold;
-    text-align: center;
-    user-select: none;
+    position: fixed;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
     cursor: move;
+    z-index: 1000;
+    transition: background 0.3s ease; /* Smooth transition for background */
 }
 
 .digit {
     position: relative;
-    width: 230px; /* Divided width by number of digits to fit the container */
-    height: 150px;
+    background: rgba(0, 0, 0, 0.1); /* Digit background highly transparent */
+    color: rgba(255, 255, 255, 0.9); /* Less vigorous transparency change for text */
+    font-size: 100px;
+    width: 15%; /* Each card width is 15% of the total clock width */
+    height: 100%;
     margin: 0 5px;
     perspective: 1000px;
+    transition: color 0.3s ease; /* Smooth transition for text color */
 }
 
 .card {
@@ -60,4 +62,9 @@
 
 #flip-clock:hover {
     background: rgba(0, 0, 0, 0.9); /* Less transparency on hover */
+}
+
+#flip-clock:hover .digit {
+    background: rgba(0, 0, 0, 0.7); /* Less transparent on hover */
+    color: white; /* Text fully opaque on hover */
 }
