@@ -1,90 +1,89 @@
-/* Footer styles */
-.site-footer {
-    flex-shrink: 0; /* The footer will not shrink */
-    background-color: #7531310f; /* Pale white background */
-    color: #333; /* Dark text color for contrast */
-    text-align: center;
-    padding: 20px 0;
+/* Base styling for the flip clock container */
+#flip-clock {
+    position: fixed;
+    top: 20px; /* Positioned 20px from the top of the viewport */
+    left: 0;
+    right: 0; /* Center the clock horizontally */
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.9); /* Matt black background with 90% transparency */
+    padding: 10px;
+    border-radius: 10px;
+    width: max-content; /* Only as wide as it needs to be */
+    z-index: 1000; /* Ensure it's on top of other content */
+    cursor: move; /* Indicates the element is movable */
+    pointer-events: none; /* Prevents the clock from capturing clicks */
+}
+
+/* Styling for each flip segment */
+.flip {
+    position: relative;
+    background: transparent;
+    color: #E0E0E0; /* Pale white color for text */
+    font-size: 4vw; /* Large text for better visibility */
+    margin: 0 10px;
+    min-width: 60px; /* Minimum width for each segment */
+    perspective: 1000px; /* Necessary for the 3D flip effect */
+    user-select: none; /* Prevent text selection */
+    pointer-events: all; /* Enable interactions for flipping */
+}
+
+/* Styling for the cards that will flip */
+.card {
     width: 100%;
-}
-
-.footer-content {
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    max-width: 1200px; /* Max width of the footer content */
-    margin: 0 auto; /* Center the footer content */
-    padding: 0 20px; /* Padding on the sides */
-}
-
-.footer-section {
-    margin-bottom: 20px; /* Spacing between sections */
-}
-
-.footer-section h4 {
-    margin-bottom: 10px; /* Spacing under section headers */
-}
-
-.footer-section ul {
-    list-style: none; /* Remove default list styling */
-    padding: 0; /* Remove default padding */
-}
-
-.footer-section ul li a {
-    color: #333; /* Link color */
-    text-decoration: none; /* Remove underline from links */
-    transition: color 0.3s ease, text-shadow 0.3s ease; /* Transition for hover effect */
-}
-
-.footer-section ul li a:hover {
-    color: #007bff; /* Color change on hover */
-    text-shadow: 0 0 5px #007bff; /* Glow effect on hover */
-}
-
-.footer-bottom {
-    text-align: center; /* Center the copyright text */
-    margin-top: 20px; /* Spacing from the content above */
-}
-
-address {
-    font-style: normal; /* Addresses are italic by default, making it normal */
-}
-
-/* Ensure the footer is at the bottom */
-body, html {
     height: 100%;
-    margin: 0;
+    position: relative;
+    transition: transform 0.6s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    transform-style: preserve-3d; /* Preserve 3D during animations */
 }
 
-body {
+/* Top and bottom halves for flipping effect */
+.top-half, .bottom-half {
+    position: absolute;
+    width: 100%;
+    height: 50%;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    backface-visibility: hidden; /* Hide the back side of the flip */
 }
 
-.content {
-    flex: 1 0 auto; /* The .content will grow to fill the space */
+.top-half {
+    top: 0;
+    background: rgba(0, 0, 0, 0.9);
+    transform-origin: bottom;
 }
 
-.site-footer {
-    flex-shrink: 0; /* The footer will not shrink */
+.bottom-half {
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.9);
+    transform-origin: top;
+    transform: rotateX(180deg);
 }
 
-/* Responsive styles */
-@media (max-width: 768px) {
-    .footer-content {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .footer-section {
-        align-items: center;
-        text-align: center;
-    }
-
-    .footer-section h4 {
-        margin-top: 20px;
-    }
+/* Hover effect for the whole clock */
+#flip-clock:hover {
+    background-color: rgba(0, 0, 0, 0.25); /* Lighter background on hover */
 }
 
-/* Add your existing styles below */
+/* Keyframes for the flipping animation */
+@keyframes flipTopHalf {
+    from { transform: rotateX(0); }
+    to { transform: rotateX(-180deg); }
+}
+
+@keyframes flipBottomHalf {
+    from { transform: rotateX(180deg); }
+    to { transform: rotateX(0deg); }
+}
+
+/* Animation triggers */
+.flipping .top-half {
+    animation: flipTopHalf 0.6s forwards;
+}
+
+.flipping .bottom-half {
+    animation: flipBottomHalf 0.6s forwards;
+}

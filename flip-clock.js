@@ -24,19 +24,20 @@ function updateFlipClock() {
     const [year, month, day] = dateString.split('-');
     const fields = {day, month, year};
     for (const [id, value] of Object.entries(fields)) {
-        const topHalf = document.getElementById(id).querySelector('.top-half');
-        const bottomHalf = document.getElementById(id).querySelector('.bottom-half');
+        const card = document.getElementById(id);
+        const topHalf = card.querySelector('.top-half');
+        const bottomHalf = card.querySelector('.bottom-half');
         if (topHalf.textContent !== value) {
-            topHalf.textContent = value;
-            bottomHalf.textContent = value; // Prepare for next flip
-            // Trigger flip
-            bottomHalf.style.transform = 'rotateX(0deg)';
+            bottomHalf.textContent = topHalf.textContent; // Move old value to bottom
+            topHalf.textContent = value; // New value at top
+            card.classList.add('flipping'); // Start animation
             setTimeout(() => {
-                bottomHalf.style.transform = 'rotateX(180deg)';
-            }, 300); // Halfway through the flip, reset position
+                card.classList.remove('flipping'); // Reset for next flip
+            }, 700); // Slightly longer than the CSS animation to ensure reset
         }
     }
 }
+
 
 function makeDraggable(element) {
     let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
