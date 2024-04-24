@@ -1,84 +1,81 @@
-function getRandomDate(startYear, endYear) {
-    const start = new Date(startYear, 0, 1);
-    const end = new Date(endYear, 11, 31);
-    return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime())).toISOString().split('T')[0];
-}
+document.addEventListener("DOMContentLoaded", function() {
+    // Create and append the flip clock container
+    const clock = document.createElement('div');
+    clock.id = 'flip-clock';
+    clock.className = 'flip-clock';
+    document.body.appendChild(clock);
 
-function createFlipClockUI() {
-    const flipClockContainer = document.createElement('div');
-    flipClockContainer.id = 'flip-clock';
-    document.body.appendChild(flipClockContainer);
-    const ids = ['day', 'month', 'year'];
+    // Create digits for hours, minutes, and seconds
+    const ids = ['hour1', 'hour2', 'minute1', 'minute2', 'second1', 'second2'];
     ids.forEach(id => {
-        const flip = document.createElement('div');
-        flip.className = 'flip';
-        flip.innerHTML = `<div class="card"><div class="top-half"></div><div class="bottom-half"></div></div>`;
-        flip.firstElementChild.id = id;
-        flipClockContainer.appendChild(flip);
+        const digit = document.createElement('div');
+        digit.className = 'digit';
+        digit.id = id;
+        digit.innerHTML = `<div class="top-half">0</div><div class="bottom-half">0</div>`;
+        clock.appendChild(digit);
     });
-    makeDraggable(flipClockContainer);
-}
 
-function updateFlipClock() {
-    const dateString = getRandomDate(-20000, 2025);
-    const [year, month, day] = dateString.split('-');
-    const fields = {day, month, year};
-    for (const [id, value] of Object.entries(fields)) {
-        const card = document.getElementById(id);
-        const topHalf = card.querySelector('.top-half');
-        const bottomHalf = card.querySelector('.bottom-half');
-        if (topHalf.textContent !== value) {
-            bottomHalf.textContent = topHalf.textContent; // Move old value to bottom
-            topHalf.textContent = value; // New value at top
-            card.classList.add('flipping'); // Start animation
-            setTimeout(() => {
-                card.classList.remove('flipping'); // Reset for next flip
-            }, 700); // Slightly longer than the CSS animation to ensure reset
+    // Function to update the clock
+    function updateClock() {
+        const now = new Date();
+        const hours = now.getHours().toString().padStart(2, '0');
+        const minutes = now.getMinutes().toString().padStart(2, '0');
+        const seconds = now.getSeconds().toString().padStart(2, '0');
+
+        ids.forEach((id, index) => {
+            const digit = document.getElementById(id);
+            const newValues = hours + minutes + seconds;
+            const newValue = newValues.charAt(index);
+            const topHalf = digit.querySelector('.top-half');
+            const bottomHalf = digit.querySelector('.bottom-half');
+
+            if (topHalf.textContent !== newValue) {
+                topHalf.textContent = newValue;
+                bottomHalf.style.transform = 'rotateX(-180deg)'; // Reset for flip
+                bottomHalf.textContent = newValue; // Prepare new value for flip
+
+                // Animate flip
+                bottomHalf.style.transition = 'none'; // Disable transition for instant reset
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        bottomHalf.style.transition = 'transform 0.6s';
+                        bottomHalf.style.transform = 'rotateX(0deg)';
+                    });
+                });
+            }
+        });
+    }
+
+    // Make the clock draggable
+    function makeDraggable(element) {
+        let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+        element.onmousedown = function(e) {
+            e.preventDefault();
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            document.onmouseup = closeDrag;
+            document.onmousemove = elementDrag;
+        };
+
+        function elementDrag(e) {
+            e.preventDefault();
+            pos1 = pos3 - e.clientX;
+            pos2 = pos4 - e.clientY;
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            element.style.top = (element.offsetTop - pos2) + "px";
+            element.style.left = (element.offsetLeft - pos1) + "px";
+        }
+
+        function closeDrag() {
+            document.onmouseup = null;
+            document.onmousemove = null;
         }
     }
-}
 
+    makeDraggable(clock);
 
-function makeDraggable(element) {
-    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-    element.onmousedown = dragMouseDown;
-
-    function dragMouseDown(e) {
-        e = e || window.event;
-        e.preventDefault();
-        // Get the mouse cursor position at startup:
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        document.onmouseup = closeDragElement;
-        // Call a function whenever the cursor moves:
-        document.onmousemove = elementDrag;
-    }
-
-    function elementDrag(e) {
-        e = e || window.event;
-        e.preventDefault();
-        // calculate the new cursor position:
-        pos1 = pos3 - e.clientX;
-        pos2 = pos4 - e.clientY;
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        // set the element's new position:
-        element.style.top = (element.offsetTop - pos2) + "px";
-        element.style.left = (element.offsetLeft - pos1) + "px";
-    }
-
-    function closeDragElement() {
-        // stop moving when mouse button is released:
-        document.onmouseup = null;
-        document.onmousemove = null;
-    }
-}
-
-function startFlipClock() {
-    createFlipClockUI();
-    updateFlipClock();
-    setInterval(updateFlipClock, Math.random() * (4600 - 400) + 400); // Update every 0.4 to 4.6 seconds
-}
-
-// Call startFlipClock when the window loads
-window.addEventListener('load', startFlipClock);
+    // Initialize the clock and set it to update every second
+    setInterval(updateClock, 1000);
+    updateClock(); // Set initial time
+});
