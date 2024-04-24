@@ -1,26 +1,32 @@
 .flip-clock {
+    position: fixed;
+    top: 20px;
+    left: 0;
+    right: 0;
+    margin: auto;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgba(0, 0, 0, 0.75);
     width: 2300px;
     height: 150px;
-    position: fixed;
-    top: 50px;
-    left: 50%;
-    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.75);
+    color: white;
+    font-size: 4rem;
+    font-weight: bold;
+    text-align: center;
+    user-select: none;
     cursor: move;
-    z-index: 1000;
+}
+
+.digit {
+    position: relative;
+    width: 230px; /* Divided width by number of digits to fit the container */
+    height: 150px;
+    margin: 0 5px;
+    perspective: 1000px;
 }
 
 .card {
-    color: white;
-    font-size: 100px;
-    width: 150px; /* Adjust as needed */
-    height: 150px; /* Adjust as needed */
-    margin: 0 10px;
-    perspective: 1000px;
-    position: relative;
+    width: 100%;
+    height: 100%;
 }
 
 .top-half, .bottom-half {
@@ -29,8 +35,8 @@
     height: 50%;
     overflow: hidden;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     backface-visibility: hidden;
 }
 
@@ -40,23 +46,18 @@
 
 .bottom-half {
     bottom: 0;
-    transform: rotateX(-180deg);
+    transform: rotateX(180deg);
 }
 
-/* Flipping animation for the digits */
+.flip {
+    animation: flip 0.5s forwards;
+}
+
 @keyframes flip {
-    0% { transform: rotateX(0); }
+    0% { transform: rotateX(0deg); }
     100% { transform: rotateX(-180deg); }
 }
 
-.flipping .top-half {
-    animation: flip 1s;
-}
-
-.flipping .bottom-half {
-    animation: flip 1s;
-}
-
 #flip-clock:hover {
-    background-color: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.9); /* Less transparency on hover */
 }
