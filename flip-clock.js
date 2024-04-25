@@ -7,10 +7,10 @@ document.addEventListener("DOMContentLoaded", function() {
     ['hour', 'minute', 'second'].forEach(unit => {
         for (let i = 0; i < 2; i++) {
             const cardContainer = document.createElement('div');
-            cardContainer.className = 'card-container';
+            cardContainer.className = 'card_clock-container';
             
             const card = document.createElement('div');
-            card.className = 'card';
+            card.className = 'card_clock';
             cardContainer.appendChild(card);
             
             const topHalf = document.createElement('div');
