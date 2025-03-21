@@ -216,6 +216,89 @@ def order_to_dict(order):
 # Routes
 
 # 1. User Registration and Management
+@app.route('/login', methods=['POST'])
+def login_user():
+    """Login a user or register if not exists"""
+    try:
+        data = request.json
+        
+        if 'mobile_number' not in data:
+            return jsonify({'error': 'Mobile number is required'}), 400
+            
+        mobile_number = data['mobile_number']
+        
+        # Check if user exists
+        user = User.query.filter_by(mobile_number=mobile_number).first()
+        
+        if user:
+            # User exists - in a real application, you would send OTP here
+            # For now, we'll simulate OTP sent
+            logger.info(f"Login attempt for existing user with mobile: {mobile_number}")
+            return jsonify({
+                'message': 'OTP sent successfully',
+                'customer_id': user.customer_id,
+                'is_new_user': False
+            }), 200
+        else:
+            # User doesn't exist, create a new user account
+            new_user = User(
+                mobile_number=mobile_number,
+                name=data.get('name', None),
+                email=data.get('email', None),
+                addresses=data.get('addresses', {}),
+                kyc_status=False
+            )
+            db.session.add(new_user)
+            db.session.commit()
+            
+            logger.info(f"New user registered with mobile: {mobile_number}")
+            
+            return jsonify({
+                'message': 'OTP sent successfully',
+                'customer_id': new_user.customer_id,
+                'is_new_user': True
+            }), 201
+            
+    except Exception as e:
+        logger.error(f"Error in login_user: {str(e)}")
+        db.session.rollback()
+        return jsonify({'error': str(e)}), 500
+
+# For a complete implementation, add OTP verification
+@app.route('/verify_otp', methods=['POST'])
+def verify_otp():
+    """Verify OTP for user login"""
+    try:
+        data = request.json
+        
+        if 'mobile_number' not in data or 'otp' not in data:
+            return jsonify({'error': 'Mobile number and OTP are required'}), 400
+            
+        mobile_number = data['mobile_number']
+        otp = data['otp']
+        
+        # In a real application, validate the OTP
+        # For demo purposes, accept any OTP (e.g., "1234")
+        if otp == "987654":  # This should be replaced with actual OTP validation
+            user = User.query.filter_by(mobile_number=mobile_number).first()
+            
+            if not user:
+                return jsonify({'error': 'User not found'}), 404
+                
+            return jsonify({
+                'message': 'Login successful',
+                'customer_id': user.customer_id,
+                'name': user.name,
+                'email': user.email,
+                'kyc_status': user.kyc_status
+            }), 200
+        else:
+            return jsonify({'error': 'Invalid OTP'}), 401
+            
+    except Exception as e:
+        logger.error(f"Error in verify_otp: {str(e)}")
+        return jsonify({'error': str(e)}), 500
+
 @app.route('/register', methods=['POST'])
 def register_user():
     """Register a new user"""
