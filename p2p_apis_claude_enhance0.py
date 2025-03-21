@@ -18,6 +18,7 @@ app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
 rts_credentials": True
 }})
+
 # Configure database
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://accessor:12345678@localhost/p2p'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
