@@ -27,7 +27,8 @@ CORS(app, resources={r"/*": {
     "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
     "allow_headers": "*",
     "expose_headers": "*",
-    "supports_credentials": True
+    "supports_credentials": True,
+    "vary": "Origin"  # Important for CORS with HTTPS
 }})
 
 # Configure database
@@ -1172,4 +1173,5 @@ def rent_calculation():
 
 # Run the application
 if __name__ == '__main__':
+    context = ('cert.pem', 'key.pem')  # Path to your certificate files
     app.run(host="0.0.0.0", port=5000, debug=True)
