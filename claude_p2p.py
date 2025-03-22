@@ -13,6 +13,13 @@ logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
+#vision API
+# For image analysis we'll use an AI model via API
+# You'll need to replace this with your actual AI provider's API details
+VISION_API_KEY = os.environ.get("VISION_API_KEY", "da4301423fe4439b9eb4619d88c62828")
+VISION_API_URL = "https://invoiceinfomatchingopenai.openai.azure.com/"  # Replace with actual Vision API endpoint
+
+
 # Initialize Flask app
 app = Flask(__name__)
 CORS(app, resources={r"/*": {
@@ -116,6 +123,115 @@ class Logistics(db.Model):
     order = db.relationship('Order', backref='logistics')
 
 # Helper Functions
+def analyze_image(image_url):
+    """
+    Analyze the image to determine the condition of the appliance/furniture
+    and return a condition score (0.0 to 1.0) and estimated depreciation factor.
+    """
+    try:
+        # Download the image from the URL
+        response = requests.get(image_url)
+        if response.status_code != 200:
+            logging.error(f"Failed to download image from {image_url}")
+            return {"condition_score": 0.5, "depreciation_factor": 0.2}
+        
+        image = Image.open(io.BytesIO(response.content))
+        
+        # Convert image to base64 for API request
+        buffered = io.BytesIO()
+        image.save(buffered, format="JPEG")
+        img_str = base64.b64encode(buffered.getvalue()).decode()
+        
+        # Prepare prompt for vision API
+        prompt = """
+        Analyze this image of furniture/appliance and determine:
+        1. The overall condition (excellent, good, fair, poor)
+        2. Any visible damage, wear and tear, or signs of age
+        3. Estimated remaining useful life as a percentage
+        4. Cleanliness and maintenance level
+        5. Modern appeal and market demand for this item
+        Based on these factors, provide a condition score from 0.0 (very poor) to 1.0 (like new)
+        and a recommended depreciation factor from 0.0 (no additional depreciation) to 0.5 (significant depreciation).
+        """
+        
+        # Make request to vision API
+        headers = {
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {VISION_API_KEY}"
+        }
+        
+        payload = {
+            "image": img_str,
+            "prompt": prompt
+        }
+        
+        ai_response = requests.post(
+            VISION_API_URL,
+            headers=headers,
+            json=payload
+        )
+        
+        if ai_response.status_code != 200:
+            logging.error(f"Vision API error: {ai_response.text}")
+            return {"condition_score": 0.5, "depreciation_factor": 0.2}
+        
+        # Parse the AI response to extract condition score and depreciation factor
+        # This will depend on the exact format of your vision API's response
+        result = ai_response.json()
+        
+        # Extract the condition score and depreciation factor from the AI response
+        # This is a simplified example - adapt to your actual AI response format
+        condition_score = result.get("condition_score", 0.5)
+        depreciation_factor = result.get("depreciation_factor", 0.2)
+        
+        return {
+            "condition_score": condition_score,
+            "depreciation_factor": depreciation_factor
+        }
+    
+    except Exception as e:
+        logging.error(f"Error analyzing image: {str(e)}")
+        # Return default values if analysis fails
+        return {"condition_score": 0.5, "depreciation_factor": 0.2}
+
+def calculate_rent(invoice_value: float, purchase_date: str, condition_details: dict = None):
+    """
+    Calculate the suggested monthly rental price based on:
+    - Invoice value
+    - Age of the item (purchase date)
+    - Condition details from AI analysis (if available)
+    """
+    purchase_date = datetime.strptime(purchase_date, "%Y-%m-%d")
+    current_date = datetime.today()
+    age_in_months = (current_date.year - purchase_date.year) * 12 + current_date.month - purchase_date.month
+    
+    # Base rent calculation (1/24th of invoice value)
+    base_rent = invoice_value / 24
+    
+    # Standard age-based depreciation (0.5% per month)
+    depreciation_percentage = 0.5 / 100  # 0.5% per month
+    age_depreciation_value = base_rent * depreciation_percentage * age_in_months
+    rent_after_age_depreciation = base_rent - age_depreciation_value
+    
+    # Apply AI-based condition depreciation if available
+    if condition_details:
+        condition_score = condition_details.get("condition_score", 0.5)
+        depreciation_factor = condition_details.get("depreciation_factor", 0.2)
+        
+        # Adjust depreciation based on condition
+        # We use condition_score to determine how much of the depreciation_factor to apply
+        condition_adjustment = 1 - (depreciation_factor * (1 - condition_score))
+        rent_after_condition = rent_after_age_depreciation * condition_adjustment
+    else:
+        # Without AI analysis, default to 20% reduction
+        rent_after_condition = rent_after_age_depreciation * 0.8
+    
+    # Ensure rent doesn't fall below 3% of the invoice value
+    min_rent = invoice_value * 0.03
+    final_rent = max(rent_after_condition, min_rent)
+    
+    return round(final_rent, 2)
+
 def calculate_distance_from_pincodes(pincode1, pincode2):
     """Calculate distance between two pincodes using geodesic formula"""
     loc1 = PincodeMaster.query.filter_by(pincode=pincode1).first()
@@ -1010,6 +1126,49 @@ def search_pincodes():
     except Exception as e:
         logger.error(f"Error in search_pincodes: {str(e)}")
         return jsonify({'error': str(e)}), 500
+
+@app.route('/calculate_rent', methods=['POST'])
+def rent_calculation():
+    try:
+        data = request.get_json()
+        
+        # Required fields
+        invoice_value = data.get('invoice_value')
+        purchase_date = data.get('purchase_date')
+        
+        # Optional fields
+        image_url = data.get('image_url')
+        
+        # Validate required inputs
+        if not invoice_value or not purchase_date:
+            return jsonify({"error": "Missing required fields: invoice_value and purchase_date are required"}), 400
+        
+        # Process image if URL is provided
+        condition_details = None
+        if image_url:
+            logging.info(f"Analyzing image: {image_url}")
+            condition_details = analyze_image(image_url)
+            logging.info(f"Image analysis results: {condition_details}")
+        
+        # Calculate rent
+        rent = calculate_rent(invoice_value, purchase_date, condition_details)
+        
+        # Prepare response
+        response = {
+            "monthly_rent": rent,
+            "invoice_value": invoice_value,
+            "age_in_months": (datetime.today() - datetime.strptime(purchase_date, "%Y-%m-%d")).days // 30
+        }
+        
+        # Include condition details in response if available
+        if condition_details:
+            response["condition_details"] = condition_details
+        
+        return jsonify(response)
+    
+    except Exception as e:
+        logging.error(f"Error processing request: {str(e)}")
+        return jsonify({"error": str(e)}), 500
 
 # Run the application
 if __name__ == '__main__':
